@@ -1,8 +1,8 @@
 #ifndef GLEWY_TRANSFORM_HPP
 #define GLEWY_TRANSFORM_HPP
 
-#include<Glewy/Structures/tree.hpp>
 #include<SML/sml.hpp>
+#include<Glewy/Structures/tree.hpp>
 
 namespace gly
 {

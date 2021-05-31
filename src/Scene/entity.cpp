@@ -1,7 +1,5 @@
 #include<Glewy/Scene/entity.hpp>
 
-#include<Glewy/Core/logging.hpp>
-
 #include<Glewy/Scene/component.hpp>
 #include<Glewy/Structures/transform.hpp>
 

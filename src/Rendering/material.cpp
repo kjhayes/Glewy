@@ -1,14 +1,11 @@
-#include<Glewy/Core/macros.hpp>
 #include<Glewy/Rendering/material.hpp>
 
+#include<Glewy/Core/macros.hpp>
 #include<SML/sml.hpp>
 #include<Glewy/External/GLEW.h>
-
 #include<Glewy/Rendering/materialrenderable.hpp>
 #include<Glewy/Scene/camera.hpp>
 #include<Glewy/Utilities/readfile.hpp>
-
-#include<Glewy/Core/logging.hpp>
 
 namespace gly
 {
@@ -29,7 +26,6 @@ const char* def_frag = "#version 330\n"
 
 Material::Material(const char* vs, const char* fs, bool is_path)
 {
-	GLY_DEBUG_LOG(1);
 	registry.push_back(this);
 
 	program = glCreateProgram();

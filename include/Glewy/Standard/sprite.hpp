@@ -1,5 +1,5 @@
-#ifndef GLEWY_STD_SPRITE_HPP
-#define GLEWY_STD_SPRITE_HPP
+#ifndef GLEWY_SPRITE_HPP
+#define GLEWY_SPRITE_HPP
 
 #include<Glewy/Scene/component.hpp>
 #include<Glewy/Rendering/materialrenderable.hpp>
@@ -32,4 +32,4 @@ private:
 
 }
 
-#endif
+#endif //GLEWY_SPRITE_HPP

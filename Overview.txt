@@ -1,5 +1,3 @@
-(NEEDS UPDATING)
-
 -Glewy File Overview and Dependancies
 
 (Everything Here Ignores cstdlib and c++stdlib Headers)
@@ -10,62 +8,74 @@
     GLEW
     SOIL
 
+-Core
+    abstraction.hpp [class GLFWWindow; class sml::vec2;]
+    core.hpp (Core/*)
+#   instance.hpp [class GLFWWindow; class Root;]
+#   logging.hpp (macros)
+    macros.hpp
+    updateinfo.hpp [class GLFWwindow;]
+
 -External
+    external.hpp (External/*)
 #   GLEW.h (GLEW)
 #   GLFW.h (GLEW, GLFW)
- 
--Utilities 
-    readfile.hpp
-    util.hpp [class sml::vec2;]
 
--Structures
-    tree.hpp
-#   transform.hpp (SML, tree) {friend Entity;}
-
--Core (External)
-#   glewy.hpp (*)
-    instance.hpp [class GLFWWindow; class Root;]
-    updateinfo.hpp [class GLFWwindow;]
-    abstraction.hpp [class GLFWWindow; class sml::vec2;]
-    interfaces.hpp [class Material;]
-    macros.hpp
-#   logging.hpp (macros)
-
--Rendering (Core, Scene)
-    material [typedef GLuint; class I::MaterialRenderable; class Camera;]
+-Rendering 
+    material.hpp [typedef GLuint; class MaterialRenderable; class Camera;]
+    materialrenderable.hpp [class Material;]
+    rendering.hpp (Rendering/*)
     texture.hpp [typedef GLuint; typedef GLenum;]
 
 -Scene (Core, Structures)
+#   camera.hpp (transformable) [class sml::mat4;]
+    component.hpp [struct UpdateInfo; class Entity;] {friend Entity;}
+    entity.hpp (transformable) [class Root; class Component; struct UpdateInfo;]
     root.hpp [class Entity; class Transform; struct UpdateInfo; class Camera;]
-    entity.hpp [class Root; class Component; struct UpdateInfo; class Transform;]
-    component.hpp [struct UpdateInfo; class Entity;]
-#   camera.hpp (component) [class sml::mat4;]
+    scene.hpp (Scene/*)
+    transformable.hpp [class Transform;]
 
 -Standard
-#   sprite.hpp (component, interfaces) [typedef GLuint; class Texture; class Entity;]
- 
+    Shaders _dir_ |Contains Default Shaders|
+#   sprite.hpp (component, materialrenderable) [typedef GLuint; class Texture; class Entity;]
+    standard.hpp (Standard/*)
+
+-Structures
+    structures.hpp (Structures/*)
+#   transform.hpp (SML, tree) {friend Transformable;}
+    tree.hpp 
+
+-Utilities 
+    readfile.hpp
+    util.hpp [class sml::vec2;]
+    utilities.hpp (Utilities/*)
+
+glewy.hpp (Glewy/*)
+
                                         ---SOURCES---
--Utilities (External)
-+   util (SML/vec)
-    readfile
+
+-Core
++   abstraction (SML, GLFW) 
++   instance (GLFW, abstraction, root, updateinfo, material)
+
+-Rendering 
++   material (macros, SML, GLEW, materialrenderable, camera, readfile)
++   texture (SOIL, GLEW)
+
+-Scene
++   camera (SML, transform)
+    component
++   entity (component, transform)
++   root (entity, camera)
++   transformable (transform)
+
+-Standard
++   sprite (SML, GLEW, material, texture, entity, transform)
 
 -Structures
     tree
     transform
 
--Core (External)
-+   abstraction (SML, GLFW)
-+   instance (GLFW, abstraction, root, updateinfo)
-
--Rendering 
-+   material (macros, SML, GLEW, camera, interfaces, readfile)
-+   texture (SOIL, GLEW)
-
--Scene
-+   entity (component, transform)
-+   root (entity, material)
-    component
-+   camera (SML, entity, transform)
-
--Standard
-+   sprite (SML, GLEW, material, texture, entity, transform)
+-Utilities (External)
++   util (SML/vec)
+    readfile

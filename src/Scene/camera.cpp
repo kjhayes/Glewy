@@ -1,7 +1,6 @@
 #include<Glewy/Scene/camera.hpp>
 
 #include<SML/sml.hpp>
-
 #include<Glewy/Structures/transform.hpp>
 
 #include<cmath>

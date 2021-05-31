@@ -1,7 +1,5 @@
 #include<Glewy/Core/instance.hpp>
 
-#include<Glewy/Core/logging.hpp>
-
 #include<Glewy/External/GLFW.h>
 #include<Glewy/Core/abstraction.hpp>
 #include<Glewy/Scene/root.hpp>
