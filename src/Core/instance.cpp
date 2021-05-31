@@ -14,7 +14,9 @@ std::list<Instance*> Instance::registry;
 Instance::Instance(const StartUp& start):
 	    last_time(0.0f),
 	    curr_time(0.0f),
-	    delta_time(0.0f)
+	    delta_time(0.0f),
+		custom_aspect_ratio(1.0f),
+		ar_option(GLY_USE_ROOT_AR)
 {
 	registry.push_back(this);
     window = glewyCreateWindow(start.x_size, start.y_size, start.title);
@@ -71,6 +73,11 @@ void Instance::Get_Window_Size(int* x_out, int* y_out){glfwGetWindowSize(window,
 void Instance::Get_Buffer_Size(int* x_out, int* y_out){glfwGetFramebufferSize(window, x_out, y_out);}
 void Instance::Set_Window_Size(const int& x, const int& y){glfwSetWindowSize(window, x, y);}
 
+void Instance::Set_AR_Option(const ASPECT_RATIO_OPTION& opt){
+	ar_option = opt;
+	UpdateViewport();
+}
+
 void Instance::UpdateViewport(){
 	int x, y;
 	glfwGetWindowSize(window, &x, &y);
@@ -78,11 +85,22 @@ void Instance::UpdateViewport(){
 void Instance::UpdateViewport(int x, int y){
 	float window_ar = ((float)x)/((float)y);
 	//AR Close to Zero = Tall; Close to Infinity = Wide;
-	float root_ar = current_root->camera->aspect_ratio;
+	float ar;
+	switch(ar_option){
+		case GLY_USE_WINDOW_AR:
+			glViewport(0,0,x,y);
+			return;
+		case GLY_USE_ROOT_AR:
+			ar = current_root->camera->aspect_ratio;
+			break;
+		case GLY_USE_CUSTOM_AR:
+			ar = custom_aspect_ratio;
+			break;
+	}
 	int offset_x, offset_y, nx, ny;
-	if(window_ar > root_ar){
+	if(window_ar > ar){
 		//Match Y's
-		nx = y * root_ar;
+		nx = y * ar;
 		ny = y;
 		offset_x = (x-nx)*0.5f;
 		offset_y = 0;
@@ -90,7 +108,7 @@ void Instance::UpdateViewport(int x, int y){
 	else{
 		//Match X's
 		nx = x;
-		ny = x / root_ar;
+		ny = x / ar;
 		offset_x = 0;
 		offset_y = (y-ny)*0.5f;
 	}

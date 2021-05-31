@@ -17,6 +17,12 @@ struct StartUp
     int y_size;
 };
 
+enum ASPECT_RATIO_OPTION{
+    GLY_USE_WINDOW_AR = 0,
+    GLY_USE_ROOT_AR = 1,
+    GLY_USE_CUSTOM_AR = 2
+};
+
 class Instance
 {
 private:
@@ -28,6 +34,9 @@ private:
 
     GLFWwindow* window;
     Root* current_root;
+
+    float custom_aspect_ratio;
+    ASPECT_RATIO_OPTION ar_option;
 
 public:
     Instance(const StartUp&);
@@ -42,6 +51,8 @@ public:
     void Get_Window_Size(int* x_out, int* y_out);
     void Get_Buffer_Size(int* x_out, int* y_out);
     void Set_Window_Size(const int& x, const int& y);
+
+    void Set_AR_Option(const ASPECT_RATIO_OPTION& opt);
 
 private:
     void UpdateViewport();
