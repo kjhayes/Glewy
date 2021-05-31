@@ -1,0 +1,1 @@
+g++ -I./include -L./lib -oApplication.exe Application.cpp -lGLEWY_CORE -lGLEWY_RENDERING -lGLEWY_SCENE -lGLEWY_STANDARD -lGLEWY_STRUCTURES -lGLEWY_UTILITIES -lSML -lSOIL -lglfw3 -lglew32 -lopengl32 -lgdi32

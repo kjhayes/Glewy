@@ -1,0 +1,36 @@
+>g++ -c -I./include -o./bin/
+>Core/
+abstraction.o src/Core/abstraction.cpp
+instance.o src/Core/instance.cpp
+<
+>Structures/
+tree.o src/Structures/tree.cpp
+transform.o src/Structures/transform.cpp
+<
+>Scene/
+root.o src/Scene/root.cpp
+entity.o src/Scene/entity.cpp
+component.o src/Scene/component.cpp
+camera.o src/Scene/camera.cpp
+transformable.o src/Scene/transformable.cpp
+<
+>Rendering/
+material.o src/Rendering/material.cpp
+texture.o src/Rendering/texture.cpp
+<
+>Utilities/
+util.o src/Utilities/util.cpp
+readfile.o src/Utilities/readfile.cpp
+<
+>Standard/
+sprite.o src/Standard/sprite.cpp
+<
+<
+>ar vrcs ./lib/libGLEWY_
+CORE.a ./bin/Core/abstraction.o ./bin/Core/instance.o
+STRUCTURES.a ./bin/Structures/tree.o ./bin/Structures/transform.o 
+SCENE.a ./bin/Scene/camera.o ./bin/Scene/entity.o ./bin/Scene/root.o ./bin/Scene/component.o ./bin/Scene/transformable.o
+RENDERING.a ./bin/Rendering/material.o ./bin/Rendering/texture.o
+UTILITIES.a ./bin/Utilities/util.o ./bin/Utilities/readfile.o
+STANDARD.a ./bin/Standard/sprite.o
+<

@@ -1,0 +1,71 @@
+(NEEDS UPDATING)
+
+-Glewy File Overview and Dependancies
+
+(Everything Here Ignores cstdlib and c++stdlib Headers)
+
+                                        ---HEADERS---
+-Dependancies
+    SML
+    GLEW
+    SOIL
+
+-External
+#   GLEW.h (GLEW)
+#   GLFW.h (GLEW, GLFW)
+ 
+-Utilities 
+    readfile.hpp
+    util.hpp [class sml::vec2;]
+
+-Structures
+    tree.hpp
+#   transform.hpp (SML, tree) {friend Entity;}
+
+-Core (External)
+#   glewy.hpp (*)
+    instance.hpp [class GLFWWindow; class Root;]
+    updateinfo.hpp [class GLFWwindow;]
+    abstraction.hpp [class GLFWWindow; class sml::vec2;]
+    interfaces.hpp [class Material;]
+    macros.hpp
+#   logging.hpp (macros)
+
+-Rendering (Core, Scene)
+    material [typedef GLuint; class I::MaterialRenderable; class Camera;]
+    texture.hpp [typedef GLuint; typedef GLenum;]
+
+-Scene (Core, Structures)
+    root.hpp [class Entity; class Transform; struct UpdateInfo; class Camera;]
+    entity.hpp [class Root; class Component; struct UpdateInfo; class Transform;]
+    component.hpp [struct UpdateInfo; class Entity;]
+#   camera.hpp (component) [class sml::mat4;]
+
+-Standard
+#   sprite.hpp (component, interfaces) [typedef GLuint; class Texture; class Entity;]
+ 
+                                        ---SOURCES---
+-Utilities (External)
++   util (SML/vec)
+    readfile
+
+-Structures
+    tree
+    transform
+
+-Core (External)
++   abstraction (SML, GLFW)
++   instance (GLFW, abstraction, root, updateinfo)
+
+-Rendering 
++   material (macros, SML, GLEW, camera, interfaces, readfile)
++   texture (SOIL, GLEW)
+
+-Scene
++   entity (component, transform)
++   root (entity, material)
+    component
++   camera (SML, entity, transform)
+
+-Standard
++   sprite (SML, GLEW, material, texture, entity, transform)
