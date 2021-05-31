@@ -24,6 +24,9 @@ sml::mat4 Camera::ViewMatrix() const
     return view;
 }
 
+void Camera::SetAspectRatio(const float& ar){aspect_ratio = ar;}
+float Camera::GetAspectRatio(){return aspect_ratio;}
+
 void Camera::SetSize(const float& size){if(size==0.0f){size_reciprocal = 2.0f;return;}size_reciprocal = 2.0f/size;}
 float Camera::GetSize(){return 2.0f/size_reciprocal;}
 

@@ -2,9 +2,9 @@
 
 #include<Glewy/External/GLFW.h>
 #include<Glewy/Core/abstraction.hpp>
+#include<Glewy/Core/updateinfo.hpp>
 #include<Glewy/Scene/root.hpp>
 #include<Glewy/Scene/camera.hpp>
-#include<Glewy/Core/updateinfo.hpp>
 #include<Glewy/Rendering/material.hpp>
 
 namespace gly
@@ -16,7 +16,7 @@ Instance::Instance(const StartUp& start):
 	    curr_time(0.0f),
 	    delta_time(0.0f),
 		custom_aspect_ratio(1.0f),
-		ar_option(GLY_USE_ROOT_AR)
+		ar_option(GLY_USE_WINDOW_AR)
 {
 	registry.push_back(this);
     window = glewyCreateWindow(start.x_size, start.y_size, start.title);
@@ -68,7 +68,6 @@ void Instance::SetCurrentRoot(Root* root){
 	current_root = root;
 }
 
-
 void Instance::Get_Window_Size(int* x_out, int* y_out){glfwGetWindowSize(window, x_out, y_out);}
 void Instance::Get_Buffer_Size(int* x_out, int* y_out){glfwGetFramebufferSize(window, x_out, y_out);}
 void Instance::Set_Window_Size(const int& x, const int& y){glfwSetWindowSize(window, x, y);}
@@ -91,7 +90,7 @@ void Instance::UpdateViewport(int x, int y){
 			glViewport(0,0,x,y);
 			return;
 		case GLY_USE_ROOT_AR:
-			ar = current_root->camera->aspect_ratio;
+			ar = current_root->camera->GetAspectRatio();
 			break;
 		case GLY_USE_CUSTOM_AR:
 			ar = custom_aspect_ratio;

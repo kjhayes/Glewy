@@ -30,21 +30,18 @@ int main()
 	gly::Root* root = new gly::Root();
 	
 	root->camera->SetSize(1.0f);
-	root->camera->aspect_ratio = 1.0f;
+	root->camera->SetAspectRatio(1.0f);
 
 	instance.SetCurrentRoot(root);
 	
 	gly::Entity* parent = root->CreateEntity();
 	
-	gly::Sprite* sprite = parent->AddComponent<gly::Sprite>();
-	sprite->texture = new gly::Texture("assets\\Images\\werm.png");
+	parent->AddComponent<gly::Sprite>();
+	parent->GetComponent<gly::Sprite>()->texture = new gly::Texture("assets\\Images\\werm.png");
 
-	gly::TestComp* tc = parent->AddComponent<gly::TestComp>();
+	parent->AddComponent<gly::TestComp>();
 
 	instance.Run();
-
-	delete sprite->texture;
-	delete root;
 
 	return 0;
 }

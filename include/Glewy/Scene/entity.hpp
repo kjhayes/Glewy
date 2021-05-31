@@ -39,8 +39,8 @@ class Entity : public Transformable
         {
             for(auto comp = components->begin(); comp != components->end(); comp++)
             {
-                T* t = dynamic_cast<T*>(comp);
-                if(t!=nullptr){return *comp;}
+                T* t = dynamic_cast<T*>(*comp);
+                if(t!=nullptr){return t;}
             }
             return nullptr;
         };

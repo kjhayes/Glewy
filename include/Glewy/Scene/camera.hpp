@@ -10,17 +10,21 @@ namespace sml{
 namespace gly
 {
 
-class Camera : Transformable
+class Camera : public Transformable
 {
     protected:
     /// @brief 1 / Camera Size
     float size_reciprocal;
 
+    /// @brief Width/Height, where Height is assumed 1.0f
+    float aspect_ratio;
+    
     public:
     Camera();
 
-    /// @brief Width/Height, where Height is assumed 1.0f
-    float aspect_ratio;
+    float GetAspectRatio();
+    void SetAspectRatio(const float&);
+
     /// @brief Depth of View, Does Nothing Currently
     float depth;
 
