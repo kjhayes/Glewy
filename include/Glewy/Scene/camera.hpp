@@ -2,10 +2,7 @@
 #define GLEWY_CAMERA_HPP
 
 #include<Glewy/Scene/transformable.hpp>
-
-namespace sml{
-    class mat4;
-}
+#include<Glewy/Structures/mat.hpp>
 
 namespace gly
 {
@@ -30,7 +27,7 @@ class Camera : public Transformable
 
     /// @brief  Accounts Only For Global Position, Not Rotation or Scale
     /// @return View Matrix of This Camera
-    sml::mat4 ViewMatrix() const;
+    mat4<gly_float> ViewMatrix() const;
 
     /// @brief Set Camera Size
     void SetSize(const float&);

@@ -1,7 +1,9 @@
 #include<Glewy/Rendering/texture.hpp>
 
 #include<SOIL/SOIL.h>
-#include<Glewy/External/GLEW.h>
+
+#define GLEW_STATIC
+#include "GL/glew.h"
 
 #include<iostream>
 

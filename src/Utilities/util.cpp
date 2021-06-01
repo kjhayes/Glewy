@@ -1,29 +1,26 @@
 #include<Glewy/Utilities/util.hpp>
 
-#include<SML/vec.hpp>
+#include<Glewy/Structures/vec.hpp>
 
 #include<cmath>
 
 namespace gly
 {
 
-namespace Util
-{
-
-float magnitude(const sml::vec2& v)
+float magnitude(const vec2<gly_float>& v)
 {return sqrt((v.x*v.x)+(v.y*v.y));}
 
-sml::vec2 normalized(const sml::vec2& v)
+vec2<gly_float> normalized(const vec2<gly_float>& v)
 {
 	float mag = magnitude(v);
-	if(mag == 0.0f){return sml::vec2(0.0f,0.0f);}
+	if(mag == 0.0f){return vec2<gly_float>(0.0f,0.0f);}
 	return v / mag;
 }
 
-std::list<sml::vec2> PointsBetween(const sml::vec2& a, const sml::vec2& b, const int& num)
+std::list<vec2<gly_float>> PointsBetween(const vec2<gly_float>& a, const vec2<gly_float>& b, const int& num)
 {
-	sml::vec2 jump = (b-a) * (1.0f/((float)(num-1)));
-	std::list<sml::vec2> list;
+	vec2<gly_float> jump = (b-a) * (1.0f/((float)(num-1)));
+	std::list<vec2<gly_float>> list;
 	for(int i = 0; i<num; i++)
 	{
 		list.push_back(a+(jump*i));
@@ -40,7 +37,5 @@ float RadToDeg(const float& rad)
 {
 	return rad * l80_DIV_PI;
 }
-
-} 
 
 }

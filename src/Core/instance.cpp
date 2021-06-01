@@ -1,6 +1,9 @@
 #include<Glewy/Core/instance.hpp>
 
-#include<Glewy/External/GLFW.h>
+#define GLEW_STATIC
+#include "GL/glew.h"
+#include "GLFW/glfw3.h"
+
 #include<Glewy/Core/abstraction.hpp>
 #include<Glewy/Core/updateinfo.hpp>
 #include<Glewy/Scene/root.hpp>

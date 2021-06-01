@@ -2,28 +2,21 @@
 #define GLEWY_UTIL_HPP
 
 #include<list>
-namespace sml{
-    class vec2;
-}
+#include<Glewy/Structures/vec.hpp>
 
 namespace gly
-{
-
-namespace Util
 {
 
 const float PI = 3.14159265359f;
 const float PI_DIV_180 = 0.01745329251f;
 const float l80_DIV_PI = 57.2957795131f; 
 
-float magnitude(const sml::vec2&);
-sml::vec2 normalized(const sml::vec2&);
-std::list<sml::vec2> PointsBetween(const sml::vec2&, const sml::vec2&, const int&);
+gly_float magnitude(const vec2<gly_float>&);
+vec2<gly_float> normalized(const vec2<gly_float>&);
+std::list<vec2<gly_float>> PointsBetween(const vec2<gly_float>&, const vec2<gly_float>&, const int&);
 
 float DegToRad(const float&);
 float RadToDeg(const float&);
-
-} 
 
 } 
 

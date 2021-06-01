@@ -1,8 +1,11 @@
 #include<Glewy/Rendering/material.hpp>
 
 #include<Glewy/Core/macros.hpp>
-#include<SML/sml.hpp>
-#include<Glewy/External/GLEW.h>
+#include<Glewy/Structures/mat.hpp>
+
+#define GLEW_STATIC
+#include<GL/glew.h>
+
 #include<Glewy/Rendering/materialrenderable.hpp>
 #include<Glewy/Scene/camera.hpp>
 #include<Glewy/Utilities/readfile.hpp>
@@ -183,7 +186,7 @@ void Material::RenderQueue(Camera* camera)
 {
 	SetActive();
 	GLuint gly_view_location = glGetUniformLocation(program, "gly_view");
-	if(gly_view_location!=-1){sml::mat4 view = camera->ViewMatrix();
+	if(gly_view_location!=-1){mat4<gly_float> view = camera->ViewMatrix();
 		glUniformMatrix4fv(gly_view_location, 1, GL_FALSE, (const float*)&view);}
 	for(auto iter = to_render.begin(); iter != to_render.end(); iter++)
 	{(*iter)->Render();}

@@ -12,7 +12,7 @@ void Transform::CalculatePlugMatrix()
 {
     plugMatrix.Identity();
     
-    plugMatrix.t = sml::vec4(position, 1.0f);
+    plugMatrix.t = vec4<gly_float>(position, 1.0f);
 
     plugMatrix.i.x = scale.x;
     plugMatrix.j.y = scale.y;
@@ -36,7 +36,7 @@ void Transform::CalculateRotationMatrix()
     {
         cos = std::cos(rotation.y);
         sin = std::sin(rotation.y);
-        sml::mat4 yrot;
+        mat4<gly_float> yrot;
         yrot.i.x = cos;
         yrot.i.z = -sin;
         yrot.k.x = sin;
@@ -47,7 +47,7 @@ void Transform::CalculateRotationMatrix()
     {
         cos = std::cos(rotation.x);
         sin = std::sin(rotation.x);
-        sml::mat4 xrot;
+        mat4<gly_float> xrot;
         xrot.j.y = cos;
         xrot.j.z = sin;
         xrot.k.y = -sin;
@@ -61,7 +61,7 @@ void Transform::CalculateMatrix()
     matrix = RotationMatrix() * PlugMatrix();
 }
 
-sml::mat4 Transform::PlugMatrix()
+mat4<gly_float> Transform::PlugMatrix()
 {
     if(plugHasChanged)
     {
@@ -71,7 +71,7 @@ sml::mat4 Transform::PlugMatrix()
     return plugMatrix;
 }
 
-sml::mat4 Transform::RotationMatrix()
+mat4<gly_float> Transform::RotationMatrix()
 {
     if(rotationHasChanged)
     {
@@ -81,14 +81,14 @@ sml::mat4 Transform::RotationMatrix()
     return rotationMatrix;
 }
 
-sml::mat4 Transform::LocalMatrix()
+mat4<gly_float> Transform::LocalMatrix()
 {
     if(plugHasChanged || rotationHasChanged)
     {CalculateMatrix();}
     return matrix;
 }
 
-sml::mat4 Transform::GlobalMatrix()
+mat4<gly_float> Transform::GlobalMatrix()
 {
     if(parent==nullptr)
     {
@@ -98,20 +98,20 @@ sml::mat4 Transform::GlobalMatrix()
 }
 
 
-sml::vec3 Transform::GetPosition() const
+vec3<gly_float> Transform::GetPosition() const
 {return position;}
 
-void Transform::SetPosition(const sml::vec3& pos)
+void Transform::SetPosition(const vec3<gly_float>& pos)
 {position = pos; plugHasChanged = true;}
         
-sml::vec3 Transform::GetScale() const
+vec3<gly_float> Transform::GetScale() const
 {return scale;}
-void Transform::SetScale(const sml::vec3& scl)
+void Transform::SetScale(const vec3<gly_float>& scl)
 {scale = scl; plugHasChanged = true;}
 
-sml::vec3 Transform::GetRotation() const
+vec3<gly_float> Transform::GetRotation() const
 {return rotation;}
-void Transform::SetRotation(const sml::vec3& rot)
+void Transform::SetRotation(const vec3<gly_float>& rot)
 {rotation = rot; rotationHasChanged = true;}
 
 Transform* Transform::GetParent()

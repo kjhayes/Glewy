@@ -1,14 +1,14 @@
 #ifndef GLEWY_ABSTRACTION_HPP
 #define GLEWY_ABSTRACTION_HPP
 
-class GLFWwindow;
+#include<Glewy/Core/typedef.hpp>
 
-namespace sml{
-	class vec2;
-}
+class GLFWwindow;
 
 namespace gly
 {
+	template<typename T> class vec2;
+
 	/// @brief Creates a window and initializes GLEW and GLFW (Run By gly::Instance constructor, so explicit calling is unadvisable)
 	/// @param x Window Starting Width
 	/// @param y Window Starting Height
@@ -16,9 +16,9 @@ namespace gly
 	GLFWwindow* glewyCreateWindow(const int& x, const int& y, const char* title);
 	
 	/// @brief Incomplete [DO NOT USE]
-	sml::vec2 PixelCoordToViewPort(GLFWwindow*, sml::vec2);
+	vec2<gly_float> PixelCoordToViewPort(GLFWwindow*, vec2<gly_float>);
 	/// @brief Incomplete [DO NOT USE]
-	sml::vec2 ViewPortToPixelCoord(GLFWwindow*, sml::vec2);
+	vec2<gly_float> ViewPortToPixelCoord(GLFWwindow*, vec2<gly_float>);
 }
 
 #endif

@@ -9,8 +9,10 @@ namespace gly
 class Tree
 {
     protected:
+        Tree* parent;        
+        
         std::vector<Tree*> children;
-        Tree* parent;
+
         ~Tree();
 
     public:

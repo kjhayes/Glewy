@@ -1,8 +1,8 @@
 #ifndef GLEWY_TRANSFORM_HPP
 #define GLEWY_TRANSFORM_HPP
 
-#include<SML/sml.hpp>
 #include<Glewy/Structures/tree.hpp>
+#include<Glewy/Structures/mat.hpp>
 
 namespace gly
 {
@@ -15,13 +15,13 @@ class Transform : public Tree
         bool plugHasChanged = true;
         bool rotationHasChanged = true;
 
-        sml::vec3 position;
-        sml::vec3 scale;
-        sml::vec3 rotation;
+        vec3<gly_float> position;
+        vec3<gly_float> scale;
+        vec3<gly_float> rotation;
 
-        sml::mat4 plugMatrix;
-        sml::mat4 rotationMatrix;
-        sml::mat4 matrix;
+        mat4<gly_float> plugMatrix;
+        mat4<gly_float> rotationMatrix;
+        mat4<gly_float> matrix;
 
         void CalculatePlugMatrix();
         void CalculateRotationMatrix();
@@ -32,20 +32,20 @@ class Transform : public Tree
         Transform(Transform*);
 
     public:
-        sml::mat4 PlugMatrix();
-        sml::mat4 RotationMatrix();
+        mat4<gly_float> PlugMatrix();
+        mat4<gly_float> RotationMatrix();
 
-        sml::mat4 LocalMatrix();
-        sml::mat4 GlobalMatrix();
+        mat4<gly_float> LocalMatrix();
+        mat4<gly_float> GlobalMatrix();
 
-        sml::vec3 GetPosition() const;
-        void SetPosition(const sml::vec3&);
+        vec3<gly_float> GetPosition() const;
+        void SetPosition(const vec3<gly_float>&);
         
-        sml::vec3 GetScale() const;
-        void SetScale(const sml::vec3&);
+        vec3<gly_float> GetScale() const;
+        void SetScale(const vec3<gly_float>&);
 
-        sml::vec3 GetRotation() const;
-        void SetRotation(const sml::vec3&);
+        vec3<gly_float> GetRotation() const;
+        void SetRotation(const vec3<gly_float>&);
 
         Transform* GetParent();
 };

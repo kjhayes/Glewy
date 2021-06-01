@@ -1,7 +1,9 @@
 #include<Glewy/Standard/sprite.hpp>
 
-#include<SML/sml.hpp>
-#include<Glewy/External/GLEW.h>
+#include<Glewy/Structures/mat.hpp>
+
+#define GLEW_STATIC
+#include<GL/glew.h>
 
 #include<Glewy/Rendering/material.hpp>
 #include<Glewy/Rendering/texture.hpp>
@@ -32,7 +34,7 @@ const char* sprite_frag_shader_default = "#version 330\n"
 	"_color = texture2D(gly_texture, TextureCoord);\n"
     "}\n";
 
-sml::vec3 Vertices[4]
+vec3<gly_float> Vertices[4]
 {
 	{-0.5f,-0.5f,0.0f},
 	{0.5f,-0.5f,0.0f},
@@ -68,7 +70,7 @@ void Sprite::Render()
 	
 	GLuint gly_transform_location = glGetUniformLocation(material->program, "gly_transform");
 	if(gly_transform_location!=-1){
-		sml::mat4 mat = entity->GetTransform()->GlobalMatrix();
+		mat4<gly_float> mat = entity->GetTransform()->GlobalMatrix();
 		glUniformMatrix4fv(gly_transform_location, 1, GL_FALSE, (const float*)&mat);}
 	
 	glEnableVertexAttribArray(0);

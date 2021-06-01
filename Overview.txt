@@ -8,20 +8,17 @@
     GLEW
     SOIL
 
+#NEVER INCLUDE NON-GLEWY HEADERS IN GLEWY HEADERS
+
 -Core
     abstraction.hpp [class GLFWWindow; class sml::vec2;]
     core.hpp (Core/*)
 #   instance.hpp [class GLFWWindow; class Root;]
 #   logging.hpp (macros)
     macros.hpp
-    updateinfo.hpp [class GLFWwindow;]
+    updateinfo.hpp 
 
--External
-    external.hpp (External/*)
-#   GLEW.h (GLEW)
-#   GLFW.h (GLEW, GLFW)
-
--Rendering 
+-Rendering
     material.hpp [typedef GLuint; class MaterialRenderable; class Camera;]
     materialrenderable.hpp [class Material;]
     rendering.hpp (Rendering/*)
@@ -55,8 +52,8 @@ glewy.hpp (Glewy/*)
                                         ---SOURCES---
 
 -Core
-+   abstraction (SML, GLFW) 
-+   instance (GLFW, abstraction, root, updateinfo, material)
++   abstraction (SML, GLEW, GLFW) 
++   instance (GLEW, GLFW, abstraction, root, updateinfo, material)
 
 -Rendering 
 +   material (macros, SML, GLEW, materialrenderable, camera, readfile)
@@ -73,8 +70,10 @@ glewy.hpp (Glewy/*)
 +   sprite (SML, GLEW, material, texture, entity, transform)
 
 -Structures
-    tree
++   mat (vec)
     transform
+    tree
+    vec
 
 -Utilities (External)
 +   util (SML/vec)

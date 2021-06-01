@@ -1,9 +1,12 @@
 #include<Glewy/Core/abstraction.hpp>
 
-#include<SML/sml.hpp>
-#include<Glewy/External/GLFW.h>
+#include<Glewy/Structures/mat.hpp>
 
 #include<iostream>
+
+#define GLEW_STATIC
+#include<GL/glew.h>
+#include<GLFW/glfw3.h>
 
 namespace gly
 {
@@ -19,7 +22,7 @@ namespace gly
 		return window;
 	}
 	
-	sml::vec2 PixelCoordToViewPort(GLFWwindow* window, sml::vec2 pix)
+	vec2<gly_float> PixelCoordToViewPort(GLFWwindow* window, vec2<gly_float> pix)
 	{
 		int x, y;
 		glfwGetFramebufferSize(window, &x, &y);
@@ -31,7 +34,7 @@ namespace gly
 		return pix;
 	}
 	
-	sml::vec2 ViewPortToPixelCoord(GLFWwindow* window, sml::vec2 vp)
+	vec2<gly_float> ViewPortToPixelCoord(GLFWwindow* window, vec2<gly_float> vp)
 	{
 		int x,y;
 		glfwGetFramebufferSize(window, &x, &y);

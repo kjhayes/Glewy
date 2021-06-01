@@ -1,6 +1,6 @@
 #include<Glewy/Scene/camera.hpp>
 
-#include<SML/sml.hpp>
+#include<Glewy/Structures/mat.hpp>
 #include<Glewy/Structures/transform.hpp>
 
 #include<cmath>
@@ -11,10 +11,10 @@ namespace gly
 Camera::Camera():depth(10.0f),aspect_ratio(1.333f)
 {SetSize(5.0f);}
 
-sml::mat4 Camera::ViewMatrix() const
+mat4<gly_float> Camera::ViewMatrix() const
 {
-    sml::mat4 view;
-    sml::vec4 t = transform->GlobalMatrix().t;
+    mat4<gly_float> view;
+    vec4<gly_float> t = transform->GlobalMatrix().t;
     view.t = t * -1.0f;
     view.t.w = 1.0f;
     view.i.x = size_reciprocal/aspect_ratio;
