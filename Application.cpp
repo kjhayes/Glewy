@@ -1,5 +1,4 @@
 #include<Glewy/glewy.hpp>
-
 #include<cmath>
 
 namespace gly
@@ -7,18 +6,18 @@ namespace gly
 
 class TestComp : public Component
 {
-	public:
-		TestComp(Entity* parent):Component(parent){}
-		void Update(const UpdateInfo& info) override
-		{
-			sml::vec3 pos = entity->GetTransform()->GetPosition();
-			if(pos.x>1.0f){
-				pos = -1.0f;
-			}
-			pos.x+=0.2f*info.delta_time;
-			pos.y= 0.1f * sin(pos.x*20.0f);
-			entity->GetTransform()->SetPosition(pos);
+public:
+	TestComp(Entity* parent):Component(parent){}
+	void Update(const UpdateInfo& info) override
+	{
+		vec3<gly_float> pos = entity->GetTransform()->GetPosition();
+		if(pos.x>1.0f){
+			pos.x = -1.0f;
 		}
+		pos.x+=0.2f*info.delta_time;
+		pos.y= 0.1f * sin(pos.x*20.0f);
+		entity->GetTransform()->SetPosition(pos);
+	}
 };
 
 }
@@ -42,6 +41,8 @@ int main()
 	parent->AddComponent<gly::TestComp>();
 
 	instance.Run();
+
+	delete root;
 
 	return 0;
 }
