@@ -54,6 +54,8 @@ public:
 
     void Set_AR_Option(const ASPECT_RATIO_OPTION& opt);
 
+    GLFWwindow* GetWindow();
+
 private:
     void UpdateViewport();
     void UpdateViewport(int x, int y);

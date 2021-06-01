@@ -80,6 +80,8 @@ void Instance::Set_AR_Option(const ASPECT_RATIO_OPTION& opt){
 	UpdateViewport();
 }
 
+GLFWwindow* Instance::GetWindow(){return window;}
+
 void Instance::UpdateViewport(){
 	int x, y;
 	glfwGetWindowSize(window, &x, &y);

@@ -1,6 +1,7 @@
 #ifndef GLEWY_STRUCTURES_HPP
 #define GLEWY_STRUCTURES_HPP
 
+#include<Glewy/Structures/dool.hpp>
 #include<Glewy/Structures/mat.hpp>
 #include<Glewy/Structures/tree.hpp>
 #include<Glewy/Structures/transform.hpp>

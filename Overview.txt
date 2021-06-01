@@ -41,6 +41,7 @@
     structures.hpp (Structures/*)
 #   transform.hpp (SML, tree) {friend Transformable;}
     tree.hpp 
+    dool.hpp
 
 -Utilities 
     readfile.hpp
@@ -74,6 +75,7 @@ glewy.hpp (Glewy/*)
     transform
     tree
     vec
+    dool
 
 -Utilities (External)
 +   util (SML/vec)
