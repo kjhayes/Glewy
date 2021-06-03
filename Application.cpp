@@ -39,7 +39,8 @@ int main()
 	root->camera->SetAspectRatio(1.0f);
 
 	instance.SetCurrentRoot(root);
-	
+	instance.SetClearColor({0, 200, 50, 0});
+
 	gly::Entity* parent = root->CreateEntity();
 	
 	parent->AddComponent<gly::Sprite>();

@@ -4,6 +4,7 @@
 #include "GL/glew.h"
 #include "GLFW/glfw3.h"
 
+#include<Glewy/Core/typedef.hpp>
 #include<Glewy/Core/abstraction.hpp>
 #include<Glewy/Core/updateinfo.hpp>
 #include<Glewy/Scene/root.hpp>
@@ -12,14 +13,13 @@
 
 namespace gly
 {
-std::list<Instance*> Instance::registry;
-
 Instance::Instance(const StartUp& start):
 	    last_time(0.0f),
 	    curr_time(0.0f),
 	    delta_time(0.0f),
 		custom_aspect_ratio(1.0f),
-		ar_option(GLY_USE_WINDOW_AR)
+		ar_option(GLY_USE_WINDOW_AR),
+		clear_color(0,0,0,255)
 {
 	registry.push_back(this);
     window = glewyCreateWindow(start.x_size, start.y_size, start.title);
@@ -33,7 +33,7 @@ Instance::~Instance(){
 
 void Instance::Run()
 {
-	glClearColor(0.0f,0.0f,0.0f,1.0f);
+	SetClearColor(clear_color);
 
 	glEnable(GL_DEPTH_TEST);
 	glDepthFunc(GL_LEQUAL);
@@ -82,12 +82,12 @@ void Instance::Set_AR_Option(const ASPECT_RATIO_OPTION& opt){
 
 GLFWwindow* Instance::GetWindow(){return window;}
 
-void Instance::SetClearColor(const vec4<char>& color){
+void Instance::SetClearColor(const vec4<gly_byte>& color){
 	clear_color = color;
-	constexpr float rec255 = 1/255;
-	glClearColor(color.r*rec255, color.g*rec255, color.b*rec255, color.a*rec255);
+	constexpr float rec255 = 1.0f/255.0f;
+	glClearColor((float)color.r*rec255, (float)color.g*rec255, (float)color.b*rec255, (float)color.a*rec255);
 }
-vec4<char> Instance::GetClearColor(){
+vec4<gly_byte> Instance::GetClearColor(){
 	return clear_color;
 }
 

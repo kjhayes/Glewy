@@ -1,8 +1,8 @@
 #ifndef GLEWY_INSTANCE_HPP
 #define GLEWY_INSTANCE_HPP
 
-#include<list>
 #include<Glewy/Structures/vec.hpp>
+#include<Glewy/Core/iregisterable.hpp>
 
 class GLFWwindow;
 
@@ -24,11 +24,9 @@ enum ASPECT_RATIO_OPTION{
     GLY_USE_CUSTOM_AR = 2
 };
 
-class Instance
+class Instance : public IRegisterable<Instance>
 {
 private:
-    static std::list<Instance*> registry;
-
     double last_time;
     double curr_time;
     double delta_time;
@@ -39,7 +37,7 @@ private:
     float custom_aspect_ratio;
     ASPECT_RATIO_OPTION ar_option;
 
-    vec4<char> clear_color;
+    vec4<gly_byte> clear_color;
 
 public:
     Instance(const StartUp&);
@@ -59,8 +57,8 @@ public:
 
     GLFWwindow* GetWindow();
 
-    void SetClearColor(const vec4<char>& color);
-    vec4<char> GetClearColor();
+    void SetClearColor(const vec4<gly_byte>& color);
+    vec4<gly_byte> GetClearColor();
 
 private:
     void UpdateViewport();
