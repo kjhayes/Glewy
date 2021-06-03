@@ -11,11 +11,18 @@ public:
 	void Update(const UpdateInfo& info) override
 	{
 		vec3<gly_float> pos = entity->GetTransform()->GetPosition();
-		if(pos.x>1.0f){
-			pos.x = -1.0f;
+		
+		if(glfwGetKey(info.instance->GetWindow(), GLFW_KEY_ESCAPE)){
+			glfwSetWindowShouldClose(info.instance->GetWindow(), true);
 		}
-		pos.x+=0.2f*info.delta_time;
-		pos.y= 0.1f * sin(pos.x*20.0f);
+
+		if(glfwGetKey(info.instance->GetWindow(), GLFW_KEY_D)){
+			pos.x += info.delta_time;
+		}
+		else if(glfwGetKey(info.instance->GetWindow(), GLFW_KEY_A)){
+			pos.x -= info.delta_time;
+		}
+		
 		entity->GetTransform()->SetPosition(pos);
 	}
 };

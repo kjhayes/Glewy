@@ -4,9 +4,12 @@
 namespace gly
 {
 
+class Instance;
+
 struct UpdateInfo
 {
     double delta_time;
+    Instance* instance;
 };
 
 }

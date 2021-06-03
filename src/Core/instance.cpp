@@ -47,7 +47,7 @@ void Instance::Run()
 	{	
 		TickTime();
 
-		current_root->UpdateEntities({delta_time});
+		current_root->UpdateEntities({delta_time, this});
 
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		
@@ -82,17 +82,27 @@ void Instance::Set_AR_Option(const ASPECT_RATIO_OPTION& opt){
 
 GLFWwindow* Instance::GetWindow(){return window;}
 
+void Instance::SetClearColor(const vec4<char>& color){
+	clear_color = color;
+	constexpr float rec255 = 1/255;
+	glClearColor(color.r*rec255, color.g*rec255, color.b*rec255, color.a*rec255);
+}
+vec4<char> Instance::GetClearColor(){
+	return clear_color;
+}
+
 void Instance::UpdateViewport(){
 	int x, y;
 	glfwGetWindowSize(window, &x, &y);
+	UpdateViewport({x, y});
 }
-void Instance::UpdateViewport(int x, int y){
-	float window_ar = ((float)x)/((float)y);
+void Instance::UpdateViewport(const vec2<gly_int>& vec){
+	float window_ar = ((float)vec.x)/((float)vec.y);
 	//AR Close to Zero = Tall; Close to Infinity = Wide;
 	float ar;
 	switch(ar_option){
 		case GLY_USE_WINDOW_AR:
-			glViewport(0,0,x,y);
+			glViewport(0,0,vec.x,vec.y);
 			return;
 		case GLY_USE_ROOT_AR:
 			ar = current_root->camera->GetAspectRatio();
@@ -104,24 +114,24 @@ void Instance::UpdateViewport(int x, int y){
 	int offset_x, offset_y, nx, ny;
 	if(window_ar > ar){
 		//Match Y's
-		nx = y * ar;
-		ny = y;
-		offset_x = (x-nx)*0.5f;
+		nx = vec.y * ar;
+		ny = vec.y;
+		offset_x = (vec.x-nx)*0.5f;
 		offset_y = 0;
 	}
 	else{
 		//Match X's
-		nx = x;
-		ny = x / ar;
+		nx = vec.x;
+		ny = vec.x / ar;
 		offset_x = 0;
-		offset_y = (y-ny)*0.5f;
+		offset_y = (vec.y-ny)*0.5f;
 	}
 	glViewport(offset_x, offset_y, nx, ny);
 }
 
 void Instance::OnWindowResize(GLFWwindow* window, int x, int y){
 	for(auto iter = registry.begin(); iter != registry.end(); iter++){
-		(*iter)->UpdateViewport(x, y);
+		(*iter)->UpdateViewport({x, y});
 	}
 }	
 

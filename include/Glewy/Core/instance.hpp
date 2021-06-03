@@ -2,6 +2,7 @@
 #define GLEWY_INSTANCE_HPP
 
 #include<list>
+#include<Glewy/Structures/vec.hpp>
 
 class GLFWwindow;
 
@@ -38,6 +39,8 @@ private:
     float custom_aspect_ratio;
     ASPECT_RATIO_OPTION ar_option;
 
+    vec4<char> clear_color;
+
 public:
     Instance(const StartUp&);
     ~Instance();
@@ -56,9 +59,12 @@ public:
 
     GLFWwindow* GetWindow();
 
+    void SetClearColor(const vec4<char>& color);
+    vec4<char> GetClearColor();
+
 private:
     void UpdateViewport();
-    void UpdateViewport(int x, int y);
+    void UpdateViewport(const vec2<gly_int>&);
 
     static void OnWindowResize(GLFWwindow*, int, int);
 };
