@@ -7,5 +7,6 @@
 #include<Glewy/Core/instance.hpp>
 #include<Glewy/Core/logging.hpp>
 #include<Glewy/Core/iregisterable.hpp>
+#include<Glewy/Core/imodifiable.hpp>
 
 #endif //GLEWY_CORE_HPP

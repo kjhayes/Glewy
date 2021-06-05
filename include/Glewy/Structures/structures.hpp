@@ -6,5 +6,6 @@
 #include<Glewy/Structures/tree.hpp>
 #include<Glewy/Structures/transform.hpp>
 #include<Glewy/Structures/vec.hpp>
+#include<Glewy/Structures/modulo.hpp>
 
 #endif //GLEWY_STRUCTURES_HPP

@@ -30,12 +30,12 @@ std::list<vec2<gly_float>> PointsBetween(const vec2<gly_float>& a, const vec2<gl
 
 float DegToRad(const float& deg)
 {
-	return deg * PI_DIV_180;
+	return deg * gly_pi_div_180;
 }
 
 float RadToDeg(const float& rad)
 {
-	return rad * l80_DIV_PI;
+	return rad * gly_180_div_pi;
 }
 
 }

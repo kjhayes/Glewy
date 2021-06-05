@@ -19,9 +19,8 @@ public:
 	T array[2];
     };
 	
-    vec2():x((T)0),y((T)0){}
+    vec2(const T& x = (T)0.0f, const T& y = (T)0.0f):x(x), y(y){}
 	vec2(const vec2<T>& other):x(other.x), y(other.y){}
-	vec2(const T& x = (T)0, const T& y = (T)0):x(x), y(y){}
 	vec2(const T(&array)[2]):x(array[0]),y(array[1]){}
 	
     vec2<T> Sum(const vec2<T>& other) const {return vec2<T>(x+other.x, y+other.y);};    
@@ -40,6 +39,8 @@ public:
     bool Equals(const vec2<T>& other) const {return ((x==other.x) && (y==other.y));}
 
     //operator overloading
+    void operator=(const vec2<T>& other){x = other.x; y = other.y;}
+    
     vec2<T> operator+(const vec2<T>& other) const {return Sum(other);}  
     void operator+=(const vec2<T>& other) {Add(other);}
     
@@ -60,6 +61,8 @@ public:
 	
 	explicit operator vec3<T>() const {return vec3<T>(this->x, this->y);}
 	explicit operator vec4<T>() const {return vec4<T>(this->x, this->y);}
+
+    template<class O> operator vec2<O>() const {return vec2<O>((O)this->x, (O)this->y);}
 };
 
 template<typename T> class vec3
@@ -72,9 +75,9 @@ public:
 	T array[3];
     };
 	
-    vec3():x((T)0),y((T)0),z((T)0){}
+    
+    vec3(const T& x = (T)0.0f, const T& y = (T)0.0f, const T& z = (T)0.0f):x(x), y(y), z(z){}
     vec3(const vec3<T>& other):x(other.x), y(other.y), z(other.z){}
-    vec3(const T& x, const T& y, const T& z):x(x), y(y), z(z){}
     vec3(const T(&array)[3]):x(array[0]),y(array[1]),z(array[2]){}
     vec3(const vec2<T>& front, const T& z):x(front.x), y(front.y), z(z){}
     vec3(const T& x, const vec2<T>& back):x(x), y(back.x), z(back.y){}
@@ -98,6 +101,8 @@ public:
     bool Equals(const vec3<T>& other)const{return ((x==other.x) && (y==other.y) && (z==other.z));}
 
     //operator overloading
+    void operator=(const vec3<T>& other){x = other.x; y = other.y; z = other.z;}
+
     vec3<T> operator+(const vec3<T>& other)const{return Sum(other);}
     void operator+=(const vec3<T>& other){Add(other);}
     
@@ -118,6 +123,9 @@ public:
 	
 	explicit operator vec2<T>() const {return vec2<T>(this->x, this->y);}
 	explicit operator vec4<T>() const {return vec4<T>(this->x, this->y, this->z);}
+
+
+    template<class O> operator vec3<O>() const {return vec3<O>((O)this->x, (O)this->y, (O)this->z);}
 };
 
 template<typename T> class vec4
@@ -130,9 +138,8 @@ public:
 	T array[4];
     };
 	
-    vec4():x((T)0),y((T)0),z((T)0),w((T)0){}
+    vec4(const T& x = (T)0.0f, const T& y = (T)0.0f, const T& z = (T)0.0f, const T& w = (T)0.0f):x(x), y(y), z(z), w(w){}
 	vec4(const vec4<T>& other):x(other.x),y(other.y),z(other.z),w(other.w){}
-    vec4(const T& x, const T& y, const T& z, const T& w):x(x), y(y), z(z), w(w){}
     vec4(const T(&array)[4]):x(array[0]),y(array[1]),z(array[2]),w(array[3]){}
     vec4(const vec2<T>& front, const T& z, const T& w):x(front.x), y(front.y), z(z), w(w){}
     vec4(const T& x, const vec2<T>& middle, const T& w):x(x), y(middle.x), z(middle.y), w(w){}
@@ -157,6 +164,8 @@ public:
     bool Equals(const vec4<T>& other)const{return ((x==other.x) && (y==other.y) && (z==other.z) && (w==other.w));}
 
     //operator overloading
+    void operator=(const vec4<T>& other){x = other.x; y = other.y; z = other.z; w = other.w;}
+
     vec4<T> operator+(const vec4<T>& other)const{return Sum(other);}
     void operator+=(const vec4<T>& other){Add(other);}
     
@@ -177,6 +186,8 @@ public:
 
 	explicit operator vec2<T>() const {return vec2<T>(this->x, this->y);}
 	explicit operator vec3<T>() const {return vec3<T>(this->x, this->y, this->z);}
+
+    template<class O> operator vec4<O>() const {return vec4<O>((O)this->x, (O)this->y, (O)this->z, (O)this->w);}
 };
 
 }

@@ -3,6 +3,7 @@
 
 #include<Glewy/Structures/tree.hpp>
 #include<Glewy/Structures/mat.hpp>
+#include<Glewy/Structures/modulo.hpp>
 
 namespace gly
 {
@@ -17,7 +18,7 @@ class Transform : public Tree
 
         vec3<gly_float> position;
         vec3<gly_float> scale;
-        vec3<gly_float> rotation;
+        vec3<modulo_tau<gly_float>> rotation;
 
         mat4<gly_float> plugMatrix;
         mat4<gly_float> rotationMatrix;
@@ -44,8 +45,8 @@ class Transform : public Tree
         vec3<gly_float> GetScale() const;
         void SetScale(const vec3<gly_float>&);
 
-        vec3<gly_float> GetRotation() const;
-        void SetRotation(const vec3<gly_float>&);
+        vec3<modulo_tau<gly_float>> GetRotation() const;
+        void SetRotation(const vec3<modulo_tau<gly_float>>&);
 
         Transform* GetParent();
 };

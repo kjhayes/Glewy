@@ -3,5 +3,6 @@
 
 #include<Glewy/Utilities/util.hpp>
 #include<Glewy/Utilities/readfile.hpp>
+#include<Glewy/Utilities/safepun.hpp>
 
 #endif //GLEWY_UTILITIES_HPP

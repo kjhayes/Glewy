@@ -109,9 +109,9 @@ vec3<gly_float> Transform::GetScale() const
 void Transform::SetScale(const vec3<gly_float>& scl)
 {scale = scl; plugHasChanged = true;}
 
-vec3<gly_float> Transform::GetRotation() const
+vec3<modulo_tau<gly_float>> Transform::GetRotation() const
 {return rotation;}
-void Transform::SetRotation(const vec3<gly_float>& rot)
+void Transform::SetRotation(const vec3<modulo_tau<gly_float>>& rot)
 {rotation = rot; rotationHasChanged = true;}
 
 Transform* Transform::GetParent()

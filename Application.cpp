@@ -8,22 +8,12 @@ class TestComp : public Component
 {
 public:
 	TestComp(Entity* parent):Component(parent){}
+	
 	void Update(const UpdateInfo& info) override
 	{
-		vec3<gly_float> pos = entity->GetTransform()->GetPosition();
-		
 		if(glfwGetKey(info.instance->GetWindow(), GLFW_KEY_ESCAPE)){
 			glfwSetWindowShouldClose(info.instance->GetWindow(), true);
 		}
-
-		if(glfwGetKey(info.instance->GetWindow(), GLFW_KEY_D)){
-			pos.x += info.delta_time;
-		}
-		else if(glfwGetKey(info.instance->GetWindow(), GLFW_KEY_A)){
-			pos.x -= info.delta_time;
-		}
-		
-		entity->GetTransform()->SetPosition(pos);
 	}
 };
 
