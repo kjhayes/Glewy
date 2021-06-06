@@ -30,13 +30,12 @@ void Entity::UpdateComponents(const UpdateInfo& info)
 
 void Entity::RecieveAttachment(Attachment* att){
     attachments->push_back(att);
-    Component* comp = dynamic_cast<Component*>(att);
-    if(comp != nullptr){components->push_back(comp);}
+    if(att->IsComponent()){components->push_back(dynamic_cast<Component*>(att));}
 }
 
 void Entity::RemoveAttachment(Attachment* att){
     attachments->remove(att);
-    components->remove((Component*)att);
+    components->remove(dynamic_cast<Component*>(att));
 }
 
 void Entity::DeleteAttachment(Attachment* att)
@@ -47,7 +46,7 @@ void Entity::DeleteAttachment(Attachment* att)
 
 void Entity::TransferAttachment(Attachment* att, Entity* other){
     RemoveAttachment(att);
-    other->RemoveAttachment(att);
+    other->RecieveAttachment(att);
 }
 
 Root* Entity::GetRoot(){return root;}

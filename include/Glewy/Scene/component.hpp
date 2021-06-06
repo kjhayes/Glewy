@@ -13,6 +13,9 @@ class Component : public Attachment
 {
     friend class Entity;
     
+    public:
+        bool IsComponent() override;
+
     protected:
         Component(Entity*);
         virtual void Update(const UpdateInfo&){};

@@ -39,6 +39,8 @@ void Instance::Run()
 
     glfwSetTime(0.0);
 
+	UpdateViewport();
+
 	while(!glfwWindowShouldClose(window))
 	{	
 		TickTime();

@@ -4,5 +4,6 @@ namespace gly
 {
 
 Component::Component(Entity* e):Attachment(e){}
+bool Component::IsComponent() {return true;}
 
 }

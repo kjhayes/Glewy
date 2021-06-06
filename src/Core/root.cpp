@@ -14,6 +14,7 @@ namespace gly
 
 Root::Root(){
     camera = new Camera();
+    active_materials = new std::list<RenderableCache*>();
 }
 
 Root::~Root()
@@ -23,6 +24,7 @@ Root::~Root()
         delete *entity;
     }
     delete camera;
+    delete active_materials;
 }
 
 
@@ -57,22 +59,22 @@ void Root::UpdateEntities(const UpdateInfo& info)
 void Root::LoadRenderable(Renderable* renderable){
     renderable->SetRoot(this);
     Material* material = renderable->GetMaterial();
-    for(auto iter = active_materials.begin(); iter != active_materials.end(); iter++){
+    for(auto iter = active_materials->begin(); iter != active_materials->end(); iter++){
         if((*iter)->material == material){(*iter)->CacheRenderable(renderable); return;}
     }
     RenderableCache* cache = new RenderableCache(material); 
-    active_materials.push_back(cache);
+    active_materials->push_back(cache);
     cache->CacheRenderable(renderable);
 }
 
 void Root::UnloadRenderable(Renderable* renderable){
     renderable->SetRoot(nullptr);
     Material* material = renderable->GetMaterial();
-    for(auto iter = active_materials.begin(); iter != active_materials.end(); iter++){
+    for(auto iter = active_materials->begin(); iter != active_materials->end(); iter++){
         if((*iter)->material == material){
             (*iter)->DecacheRenderable(renderable); 
             if((*iter)->IsEmpty()){
-                active_materials.remove((*iter));
+                active_materials->remove((*iter));
                 delete (*iter);
             }
             return;
@@ -81,7 +83,7 @@ void Root::UnloadRenderable(Renderable* renderable){
 }
 
 void Root::CallRenderables(){
-    for(auto mat_iter = active_materials.begin(); mat_iter != active_materials.end(); mat_iter++){
+    for(auto mat_iter = active_materials->begin(); mat_iter != active_materials->end(); mat_iter++){
         (*mat_iter)->material->SetActive();
         (*mat_iter)->material->SetView(camera);
         (*mat_iter)->Render();

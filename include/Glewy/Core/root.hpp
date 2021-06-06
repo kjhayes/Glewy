@@ -18,7 +18,7 @@ class RenderableCache;
 class Root 
 {
 private:
-    std::list<RenderableCache*> active_materials;
+    std::list<RenderableCache*>* active_materials;
 
 public:
     Root();

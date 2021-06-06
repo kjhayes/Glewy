@@ -4,7 +4,6 @@
 #include<Glewy/Core/logging.hpp>
 #include<Glewy/Scene/transformable.hpp>
 #include<list>
-#include<type_traits>
 
 namespace gly
 {
@@ -39,8 +38,8 @@ class Entity : public Transformable
         {
             T* att = new T(this);
             attachments->push_back(att);
-            if(std::is_base_of<Component, T>()){
-                components->push_back((Component*)att);
+            if(att->IsComponent()){
+                components->push_back(dynamic_cast<Component*>(att));
             }
 	        return att;
         };

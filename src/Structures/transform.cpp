@@ -58,7 +58,7 @@ void Transform::CalculateRotationMatrix()
 
 void Transform::CalculateMatrix()
 {
-    matrix = RotationMatrix() * PlugMatrix();
+    matrix = PlugMatrix() * RotationMatrix();
 }
 
 mat4<gly_float> Transform::PlugMatrix()

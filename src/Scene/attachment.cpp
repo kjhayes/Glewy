@@ -3,6 +3,9 @@
 namespace gly{
 
 Attachment::Attachment(Entity* entity):entity(entity){}
+
 Entity* Attachment::GetEntity(){return entity;}
+
+bool Attachment::IsComponent(){return false;}
 
 }

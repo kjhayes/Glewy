@@ -22,7 +22,7 @@ vec3<gly_float> fullscreen_vertices[4]
 
 GLuint Renderer::full_viewport_vbo = 0;
 
-Renderer::Renderer(const vec2<gly_int>& size)
+Renderer::Renderer(const vec2<gly_int>& size) : clear_color(1.0f,1.0f,1.0f,1.0f)
 {
     if(full_viewport_vbo == 0){
         glGenBuffers(1, &full_viewport_vbo);

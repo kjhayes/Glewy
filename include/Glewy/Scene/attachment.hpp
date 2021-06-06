@@ -9,7 +9,8 @@ class Attachment
 {
 public:
     friend class Entity;
-    virtual Entity* GetEntity();
+    Entity* GetEntity();
+    virtual bool IsComponent();
 
 protected:
     Entity* entity;
