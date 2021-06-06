@@ -18,7 +18,10 @@ protected:
 	GLuint VBO;
 	static Material* sprite_material_default;
 
-public:
+public:	
+	static const char* sprite_vert_shader_default;
+	static const char* sprite_frag_shader_default;
+
 	Sprite(Entity*);
 	~Sprite();
 

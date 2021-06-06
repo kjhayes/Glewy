@@ -18,7 +18,7 @@ namespace gly
 
 Material* Sprite::sprite_material_default = nullptr;
 
-const char* sprite_vert_shader_default = "#version 330\n"
+const char* Sprite::sprite_vert_shader_default = "#version 330\n"
     "layout (location = 0) in vec3 Position;\n"
     "out vec2 TextureCoord;\n"
     "uniform mat4 gly_transform;\n"
@@ -28,7 +28,7 @@ const char* sprite_vert_shader_default = "#version 330\n"
 	"TextureCoord = Position.xy+vec2(0.5,0.5);\n"
 	"gl_Position = gly_view*gly_transform*vec4(Position, 1.0);}";
     
-const char* sprite_frag_shader_default = "#version 330\n"
+const char* Sprite::sprite_frag_shader_default = "#version 330\n"
     "in vec2 TextureCoord;\n"
     "out vec4 _color;\n"
     "uniform sampler2D gly_texture;\n"
