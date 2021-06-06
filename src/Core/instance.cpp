@@ -12,6 +12,7 @@
 #include<Glewy/Scene/camera.hpp>
 #include<Glewy/Rendering/material.hpp>
 #include<Glewy/Rendering/renderer.hpp>
+#include<Glewy/Rendering/rendercalls.hpp>
 
 namespace gly
 {
@@ -34,6 +35,8 @@ Instance::~Instance(){
 
 void Instance::Run()
 {
+	RenderCalls::Init();
+
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 

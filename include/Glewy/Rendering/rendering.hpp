@@ -6,5 +6,7 @@
 #include<Glewy/Rendering/renderable.hpp>
 #include<Glewy/Rendering/renderer.hpp>
 #include<Glewy/Rendering/renderablecache.hpp>
+#include<Glewy/Rendering/rendercalls.hpp>
+#include<Glewy/Rendering/uniform.hpp>
 
 #endif //GLEWY_RENDERING_HPP
