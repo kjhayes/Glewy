@@ -3,7 +3,6 @@
 namespace gly
 {
 
-Component::Component(Entity* e):entity(e){}
-Component::~Component(){}
+Component::Component(Entity* e):Attachment(e){}
 
 }

@@ -1,8 +1,8 @@
 #ifndef GLEWY_SPRITE_HPP
 #define GLEWY_SPRITE_HPP
 
-#include<Glewy/Scene/component.hpp>
-#include<Glewy/Rendering/materialrenderable.hpp>
+#include<Glewy/Scene/attachment.hpp>
+#include<Glewy/Rendering/renderable.hpp>
 
 typedef unsigned int GLuint;
 
@@ -12,7 +12,7 @@ namespace gly
 class Texture;
 class Entity;
 
-class Sprite : public Component, public MaterialRenderable
+class Sprite : public Attachment, public Renderable
 {
 protected:
 	GLuint VBO;
@@ -20,8 +20,8 @@ protected:
 
 public:
 	Sprite(Entity*);
-	
-	void Update(const UpdateInfo&) override;
+	~Sprite();
+
 	void Render() override;
 
 	Texture* texture;

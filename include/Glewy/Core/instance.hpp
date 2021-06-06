@@ -10,6 +10,7 @@ namespace gly
 {
 
 class Root;
+class Renderer;
 
 struct StartUp
 {
@@ -33,11 +34,13 @@ private:
 
     GLFWwindow* window;
     Root* current_root;
+    Renderer* current_renderer;
 
     float custom_aspect_ratio;
     ASPECT_RATIO_OPTION ar_option;
 
-    vec4<gly_byte> clear_color;
+    vec2<gly_int> vp_offset;
+    vec2<gly_int> vp_size;
 
 public:
     Instance(const StartUp&);
@@ -49,6 +52,9 @@ public:
     Root* GetCurrentRoot();
     void SetCurrentRoot(Root*);
 
+    Renderer* GetCurrentRenderer();
+    void SetCurrentRenderer(Renderer*);
+
     void Get_Window_Size(int* x_out, int* y_out);
     void Get_Buffer_Size(int* x_out, int* y_out);
     void Set_Window_Size(const int& x, const int& y);
@@ -56,9 +62,6 @@ public:
     void Set_AR_Option(const ASPECT_RATIO_OPTION& opt);
 
     GLFWwindow* GetWindow();
-
-    void SetClearColor(const vec4<gly_byte>& color);
-    vec4<gly_byte> GetClearColor();
 
 private:
     void UpdateViewport();

@@ -13,16 +13,7 @@ class MaterialRenderable;
 
 class Material
 {
-	public:
-		static std::list<Material*> registry;
-		
-		static void RenderAll(Camera*);
-
-		std::list<MaterialRenderable*> to_render; 
-		void Queue(MaterialRenderable*);
-		void RenderQueue(Camera*);
-		void ClearQueue();
-
+	public:		
 		GLuint program;
 		GLuint vert;
 		GLuint frag;
@@ -38,9 +29,10 @@ class Material
 		void SetVert_Data(const char*);
 		void SetFrag_Data(const char*);
 		
-		void Load();
+		void Link() const;
 
-		void SetActive();
+		void SetActive() const;
+		void SetView(Camera*) const;
 };
 
 }

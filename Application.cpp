@@ -24,22 +24,23 @@ int main()
 	gly::Instance instance({"WERM",500,500});
 	
 	gly::Root* root = new gly::Root();
-	
+	gly::Renderer* renderer = new gly::Renderer({30,30});//BABY WERMS
+
+	instance.SetCurrentRenderer(renderer);
+	renderer->SetClearColor({0.5f,0.5f,0.5f,1.0f});
+
 	root->camera->SetSize(1.0f);
 	root->camera->SetAspectRatio(1.0f);
-
 	instance.SetCurrentRoot(root);
-	instance.SetClearColor({0, 200, 50, 0});
-
+	
 	gly::Entity* parent = root->CreateEntity();
 	
-	parent->AddComponent<gly::Sprite>();
-	parent->GetComponent<gly::Sprite>()->texture = new gly::Texture("assets\\Images\\werm.png");
-
-	parent->AddComponent<gly::TestComp>();
-
+	parent->AddAttachment<gly::Sprite>();
+	parent->GetAttachment<gly::Sprite>()->texture = new gly::Texture("assets\\Images\\werm.png");
+	parent->AddAttachment<gly::TestComp>();
+	
 	instance.Run();
-
+	
 	delete root;
 
 	return 0;

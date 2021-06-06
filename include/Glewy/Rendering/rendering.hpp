@@ -3,6 +3,8 @@
 
 #include<Glewy/Rendering/material.hpp>
 #include<Glewy/Rendering/texture.hpp>
-#include<Glewy/Rendering/materialrenderable.hpp>
+#include<Glewy/Rendering/renderable.hpp>
+#include<Glewy/Rendering/renderer.hpp>
+#include<Glewy/Rendering/renderablecache.hpp>
 
 #endif //GLEWY_RENDERING_HPP

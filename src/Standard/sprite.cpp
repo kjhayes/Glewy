@@ -2,9 +2,12 @@
 
 #include<Glewy/Structures/mat.hpp>
 
+#include<Glewy/Core/logging.hpp>
+
 #define GLEW_STATIC
 #include<GL/glew.h>
 
+#include<Glewy/Core/root.hpp>
 #include<Glewy/Rendering/material.hpp>
 #include<Glewy/Rendering/texture.hpp>
 #include<Glewy/Scene/entity.hpp>
@@ -34,7 +37,7 @@ const char* sprite_frag_shader_default = "#version 330\n"
 	"_color = texture2D(gly_texture, TextureCoord);\n"
     "}\n";
 
-vec3<gly_float> Vertices[4]
+vec3<gly_float> sprite_vertices_default[4]
 {
 	{-0.5f,-0.5f,0.0f},
 	{0.5f,-0.5f,0.0f},
@@ -42,33 +45,34 @@ vec3<gly_float> Vertices[4]
 	{0.5f,0.5f,0.0f}
 };
 
-Sprite::Sprite(Entity* entity):Component(entity)
+Sprite::Sprite(Entity* entity):Attachment(entity)
 {
 	if(sprite_material_default==nullptr){
 		sprite_material_default = new Material(sprite_vert_shader_default, sprite_frag_shader_default, false);
 	} 
-	this->material = sprite_material_default;
+	SetMaterial(sprite_material_default);
 	InitVBO();
+	GetEntity()->GetRoot()->LoadRenderable(this);
+}
+
+Sprite::~Sprite(){
+	GetEntity()->GetRoot()->UnloadRenderable(this);
 }
 
 void Sprite::InitVBO()
 {
 	glGenBuffers(1, &VBO);
 	glBindBuffer(GL_ARRAY_BUFFER, VBO);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(Vertices), Vertices, GL_STATIC_DRAW);
-}
-
-void Sprite::Update(const UpdateInfo& info)
-{
-	material->Queue((MaterialRenderable*)this);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(sprite_vertices_default), sprite_vertices_default, GL_STATIC_DRAW);
+	glBindBuffer(GL_ARRAY_BUFFER, 0);
 }
 
 void Sprite::Render()
 {
-	GLuint gly_texture_location = glGetUniformLocation(material->program, "gly_texture");
+	GLuint gly_texture_location = glGetUniformLocation(GetMaterial()->program, "gly_texture");
 	if(gly_texture_location!=-1){glUniform1i(gly_texture_location, texture->tex_unit);}
 	
-	GLuint gly_transform_location = glGetUniformLocation(material->program, "gly_transform");
+	GLuint gly_transform_location = glGetUniformLocation(GetMaterial()->program, "gly_transform");
 	if(gly_transform_location!=-1){
 		mat4<gly_float> mat = entity->GetTransform()->GlobalMatrix();
 		glUniformMatrix4fv(gly_transform_location, 1, GL_FALSE, (const float*)&mat);}
