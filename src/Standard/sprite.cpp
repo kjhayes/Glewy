@@ -13,7 +13,7 @@
 #include<Glewy/Rendering/material.hpp>
 #include<Glewy/Rendering/texture.hpp>
 #include<Glewy/Scene/entity.hpp>
-#include<Glewy/Structures/transform.hpp>
+#include<Glewy/Rendering/shaders.hpp>
 
 namespace gly
 {
@@ -23,10 +23,9 @@ Material* Sprite::sprite_material_default = nullptr;
 Sprite::Sprite(Entity* entity):Attachment(entity)
 {
 	if(sprite_material_default==nullptr){
-		sprite_material_default = new Material(RenderCalls::transform_texture_vert_shader_default, RenderCalls::transform_texture_frag_shader_default, false);
+		sprite_material_default = new Material(Shaders::transform_texture_vert, Shaders::transform_texture_frag, false);
 	} 
 	SetMaterial(sprite_material_default);
-	GetEntity()->GetRoot()->LoadRenderable(this);
 }
 
 Sprite::~Sprite(){
@@ -34,13 +33,16 @@ Sprite::~Sprite(){
 }
 
 Texture* Sprite::GetTexture(){return texture;}
-void Sprite::SetTexture(Texture* texture){this->texture = texture;}
+void Sprite::SetTexture(Texture* texture){
+	GetEntity()->GetRoot()->LoadRenderable(this);
+	this->texture = texture;
+}
 
 void Sprite::Render()
 {
 	Uniform gly_texture(GetMaterial(), "gly_texture");
 	Uniform gly_transform(GetMaterial(), "gly_transform");
-	
+
 	Uniform::SetUniform(&gly_texture, texture);
 	texture->Bind();
 	Uniform::SetUniform(&gly_transform, GetEntity()->GetTransform());

@@ -8,5 +8,6 @@
 #include<Glewy/Rendering/renderablecache.hpp>
 #include<Glewy/Rendering/rendercalls.hpp>
 #include<Glewy/Rendering/uniform.hpp>
+#include<Glewy/Rendering/shaders.hpp>
 
 #endif //GLEWY_RENDERING_HPP

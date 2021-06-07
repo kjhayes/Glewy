@@ -9,7 +9,8 @@ class TestComp : public Component
 public:
 	TestComp(Entity* parent):Component(parent){}
 
-	modulo_tau<gly_float> val = 0.0f;
+	SpriteAtlas* sa;
+	bool pressed = false;
 
 	void Update(const UpdateInfo& info) override
 	{
@@ -18,12 +19,18 @@ public:
 		}
 
 		if(glfwGetKey(info.instance->GetWindow(), GLFW_KEY_D)){
-			val-= (float)info.delta_time;
-			this->GetEntity()->GetTransform()->SetRotation({0.0f,0.0f,val});
+			if(!pressed)
+			{sa->SetIndex(sa->GetIndex()+1);std::cout<<sa->GetIndex()<<std::endl;}
+			pressed = true;
 		}
-		if(glfwGetKey(info.instance->GetWindow(), GLFW_KEY_A)){
-			val+= (float)info.delta_time;
-			this->GetEntity()->GetTransform()->SetRotation({0.0f,0.0f,val});
+		
+		else if(glfwGetKey(info.instance->GetWindow(), GLFW_KEY_A)){
+			if(!pressed)
+			{sa->SetIndex(sa->GetIndex()-1);std::cout<<sa->GetIndex()<<std::endl;}
+			pressed = true;
+		}
+		else{
+			pressed = false;
 		}
 	}
 };
@@ -50,9 +57,13 @@ int main()
 	instance.Set_AR_Option(gly::GLY_USE_ROOT_AR);
 
 	gly::Entity* e = root->CreateEntity();
-	gly::Sprite* spr = e->AddAttachment<gly::Sprite>();
+	gly::SpriteAtlas* spr = e->AddAttachment<gly::SpriteAtlas>();
 	spr->SetTexture(new gly::Texture("assets\\Images\\BlobSpike.png"));
-	
+	spr->SetDimensions({4,6});
+
+	gly::TestComp* tc = e->AddAttachment<gly::TestComp>();
+	tc->sa = spr;
+
 	instance.Run();
 	
 	delete root;
