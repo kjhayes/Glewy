@@ -1,23 +1,23 @@
-#ifndef GLEWY_TEXCOORDTABLE_HPP
-#define GLEWY_TEXCOORDTABLE_HPP
+#ifndef GLEWY_UVCOORDTABLE_HPP
+#define GLEWY_UVTABLE_HPP
 
 #include<Glewy/Structures/vec.hpp>
 
 namespace gly{
 
-struct TexCoord{
+struct UVCoord{
 public:
     vec2<gly_float> size;
     vec2<gly_float> offset;
 };
 
-class TexCoordTable{
+class UVTable{
 public:
     const int size;
-    TexCoord* const coords;
+    UVCoord* const coords;
 
-    TexCoordTable(const int& size);
-    ~TexCoordTable();
+    UVTable(const int& size);
+    ~UVTable();
 
     void Grid(const vec2<gly_int>& cells, CORNER = BOTTOM_LEFT, bool rows = true);
 };

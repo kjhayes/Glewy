@@ -1,14 +1,14 @@
-#include<Glewy/Rendering/texcoordtable.hpp>
+#include<Glewy/Rendering/uvtable.hpp>
 
 #include<cstdlib>
 
 namespace gly{
 
-TexCoordTable::TexCoordTable(const int& size):size(size),coords(new TexCoord[size]){}
+UVTable::UVTable(const int& size):size(size),coords(new UVCoord[size]){}
 
-TexCoordTable::~TexCoordTable(){delete coords;}
+UVTable::~UVTable(){delete coords;}
 
-void TexCoordTable::Grid(const vec2<gly_int>& dim, CORNER corner, bool rows){
+void UVTable::Grid(const vec2<gly_int>& dim, CORNER corner, bool rows){
     vec2<gly_float> cell_size(1.0f/(float)dim.x,1.0f/(float)dim.y);
 
     vec2<gly_float> start;

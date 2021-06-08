@@ -1,8 +1,6 @@
 #ifndef GLEWY_SPRITEATLAS_HPP
 #define GLEWY_SPRITEATLAS_HPP
 
-//FIRST FRAME BOTTOM LEFT, LAST FRAME TOP RIGHT
-
 #include<Glewy/Rendering/renderable.hpp>
 #include<Glewy/Scene/attachment.hpp>
 #include<Glewy/Structures/vec.hpp>
@@ -10,7 +8,7 @@
 namespace gly{
 
 class Texture;
-class TexCoordTable;
+class UVTable;
 
 class SpriteAtlas : public Renderable, public Attachment {
 
@@ -19,7 +17,7 @@ protected:
 
 private:
     Texture* texture;
-    TexCoordTable* texcoordtable;
+    UVTable* uvtable;
     int index;
 
 public:
@@ -31,9 +29,9 @@ public:
     void SetTexture(Texture*);
     Texture* GetTexture();
 
-    void SetTexCoordTable(TexCoordTable*);
-    TexCoordTable* GetTexCoordTable();
-    
+    void SetUVTable(UVTable*);
+    UVTable* GetUVTable();
+
     void SetIndex(const int&);
     int GetIndex();
 };

@@ -7,7 +7,7 @@
 #include<Glewy/Rendering/uniform.hpp>
 #include<Glewy/Rendering/rendercalls.hpp>
 #include<Glewy/Rendering/texture.hpp>
-#include<Glewy/Rendering/texcoordtable.hpp>
+#include<Glewy/Rendering/uvtable.hpp>
 
 namespace gly{
 
@@ -28,15 +28,15 @@ void SpriteAtlas::SetTexture(Texture* tex){
 }
 Texture* SpriteAtlas::GetTexture(){return texture;}
 
-void SpriteAtlas::SetTexCoordTable(TexCoordTable* tct){
-    texcoordtable = tct;
+void SpriteAtlas::SetUVTable(UVTable* uvt){
+    uvtable = uvt;
     SetIndex(index);
 }
-TexCoordTable* SpriteAtlas::GetTexCoordTable(){return texcoordtable;}
+UVTable* SpriteAtlas::GetUVTable(){return uvtable;}
 
 void SpriteAtlas::SetIndex(const int& i){
-    if(i<0){index = texcoordtable->size;}
-    else if(i>=texcoordtable->size){index = 0;}
+    if(i<0){index = uvtable->size;}
+    else if(i>=uvtable->size){index = 0;}
     else{index = i;}
 }
 int SpriteAtlas::GetIndex(){return index;}
@@ -50,8 +50,8 @@ void SpriteAtlas::Render(){
     Uniform::SetUniform(&gly_transform, GetEntity()->GetTransform());
     Uniform::SetUniform(&gly_texture, texture);
     texture->Bind();
-    Uniform::SetUniform(&gly_atlas_offset, texcoordtable->coords[index].offset);
-    Uniform::SetUniform(&gly_atlas_size, texcoordtable->coords[index].size);
+    Uniform::SetUniform(&gly_atlas_offset, uvtable->coords[index].offset);
+    Uniform::SetUniform(&gly_atlas_size, uvtable->coords[index].size);
 
     RenderCalls::RenderQuad();
 }

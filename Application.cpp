@@ -50,9 +50,9 @@ int main()
 	e->GetTransform()->SetPosition({-0.7f,0.0f,0.0f});
 	SpriteAtlas* spr = e->AddAttachment<SpriteAtlas>();
 	spr->SetTexture(new Texture("assets\\Images\\BlobSpike.png"));
-	TexCoordTable* tct_blob_spike = new TexCoordTable(22);
-	tct_blob_spike->Grid({4,6},TOP_LEFT);
-	spr->SetTexCoordTable(tct_blob_spike);
+	UVTable* uvt_blob_spike = new UVTable(22);
+	uvt_blob_spike->Grid({4,6},TOP_LEFT);
+	spr->SetUVTable(uvt_blob_spike);
 
 	e->AddAttachment<Anim>();
 	e->GetAttachment<Anim>()->sa = spr;
@@ -62,9 +62,9 @@ int main()
 	e2->GetTransform()->SetPosition({0.7f,0.0f,0.0f});
 	SpriteAtlas* spr2 = e2->AddAttachment<SpriteAtlas>();
 	spr2->SetTexture(new Texture("assets\\Images\\werm.png"));
-	TexCoordTable* tct_werm = new TexCoordTable(5);
-	tct_werm->Grid({2,3},TOP_LEFT);
-	spr2->SetTexCoordTable(tct_werm);
+	UVTable* uvt_werm = new UVTable(5);
+	uvt_werm->Grid({2,3},TOP_LEFT);
+	spr2->SetUVTable(uvt_werm);
 
 	e2->AddAttachment<Anim>();
 	e2->GetAttachment<Anim>()->sa = spr2;

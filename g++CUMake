@@ -13,7 +13,7 @@ texture.o src/Rendering/texture.cpp
 rendercalls.o src/Rendering/rendercalls.cpp
 uniform.o src/Rendering/uniform.cpp
 shaders.o src/Rendering/shaders.cpp
-texcoordtable.o src/Rendering/texcoordtable.cpp
+uvtable.o src/Rendering/uvtable.cpp
 <
 >Scene/
 attachment.o src/Scene/attachment.cpp
@@ -38,7 +38,7 @@ readfile.o src/Utilities/readfile.cpp
 <
 >ar vrcs ./lib/libGLEWY_
 CORE.a ./bin/Core/abstraction.o ./bin/Core/instance.o ./bin/Core/root.o
-RENDERING.a ./bin/Rendering/material.o ./bin/Rendering/renderable.o ./bin/Rendering/renderablecache.o ./bin/Rendering/renderer.o ./bin/Rendering/texture.o ./bin/Rendering/rendercalls.o ./bin/Rendering/uniform.o ./bin/Rendering/shaders.o ./bin/Rendering/texcoordtable.o
+RENDERING.a ./bin/Rendering/material.o ./bin/Rendering/renderable.o ./bin/Rendering/renderablecache.o ./bin/Rendering/renderer.o ./bin/Rendering/texture.o ./bin/Rendering/rendercalls.o ./bin/Rendering/uniform.o ./bin/Rendering/shaders.o ./bin/Rendering/uvtable.o
 STANDARD.a ./bin/Standard/sprite.o ./bin/Standard/spriteatlas.o
 STRUCTURES.a ./bin/Structures/tree.o ./bin/Structures/transform.o ./bin/Structures/dool.o
 UTILITIES.a ./bin/Utilities/util.o ./bin/Utilities/readfile.o
