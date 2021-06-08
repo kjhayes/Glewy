@@ -10,6 +10,7 @@
 namespace gly{
 
 class Texture;
+class TexCoordTable;
 
 class SpriteAtlas : public Renderable, public Attachment {
 
@@ -18,10 +19,8 @@ protected:
 
 private:
     Texture* texture;
-    vec2<gly_float> atlas_size;
-    vec2<gly_float> atlas_offset;
+    TexCoordTable* texcoordtable;
     int index;
-    vec2<gly_int> dimensions;
 
 public:
     SpriteAtlas(Entity* entity);
@@ -32,8 +31,10 @@ public:
     void SetTexture(Texture*);
     Texture* GetTexture();
 
-    void SetDimensions(const vec2<gly_int>&);
-    void SetIndex(int);
+    void SetTexCoordTable(TexCoordTable*);
+    TexCoordTable* GetTexCoordTable();
+    
+    void SetIndex(const int&);
     int GetIndex();
 };
 

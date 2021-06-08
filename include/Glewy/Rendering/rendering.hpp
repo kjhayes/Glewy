@@ -9,5 +9,6 @@
 #include<Glewy/Rendering/rendercalls.hpp>
 #include<Glewy/Rendering/uniform.hpp>
 #include<Glewy/Rendering/shaders.hpp>
+#include<Glewy/Rendering/texcoordtable.hpp>
 
 #endif //GLEWY_RENDERING_HPP

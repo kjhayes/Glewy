@@ -3,6 +3,7 @@
 
 #include<Glewy/Structures/vec.hpp>
 #include<Glewy/Core/iregisterable.hpp>
+#include<Glewy/Core/typedef.hpp>
 
 class GLFWwindow;
 
@@ -17,12 +18,6 @@ struct StartUp
     const char* title;
     int x_size;
     int y_size;
-};
-
-enum ASPECT_RATIO_OPTION{
-    GLY_USE_WINDOW_AR = 0,
-    GLY_USE_ROOT_AR = 1,
-    GLY_USE_CUSTOM_AR = 2
 };
 
 class Instance : public IRegisterable<Instance>

@@ -4,65 +4,71 @@
 namespace gly
 {
 
-class TestComp : public Component
+class Anim : public Component
 {
 public:
-	TestComp(Entity* parent):Component(parent){}
-
+	Anim(Entity* parent):Component(parent){}
+	
 	SpriteAtlas* sa;
-	bool pressed = false;
+
+	double tt = 0.05f;
+	double tu = tt;
 
 	void Update(const UpdateInfo& info) override
 	{
-		if(glfwGetKey(info.instance->GetWindow(), GLFW_KEY_ESCAPE)){
-			glfwSetWindowShouldClose(info.instance->GetWindow(), true);
-		}
-
-		if(glfwGetKey(info.instance->GetWindow(), GLFW_KEY_D)){
-			if(!pressed)
-			{sa->SetIndex(sa->GetIndex()+1);std::cout<<sa->GetIndex()<<std::endl;}
-			pressed = true;
-		}
-		
-		else if(glfwGetKey(info.instance->GetWindow(), GLFW_KEY_A)){
-			if(!pressed)
-			{sa->SetIndex(sa->GetIndex()-1);std::cout<<sa->GetIndex()<<std::endl;}
-			pressed = true;
-		}
-		else{
-			pressed = false;
-		}
+			if(tu<=0.0f){
+				sa->SetIndex(sa->GetIndex()+1);
+				tu = tt;
+			}
+			else{tu-=info.delta_time;}
 	}
 };
 
 }
 
+using namespace gly;
 
 int main()
 {
-	gly::Instance instance({"Glewy Game",1000,1000});
+	Instance instance({"Glewy Game",1000,1000});
 	
-	gly::Root* root = new gly::Root();
-	gly::Renderer* renderer = new gly::Renderer({1000,1000});
+	Root* root = new Root();
+	Renderer* renderer = new Renderer({1000,1000});
 
 	instance.SetCurrentRenderer(renderer);
-	renderer->SetClearColor({0.0f,0.0f,0.5f,0.0f});
+	renderer->SetClearColor({0.0f,0.0f,0.0f,1.0f});
 
-	//renderer->SetFrag("assets\\Shaders\\convolution.frag");
+	renderer->SetFrag("assets\\Shaders\\convolution.frag");
 
-	root->camera->SetSize(2.0f);
+	root->camera->SetSize(3.0f);
 	root->camera->SetAspectRatio(1.0f);
 	instance.SetCurrentRoot(root);
 
-	instance.Set_AR_Option(gly::GLY_USE_ROOT_AR);
+	instance.Set_AR_Option(GLY_USE_ROOT_AR);
 
-	gly::Entity* e = root->CreateEntity();
-	gly::SpriteAtlas* spr = e->AddAttachment<gly::SpriteAtlas>();
-	spr->SetTexture(new gly::Texture("assets\\Images\\BlobSpike.png"));
-	spr->SetDimensions({4,6});
+	Entity* e = root->CreateEntity();
+	e->GetTransform()->SetPosition({-0.7f,0.0f,0.0f});
+	SpriteAtlas* spr = e->AddAttachment<SpriteAtlas>();
+	spr->SetTexture(new Texture("assets\\Images\\BlobSpike.png"));
+	TexCoordTable* tct_blob_spike = new TexCoordTable(22);
+	tct_blob_spike->Grid({4,6},TOP_LEFT);
+	spr->SetTexCoordTable(tct_blob_spike);
 
-	gly::TestComp* tc = e->AddAttachment<gly::TestComp>();
-	tc->sa = spr;
+	e->AddAttachment<Anim>();
+	e->GetAttachment<Anim>()->sa = spr;
+	e->GetAttachment<Anim>()->tt = 0.05f;
+	
+	Entity* e2 = root->CreateEntity();
+	e2->GetTransform()->SetPosition({0.7f,0.0f,0.0f});
+	SpriteAtlas* spr2 = e2->AddAttachment<SpriteAtlas>();
+	spr2->SetTexture(new Texture("assets\\Images\\werm.png"));
+	TexCoordTable* tct_werm = new TexCoordTable(5);
+	tct_werm->Grid({2,3},TOP_LEFT);
+	spr2->SetTexCoordTable(tct_werm);
+
+	e2->AddAttachment<Anim>();
+	e2->GetAttachment<Anim>()->sa = spr2;
+	e2->GetAttachment<Anim>()->tt = 0.08f;
 
 	instance.Run();
 	
