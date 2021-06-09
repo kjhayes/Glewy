@@ -14,6 +14,8 @@ public:
 	double tt = 0.05f;
 	double tu = tt;
 
+	vec2<gly_float> speed = {1.0f,1.0f};
+
 	void Update(const UpdateInfo& info) override
 	{
 			if(tu<=0.0f){
@@ -21,6 +23,22 @@ public:
 				tu = tt;
 			}
 			else{tu-=info.delta_time;}
+
+		if(glfwGetKey(info.instance->GetWindow(), GLFW_KEY_E)){GetEntity()->GetRoot()->camera->SetSize(GetEntity()->GetRoot()->camera->GetSize()+info.delta_time);}
+		if(glfwGetKey(info.instance->GetWindow(), GLFW_KEY_Q)){GetEntity()->GetRoot()->camera->SetSize(GetEntity()->GetRoot()->camera->GetSize()-info.delta_time);}
+	
+		vec3<gly_float> pos = GetEntity()->GetRoot()->camera->GetPosition();
+
+		vec2<gly_float> dis = speed*info.delta_time;
+
+		if(glfwGetKey(info.instance->GetWindow(), GLFW_KEY_W)){GetEntity()->GetRoot()->camera->SetPosition({pos.x,pos.y+dis.y});}
+		if(glfwGetKey(info.instance->GetWindow(), GLFW_KEY_S)){GetEntity()->GetRoot()->camera->SetPosition({pos.x,pos.y-dis.y});}
+
+		pos = GetEntity()->GetRoot()->camera->GetPosition();
+
+		if(glfwGetKey(info.instance->GetWindow(), GLFW_KEY_A)){GetEntity()->GetRoot()->camera->SetPosition({pos.x-dis.x,pos.y});}
+		if(glfwGetKey(info.instance->GetWindow(), GLFW_KEY_D)){GetEntity()->GetRoot()->camera->SetPosition({pos.x+dis.x,pos.y});}
+	
 	}
 };
 
@@ -57,11 +75,11 @@ int main()
 	e->AddAttachment<Anim>();
 	e->GetAttachment<Anim>()->sa = spr;
 	e->GetAttachment<Anim>()->tt = 0.05f;
-	
+
 	Entity* e2 = root->CreateEntity();
 	e2->GetTransform()->SetPosition({0.7f,0.0f,0.0f});
 	SpriteAtlas* spr2 = e2->AddAttachment<SpriteAtlas>();
-	spr2->SetTexture(new Texture("assets\\Images\\werm.png"));
+	spr2->SetTexture(new Texture("assets\\Images\\Werm.png"));
 	UVTable* uvt_werm = new UVTable(5);
 	uvt_werm->Grid({2,3},TOP_LEFT);
 	spr2->SetUVTable(uvt_werm);

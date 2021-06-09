@@ -24,7 +24,7 @@ class Transform : public Tree
         mat4<gly_float> rotationMatrix;
         mat4<gly_float> matrix;
 
-        void CalculatePlugMatrix();
+        virtual void CalculatePlugMatrix();
         void CalculateRotationMatrix();
 
         void CalculateMatrix();
@@ -39,14 +39,14 @@ class Transform : public Tree
         mat4<gly_float> LocalMatrix();
         mat4<gly_float> GlobalMatrix();
 
-        vec3<gly_float> GetPosition() const;
-        void SetPosition(const vec3<gly_float>&);
+        virtual vec3<gly_float> GetPosition() const;
+        virtual void SetPosition(const vec3<gly_float>&);
         
-        vec3<gly_float> GetScale() const;
-        void SetScale(const vec3<gly_float>&);
+        virtual vec3<gly_float> GetScale() const;
+        virtual void SetScale(const vec3<gly_float>&);
 
-        vec3<modulo_tau<gly_float>> GetRotation() const;
-        void SetRotation(const vec3<modulo_tau<gly_float>>&);
+        virtual vec3<modulo_tau<gly_float>> GetRotation() const;
+        virtual void SetRotation(const vec3<modulo_tau<gly_float>>&);
 
         Transform* GetParent();
 };

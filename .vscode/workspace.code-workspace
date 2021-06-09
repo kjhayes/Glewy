@@ -52,6 +52,7 @@
 			"streambuf": "cpp",
 			"cinttypes": "cpp",
 			"typeinfo": "cpp"
-		}
+		},
+		"editor.fontSize": 10
 	}
 }

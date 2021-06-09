@@ -11,7 +11,7 @@ Transform::Transform(Transform* parent):Tree(parent), scale(1.0f,1.0f,1.0f){}
 void Transform::CalculatePlugMatrix()
 {
     plugMatrix.Identity();
-    
+
     plugMatrix.t = vec4<gly_float>(position, 1.0f);
 
     plugMatrix.i.x = scale.x;

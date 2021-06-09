@@ -1,33 +1,62 @@
 #include<Glewy/Scene/camera.hpp>
 
 #include<Glewy/Structures/mat.hpp>
-#include<Glewy/Structures/transform.hpp>
 
 #include<cmath>
 
 namespace gly
 {
 
-Camera::Camera():depth(10.0f),aspect_ratio(1.333f)
-{SetSize(5.0f);}
-
-mat4<gly_float> Camera::ViewMatrix() const
+Camera::Camera():Transform(),aspect_ratio(1.0f)
 {
-    mat4<gly_float> view;
-    vec4<gly_float> t = transform->GlobalMatrix().t;
-    view.t = t * -1.0f;
-    view.t.w = 1.0f;
-    view.i.x = size_reciprocal/aspect_ratio;
-	view.j.y = size_reciprocal;
-
-    view.k.z = 1.0f;
-    return view;
+    SetSize(1.0f);
+}
+Camera::Camera(Transform* parent):Transform(parent),aspect_ratio(1.0f){
+    SetSize(1.0f);
 }
 
-void Camera::SetAspectRatio(const float& ar){aspect_ratio = ar;}
+void Camera::SetAspectRatio(const float& ar){aspect_ratio = ar; CalculateScale();}
 float Camera::GetAspectRatio(){return aspect_ratio;}
 
-void Camera::SetSize(const float& size){if(size==0.0f){size_reciprocal = 2.0f;return;}size_reciprocal = 2.0f/size;}
-float Camera::GetSize(){return 2.0f/size_reciprocal;}
+void Camera::SetSize(const float& size){
+    this->size = size;
+    CalculateScale();
+}
+float Camera::GetSize(){return size;}
+
+void Camera::CalculateScale(){
+    float d_size = 2.0f*size;
+    SetScale({d_size,d_size*aspect_ratio,1.0f});
+}
+
+void Camera::SetPosition(const vec3<gly_float>& pos) {
+    Transform::SetPosition(pos * -1.0f);
+}
+void Camera::SetScale(const vec3<gly_float>& scal) {
+    Transform::SetScale({1.0f/scal.x,1.0f/scal.y,1.0f/scal.z});
+}
+void Camera::SetRotation(const vec3<modulo_tau<gly_float>>& rot) {
+    Transform::SetRotation(rot * -1.0f);
+}
+
+vec3<gly_float> Camera::GetPosition() const {
+    return position * -1.0f;
+}    
+vec3<gly_float> Camera::GetScale() const {
+    return {1.0f/scale.x,1.0f/scale.y,1.0f/scale.z};
+}
+vec3<modulo_tau<gly_float>> Camera::GetRotation() const {
+    return rotation * -1.0f;
+}
+
+void Camera::CalculatePlugMatrix() {
+    plugMatrix.Identity();
+
+    plugMatrix.t = vec4<gly_float>(position.x*scale.x,position.y*scale.y,position.z*scale.z, 1.0f);
+
+    plugMatrix.i.x = scale.x;
+    plugMatrix.j.y = scale.y;
+    plugMatrix.k.z = scale.z;
+}
 
 }

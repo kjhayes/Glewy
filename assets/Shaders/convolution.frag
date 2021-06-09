@@ -5,7 +5,7 @@ out vec4 _color;
 
 uniform sampler2D gly_texture;
 
-const float offset = 1.0 / 1000.0;
+const float offset = 1.0 / 100.0;
 
 void main(){
 
@@ -23,19 +23,20 @@ vec2 offsets[9] = vec2[](
 
 
 float kernel[9] 
+/*
 = float[](
     -1, -1, -1,
-    -1,  8, -1,
+    -1,  9, -1,
     -1, -1, -1
 );
 
-/*
+*/
 = float[](
     -1,  1, -1,
      1,  1,  1,
     -1,  1, -1
 );
-*/
+
 vec3 sampleTex[9];
 for(int i = 0; i < 9; i++)
 {
@@ -45,6 +46,9 @@ vec3 col = vec3(0.0);
 for(int i = 0; i < 9; i++){
     col += sampleTex[i] * kernel[i];
 }
+
+col.r = 0.0;
+
 _color = vec4(col,1.0);
 
 }
