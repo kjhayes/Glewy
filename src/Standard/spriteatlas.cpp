@@ -35,9 +35,8 @@ void SpriteAtlas::SetUVTable(UVTable* uvt){
 UVTable* SpriteAtlas::GetUVTable(){return uvtable;}
 
 void SpriteAtlas::SetIndex(const int& i){
-    if(i<0){index = uvtable->size;}
-    else if(i>=uvtable->size){index = 0;}
-    else{index = i;}
+    if(uvtable->size > i >= 0){index = i;}
+    else{index = 0;}
 }
 int SpriteAtlas::GetIndex(){return index;}
 

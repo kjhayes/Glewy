@@ -11,18 +11,15 @@ public:
 	
 	SpriteAtlas* sa;
 
-	double tt = 0.05f;
-	double tu = tt;
+	Animation<int>* anim;
 
 	vec2<gly_float> speed = {1.0f,1.0f};
 
 	void Update(const UpdateInfo& info) override
 	{
-			if(tu<=0.0f){
-				sa->SetIndex(sa->GetIndex()+1);
-				tu = tt;
-			}
-			else{tu-=info.delta_time;}
+		anim->Tick(info.delta_time);
+		std::cout<<anim->CurrentFrame()<<std::endl;
+		sa->SetIndex(anim->CurrentFrame());
 
 		if(glfwGetKey(info.instance->GetWindow(), GLFW_KEY_E)){GetEntity()->GetRoot()->camera->SetSize(GetEntity()->GetRoot()->camera->GetSize()+info.delta_time);}
 		if(glfwGetKey(info.instance->GetWindow(), GLFW_KEY_Q)){GetEntity()->GetRoot()->camera->SetSize(GetEntity()->GetRoot()->camera->GetSize()-info.delta_time);}
@@ -37,8 +34,7 @@ public:
 		pos = GetEntity()->GetRoot()->camera->GetPosition();
 
 		if(glfwGetKey(info.instance->GetWindow(), GLFW_KEY_A)){GetEntity()->GetRoot()->camera->SetPosition({pos.x-dis.x,pos.y});}
-		if(glfwGetKey(info.instance->GetWindow(), GLFW_KEY_D)){GetEntity()->GetRoot()->camera->SetPosition({pos.x+dis.x,pos.y});}
-	
+		if(glfwGetKey(info.instance->GetWindow(), GLFW_KEY_D)){GetEntity()->GetRoot()->camera->SetPosition({pos.x+dis.x,pos.y});}	
 	}
 };
 
@@ -73,8 +69,14 @@ int main()
 	spr->SetUVTable(uvt_blob_spike);
 
 	e->AddAttachment<Anim>();
+	Animation<int>* anim1 = new Animation<int>(22);
+
+	for(int i = 0; i<22; i++){
+		anim1->SetFrameData(i, {i, 0.05});
+	}
+
+	e->GetAttachment<Anim>()->anim = anim1;
 	e->GetAttachment<Anim>()->sa = spr;
-	e->GetAttachment<Anim>()->tt = 0.05f;
 
 	Entity* e2 = root->CreateEntity();
 	e2->GetTransform()->SetPosition({0.7f,0.0f,0.0f});
@@ -85,8 +87,15 @@ int main()
 	spr2->SetUVTable(uvt_werm);
 
 	e2->AddAttachment<Anim>();
+
+	Animation<int>* anim2 = new Animation<int>(5);
+
+	for(int i = 0; i<5; i++){
+		anim2->SetFrameData(i, {i, 0.1});
+	}
+
+	e2->GetAttachment<Anim>()->anim = anim2;
 	e2->GetAttachment<Anim>()->sa = spr2;
-	e2->GetAttachment<Anim>()->tt = 0.08f;
 
 	instance.Run();
 	

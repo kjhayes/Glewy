@@ -1,0 +1,6 @@
+>g++ -c -I./include -o./bin/Structures/
+dool.o src/Structures/dool.cpp
+transform.o src/Structures/transform.cpp
+tree.o src/Structures/tree.cpp
+<
+ar vrcs ./lib/libGLEWY_STRUCTURES.a ./bin/Structures/tree.o ./bin/Structures/transform.o ./bin/Structures/dool.o

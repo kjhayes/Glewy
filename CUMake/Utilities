@@ -1,0 +1,5 @@
+>g++ -c -I./include -o./bin/Utilities/
+util.o src/Utilities/util.cpp
+readfile.o src/Utilities/readfile.cpp
+<
+ar vrcs ./lib/libGLEWY_UTILITIES.a ./bin/Utilities/util.o ./bin/Utilities/readfile.o

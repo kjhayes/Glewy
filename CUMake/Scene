@@ -1,0 +1,8 @@
+>g++ -c -I./include -o./bin/Scene/
+attachment.o src/Scene/attachment.cpp
+entity.o src/Scene/entity.cpp
+component.o src/Scene/component.cpp
+camera.o src/Scene/camera.cpp
+transformable.o src/Scene/transformable.cpp
+<
+ar vrcs ./lib/libGLEWY_SCENE.a ./bin/Scene/attachment.o ./bin/Scene/entity.o ./bin/Scene/component.o ./bin/Scene/camera.o ./bin/Scene/transformable.o
