@@ -9,6 +9,7 @@
 #include<Glewy/Core/logging.hpp>
 #include<Glewy/Structures/vec.hpp>
 #include<Glewy/Rendering/material.hpp>
+#include<Glewy/Rendering/shaders.hpp>
 
 namespace gly{
 
@@ -26,7 +27,6 @@ Renderer::Renderer(const vec2<gly_int>& size) : clear_color(1.0f,1.0f,1.0f,1.0f)
 {
     if(full_viewport_vbo == 0){
         glGenBuffers(1, &full_viewport_vbo);
-
         glBindBuffer(GL_ARRAY_BUFFER, full_viewport_vbo);
         glBufferData(GL_ARRAY_BUFFER, sizeof(fullscreen_vertices), fullscreen_vertices, GL_STATIC_DRAW);
     }
@@ -35,27 +35,8 @@ Renderer::Renderer(const vec2<gly_int>& size) : clear_color(1.0f,1.0f,1.0f,1.0f)
     glGenRenderbuffers(1, &rbo);
     RegenFBO(size);
     final_pass = new Material(false);
-    final_pass->SetVert_Data(
-        "#version 330\n"
-        "layout (location = 0) in vec3 Position;\n"
-        "out vec2 TextureCoord;\n"
-        "void main()\n"
-        "{\n"
-        "TextureCoord = (Position.xy*0.5)+vec2(0.5,0.5);\n"
-        "gl_Position = vec4(Position, 1.0);\n"
-        "}\n"
-    );
-    final_pass->SetFrag_Data( 
-        "#version 330\n"   
-        "in vec2 TextureCoord;\n"
-        "out vec4 _color;\n"
-        "uniform sampler2D gly_texture;\n"
-        "void main()\n"
-        "{\n"
-        "vec4 color = vec4(texture(gly_texture, TextureCoord).rgb, 1.0);\n"
-        "_color = color;\n" //It seems important to pass the texture value in two steps: Not Sure Why
-        "}\n"
-    );
+    final_pass->SetVert_Data(Shaders::renderer_vert);
+    final_pass->SetFrag_Data(Shaders::renderer_frag);
     final_pass->Link();
 }
 
@@ -92,10 +73,12 @@ void Renderer::RegenFBO(const vec2<gly_int>& n_size){
     glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH24_STENCIL8, size.x, size.y);
     glBindRenderbuffer(GL_RENDERBUFFER, 0);
     glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_STENCIL_ATTACHMENT, GL_RENDERBUFFER, rbo);
-    
+
+#ifdef GLEWY_DEBUG   
     if(glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE)
     {std::cout<<"ERROR: FRAMEBUFFER IS NOT COMPLETE"<<std::endl;}
-    
+#endif //GLEWY_DEBUG
+
     glBindFramebuffer(GL_FRAMEBUFFER, 0);
 }
 

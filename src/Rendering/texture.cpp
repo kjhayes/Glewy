@@ -13,13 +13,13 @@ namespace gly
 	
 	Texture::Texture(const char* file_name):tex_unit(0)
 	{
-		SetTexture(file_name);
+		LoadFrom(file_name);
 		SetFilter(GL_NEAREST);
 	}
 	
 	Texture::Texture(const char* file_name, const int& tex_unit):tex_unit(tex_unit)
 	{
-		SetTexture(file_name);	
+		LoadFrom(file_name);	
 		SetFilter(GL_NEAREST);
 	}
 
@@ -27,23 +27,6 @@ namespace gly
 	{
 		SetTexture(color);
 		SetFilter(GL_NEAREST);
-	}
-
-	void Texture::SetTexture(const char* file_name)
-	{
-		this->handle = SOIL_load_OGL_texture
-		(
-			file_name,
-			4,
-			handle,
-			SOIL_FLAG_TEXTURE_REPEATS | SOIL_FLAG_INVERT_Y | SOIL_FLAG_MULTIPLY_ALPHA
-		);
-		
-		if(handle == 0){std::cout<<"Error Loading Image: "<<file_name<<std::endl;}
-		
-		glBindTexture(GL_TEXTURE_2D, handle);
-		glGetTexLevelParameteriv(GL_TEXTURE_2D, 0, GL_TEXTURE_WIDTH, &x_size);
-		glGetTexLevelParameteriv(GL_TEXTURE_2D, 0, GL_TEXTURE_HEIGHT, &y_size);
 	}
 
 	void Texture::SetTexture(const vec4<gly_float>& color){
@@ -79,4 +62,19 @@ namespace gly
 		glBindTexture(GL_TEXTURE_2D, handle);
 	}
 	
+	void Texture::LoadFrom(const char* file_name){
+		this->handle = SOIL_load_OGL_texture
+		(
+			file_name,
+			4,
+			handle,
+			SOIL_FLAG_TEXTURE_REPEATS | SOIL_FLAG_INVERT_Y | SOIL_FLAG_MULTIPLY_ALPHA
+		);
+		
+		if(handle == 0){std::cout<<"Error Loading Image: "<<file_name<<std::endl;}
+		
+		glBindTexture(GL_TEXTURE_2D, handle);
+		glGetTexLevelParameteriv(GL_TEXTURE_2D, 0, GL_TEXTURE_WIDTH, &x_size);
+		glGetTexLevelParameteriv(GL_TEXTURE_2D, 0, GL_TEXTURE_HEIGHT, &y_size);
+	}
 }

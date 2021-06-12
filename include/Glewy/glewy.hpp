@@ -14,5 +14,6 @@
 #include<Glewy/Standard/standard.hpp>
 #include<Glewy/Structures/structures.hpp>
 #include<Glewy/Utilities/utilities.hpp>
+#include<Glewy/Content/content.hpp>
 
 #endif

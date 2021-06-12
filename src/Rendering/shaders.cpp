@@ -36,4 +36,24 @@ const char* Shaders::transform_texture_atlas_frag =
 	"_color = texture2D(gly_texture, atlas_pos);\n"
     "}\n";
 
+const char* Shaders::renderer_vert = 
+    "#version 330\n"
+    "layout (location = 0) in vec3 Position;\n"
+    "out vec2 TextureCoord;\n"
+    "void main()\n"
+    "{\n"
+    "TextureCoord = (Position.xy*0.5)+vec2(0.5,0.5);\n"
+    "gl_Position = vec4(Position, 1.0);\n"
+    "}\n";
+    
+const char* Shaders::renderer_frag = 
+    "#version 330\n"   
+    "in vec2 TextureCoord;\n"
+    "out vec4 _color;\n"
+    "uniform sampler2D gly_texture;\n"
+    "void main()\n"
+    "{\n"
+    "vec4 color = vec4(texture(gly_texture, TextureCoord).rgb, 1.0);\n"
+    "_color = color;\n" //It seems important to pass the texture value in two steps: Not Sure Why
+    "}\n";
 }

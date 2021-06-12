@@ -16,6 +16,7 @@ public:
 
     static const vec3<gly_float> quad_vertices_default[4];
 
+    //Quad
     static void RenderQuad();
 };
 

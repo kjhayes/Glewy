@@ -5,11 +5,12 @@ typedef unsigned int GLuint;
 typedef unsigned int GLenum;
 
 #include<Glewy/Structures/vec.hpp>
+#include<Glewy/Content/asset.hpp>
 
 namespace gly
 {
 
-class Texture
+class Texture : public Asset
 {
 	public:
 		int tex_unit;
@@ -21,12 +22,13 @@ class Texture
 	Texture(const char*, const int&);
 	Texture(const vec4<gly_float>& color);
 	
-	void SetTexture(const char*);
 	void SetTexture(const vec4<gly_float>& color);
 
 	void SetFilter(GLenum);
 	
 	void Bind();
+
+	void LoadFrom(const char* file_name) override;
 };
 
 }

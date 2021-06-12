@@ -21,11 +21,12 @@ Instance::Instance(const StartUp& start):
 	    curr_time(0.0f),
 	    delta_time(0.0f),
 		custom_aspect_ratio(1.0f),
-		ar_option(GLY_USE_WINDOW_AR)
+		ar_option(GLY_USE_WINDOW_AR),
+		win_size(start.size),
+		title(start.title)
 {
 	registry.push_back(this);
-    window = glewyCreateWindow(start.x_size, start.y_size, start.title);
-	glfwSetWindowSizeCallback(window, OnWindowResize);
+	window = glewyCreateWindow(win_size.x, win_size.y, title.c_str());
 }
 
 Instance::~Instance(){
@@ -35,6 +36,8 @@ Instance::~Instance(){
 
 void Instance::Run()
 {
+	glfwSetWindowSizeCallback(window, OnWindowResize);
+
 	RenderCalls::Init();
 
 	glEnable(GL_BLEND);
@@ -81,7 +84,7 @@ void Instance::SetCurrentRenderer(Renderer* renderer){
 
 void Instance::Get_Window_Size(int* x_out, int* y_out){glfwGetWindowSize(window, x_out, y_out);}
 void Instance::Get_Buffer_Size(int* x_out, int* y_out){glfwGetFramebufferSize(window, x_out, y_out);}
-void Instance::Set_Window_Size(const int& x, const int& y){glfwSetWindowSize(window, x, y);}
+void Instance::Set_Window_Size(const int& x, const int& y){glfwSetWindowSize(window, x, y);win_size.x = x; win_size.y = y;}
 
 void Instance::Set_AR_Option(const ASPECT_RATIO_OPTION& opt){
 	ar_option = opt;
@@ -130,9 +133,20 @@ void Instance::UpdateViewport(const vec2<gly_int>& vec){
 }
 
 void Instance::OnWindowResize(GLFWwindow* window, int x, int y){
-	for(auto iter = registry.begin(); iter != registry.end(); iter++){
-		(*iter)->UpdateViewport({x, y});
-	}
+	Instance* i = GetInstanceFromWindow(window);
+	if(i!=nullptr){i->OnOwnWindowResize({x,y});}
 }	
+
+void Instance::OnOwnWindowResize(const vec2<gly_int>& size){
+	win_size = size;
+	UpdateViewport(size);
+}
+
+Instance* Instance::GetInstanceFromWindow(GLFWwindow* window){
+	for(auto iter = registry.begin(); iter != registry.end(); iter++){
+		if((*iter)->window == window){return (*iter);}
+	}	
+	return nullptr;
+}
 
 }

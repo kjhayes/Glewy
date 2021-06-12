@@ -51,7 +51,7 @@ void SpriteAtlas::Render(){
     texture->Bind();
     Uniform::SetUniform(&gly_atlas_offset, uvtable->coords[index].offset);
     Uniform::SetUniform(&gly_atlas_size, uvtable->coords[index].size);
-
+    
     RenderCalls::RenderQuad();
 }
 

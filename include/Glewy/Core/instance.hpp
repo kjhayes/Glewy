@@ -4,6 +4,7 @@
 #include<Glewy/Structures/vec.hpp>
 #include<Glewy/Core/iregisterable.hpp>
 #include<Glewy/Core/typedef.hpp>
+#include<string>
 
 class GLFWwindow;
 
@@ -16,8 +17,7 @@ class Renderer;
 struct StartUp
 {
     const char* title;
-    int x_size;
-    int y_size;
+    vec2<gly_int> size;
 };
 
 class Instance : public IRegisterable<Instance>
@@ -30,6 +30,9 @@ private:
     GLFWwindow* window;
     Root* current_root;
     Renderer* current_renderer;
+
+    vec2<gly_int> win_size;
+    std::string title;
 
     float custom_aspect_ratio;
     ASPECT_RATIO_OPTION ar_option;
@@ -62,7 +65,10 @@ private:
     void UpdateViewport();
     void UpdateViewport(const vec2<gly_int>&);
 
+    void OnOwnWindowResize(const vec2<gly_int>&);
     static void OnWindowResize(GLFWwindow*, int, int);
+
+    static Instance* GetInstanceFromWindow(GLFWwindow*);
 };
 
 }

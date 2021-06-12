@@ -30,7 +30,7 @@ public:
 
     bool Tick(double deltatime){
         if(time <= 0.0){
-            IncrementFrame();
+            IncrementFrame(time);
             return true;        
         }
         else{
@@ -48,6 +48,17 @@ public:
         if(last_frame){SetIndex(0);}
         else{index++; time = frames[index].length;}
         return last_frame;
+    }
+    bool IncrementFrame(const double& time_past){
+        bool last_frame = IsLastFrame();
+        if(last_frame){
+            index = 0; 
+        }
+        else{
+            index++; 
+        }
+        time = frames[index].length+time_past;
+        return last_frame;    
     }
     bool DecrementFrame(){
         bool first_frame = IsFirstFrame();
