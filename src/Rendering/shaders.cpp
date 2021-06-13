@@ -2,6 +2,21 @@
 
 namespace gly{
 
+
+const char* Shaders::default_vert = 
+    "#version 330\n"
+	"layout (location = 0) in vec3 Position;\n"
+	"void main(){\n"
+	"gl_Position = vec4(Position, 1.0);\n"
+	"}\n";
+	
+const char* Shaders::default_frag = 
+    "#version 330\n"
+	"out vec4 color;\n"
+	"void main(){\n"
+	"color = vec4(1.0,0.0,1.0,1.0);\n"
+	"}\n";
+
 const char* Shaders::transform_texture_vert = 
     "#version 330\n"
     "layout (location = 0) in vec3 Position;\n"

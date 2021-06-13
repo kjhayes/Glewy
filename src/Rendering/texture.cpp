@@ -45,24 +45,24 @@ namespace gly
 		glGetTexLevelParameteriv(GL_TEXTURE_2D, 0, GL_TEXTURE_HEIGHT, &y_size);
 	}
 
-	void Texture::LoadFromData(const AssetCode& code){
+	void Texture::LoadFromData(const Data& d){
 		this->handle = SOIL_load_OGL_texture_from_memory
 		(
-			code.data_addr,
-			code.size,
+			d.data,
+			d.size,
 			4,
 			handle,
 			SOIL_FLAG_TEXTURE_REPEATS | SOIL_FLAG_INVERT_Y | SOIL_FLAG_MULTIPLY_ALPHA
 		);
 		
-		if(handle == 0){std::cout<<"Error Loading Image From Memory: "<<(int)code.data_addr<<" |Size: "<<code.size<<" bytes|"<<std::endl;}
+		if(handle == 0){std::cout<<"Error Loading Image From Memory: "<<(int)d.data<<" |Size: "<<d.size<<" bytes|"<<std::endl;}
 		
 		glBindTexture(GL_TEXTURE_2D, handle);
 		glGetTexLevelParameteriv(GL_TEXTURE_2D, 0, GL_TEXTURE_WIDTH, &x_size);
 		glGetTexLevelParameteriv(GL_TEXTURE_2D, 0, GL_TEXTURE_HEIGHT, &y_size);	
 	}
 
-	Texture::Texture(const AssetCode& code){LoadFromData(code);SetFilter(GL_NEAREST);}
+	Texture::Texture(const Data& d){LoadFromData(d);SetFilter(GL_NEAREST);}
 
 	void Texture::SetFilter(GLenum filter)
 	{

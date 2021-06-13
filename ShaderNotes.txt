@@ -1,1 +1,0 @@
-mat4 gly_view; (Camera View Matrix)

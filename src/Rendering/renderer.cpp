@@ -85,17 +85,19 @@ void Renderer::RegenFBO(const vec2<gly_int>& n_size){
 void Renderer::SetActive(){
     glViewport(0,0,size.x,size.y);
     glBindFramebuffer(GL_FRAMEBUFFER, FBO);
+    Clear(clear_color);
     glEnable(GL_DEPTH_TEST);
 	glDepthFunc(GL_LEQUAL);
 }
 
-void Renderer::Clear(){
-    glClearColor(clear_color.r,clear_color.g,clear_color.b,clear_color.a);
+void Renderer::Clear(const vec4<gly_float>& color){
+    glClearColor(color.r,color.g,color.b,color.a);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 }
 
-void Renderer::Blit(){
+void Renderer::Blit(const vec4<gly_float>& cc){
     glBindFramebuffer(GL_FRAMEBUFFER, 0);
+    Clear(cc);
     glDisable(GL_DEPTH_TEST);
     RenderFullscreenTexture(texture);
 }
@@ -123,7 +125,7 @@ void Renderer::RenderFullscreenTexture(GLuint texture){
 void Renderer::SetClearColor(const vec4<gly_float>& cc){
     this->clear_color = cc;
 }
-vec4<gly_float> Renderer::GetClearColor(){return clear_color;}
+vec4<gly_float> Renderer::GetClearColor(){return this->clear_color;}
 
 void Renderer::SetFrag(const char* path){
     this->final_pass->SetFrag(path);

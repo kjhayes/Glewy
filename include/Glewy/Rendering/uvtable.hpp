@@ -1,7 +1,8 @@
-#ifndef GLEWY_UVCOORDTABLE_HPP
+#ifndef GLEWY_UVTABLE_HPP
 #define GLEWY_UVTABLE_HPP
 
 #include<Glewy/Structures/vec.hpp>
+#include<Glewy/Content/asset.hpp>
 
 namespace gly{
 
@@ -9,17 +10,23 @@ struct UVCoord{
 public:
     vec2<gly_float> size;
     vec2<gly_float> offset;
+
+    static UVCoord* Grid(const int& size, const vec2<gly_int>& cells, CORNER = BOTTOM_LEFT, bool rows = true);
 };
 
-class UVTable{
-public:
-    const int size;
-    UVCoord* const coords;
+class UVTable : public Asset<UVTable> {
+    friend class Asset<UVTable>;
+protected:
+    int size;
+    UVCoord* coords;
 
-    UVTable(const int& size);
+    UVTable(const Data& data);
+    void LoadFromData(const Data& data) override;
     ~UVTable();
 
-    void Grid(const vec2<gly_int>& cells, CORNER = BOTTOM_LEFT, bool rows = true);
+public:
+    int GetSize();
+    UVCoord* GetCoords();
 };
 
 }

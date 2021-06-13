@@ -18,12 +18,12 @@ protected:
 	GLuint handle = 0;
 	int x_size, y_size;
 	
-	Texture(const AssetCode& code);
+	Texture(const Data& d);
 
 	void SingleColor(const vec4<gly_float>& color);
 
 	void LoadFromFile(const char* file_name);
-	void LoadFromData(const AssetCode& code) override;
+	void LoadFromData(const Data& d) override;
 
 	void SetFilter(GLenum);
 

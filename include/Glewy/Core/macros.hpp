@@ -4,6 +4,8 @@
 #define GLEWY_DEBUG
 
 /*
+#define GLEWY_SHADER_DEBUG
+
 #define GLEWY_DEPRECATED
 
 #define GLY_DEFAULT_PIVOT 0

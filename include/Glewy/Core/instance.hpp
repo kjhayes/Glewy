@@ -37,6 +37,8 @@ private:
     float custom_aspect_ratio;
     ASPECT_RATIO_OPTION ar_option;
 
+    vec4<gly_float> clear_color;
+
     vec2<gly_int> vp_offset;
     vec2<gly_int> vp_size;
 
@@ -52,6 +54,9 @@ public:
 
     Renderer* GetCurrentRenderer();
     void SetCurrentRenderer(Renderer*);
+
+    vec4<gly_float> GetClearColor();
+    void SetClearColor(const vec4<gly_float>&);
 
     void Get_Window_Size(int* x_out, int* y_out);
     void Get_Buffer_Size(int* x_out, int* y_out);

@@ -30,9 +30,9 @@ public:
     void RegenFBO(const vec2<gly_int>&);
     
     void SetActive();
-    void Clear();
+    void Clear(const vec4<gly_float>& color);
     
-    void Blit();
+    void Blit(const vec4<gly_float>& clear);
     void RenderFullscreenTexture(GLuint texture);
 
     void SetClearColor(const vec4<gly_float>&);

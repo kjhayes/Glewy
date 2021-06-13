@@ -25,7 +25,7 @@ void Camera::SetSize(const float& size){
 float Camera::GetSize(){return size;}
 
 void Camera::CalculateScale(){
-    float d_size = 2.0f*size;
+    float d_size = 0.5f*size;
     SetScale({d_size*aspect_ratio,d_size,1.0f});
 }
 

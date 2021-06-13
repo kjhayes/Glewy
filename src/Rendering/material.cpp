@@ -8,21 +8,10 @@
 
 #include<Glewy/Scene/camera.hpp>
 #include<Glewy/Utilities/readfile.hpp>
+#include<Glewy/Rendering/shaders.hpp>
 
 namespace gly
 {
-
-const char* def_vert = "#version 330\n"
-	"layout (location = 0) in vec3 Position;\n"
-	"void main(){\n"
-	"gl_Position = vec4(Position, 1.0);\n"
-	"}\n";
-	
-const char* def_frag = "#version 330\n"
-	"out vec4 color;\n"
-	"void main(){\n"
-	"color = vec4(1.0,0.0,1.0,1.0);\n"
-	"}\n";
 
 
 void Debug_Shader_Test(GLuint shader){
@@ -69,8 +58,8 @@ Material::Material(bool load_def)
 	frag = glCreateShader(GL_FRAGMENT_SHADER);
 	
 	if(load_def){
-	this->SetVert_Data(def_vert);
-	this->SetFrag_Data(def_frag);
+	this->SetVert_Data(Shaders::default_vert);
+	this->SetFrag_Data(Shaders::default_frag);
 	glLinkProgram(program);
 	}	
 }
@@ -83,7 +72,7 @@ void Material::SetVert(const char* vs_path)
 	glShaderSource(vert, 1, &c_str_data, NULL);
 	glCompileShader(vert);
 	
-	#ifdef GLEWY_DEBUG
+	#if defined(GLEWY_DEBUG) && defined(GLEWY_SHADER_DEBUG)
 	Debug_Shader_Test(vert);
 	#endif
 	
@@ -93,8 +82,8 @@ void Material::SetVert_Data(const char* vs_data)
 {
 	glShaderSource(vert, 1, &vs_data, NULL);
 	glCompileShader(vert);
-	
-	#ifdef GLEWY_DEBUG
+
+	#if defined(GLEWY_DEBUG) && defined(GLEWY_SHADER_DEBUG)
 	Debug_Shader_Test(vert);
 	#endif
 	
@@ -108,7 +97,7 @@ void Material::SetFrag(const char* fs_path)
 	glShaderSource(frag, 1, &c_str_data, NULL);
 	glCompileShader(frag);
 	
-	#ifdef GLEWY_DEBUG
+	#if defined(GLEWY_DEBUG) && defined(GLEWY_SHADER_DEBUG)
 	Debug_Shader_Test(frag);
 	#endif
 	
@@ -119,7 +108,7 @@ void Material::SetFrag_Data(const char* fs_data)
 	glShaderSource(frag, 1, &fs_data, NULL);
 	glCompileShader(frag);
 
-	#ifdef GLEWY_DEBUG
+	#if defined(GLEWY_DEBUG) && defined(GLEWY_SHADER_DEBUG)
 	Debug_Shader_Test(frag);
 	#endif
 
@@ -130,7 +119,7 @@ void Material::Link() const
 {
 	glLinkProgram(program);
 
-	#ifdef GLEWY_DEBUG
+	#if defined(GLEWY_DEBUG) && defined(GLEWY_SHADER_DEBUG)
 	GLint success;
 	glGetProgramiv(program, GL_LINK_STATUS, &success);
 	if (!success) {

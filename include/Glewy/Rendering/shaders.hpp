@@ -7,6 +7,9 @@ namespace gly{
 class Shaders{
 
 public:
+    static const char* default_vert;
+    static const char* default_frag;
+
     static const char* transform_texture_vert;
     static const char* transform_texture_frag;
     

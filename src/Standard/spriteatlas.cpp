@@ -35,7 +35,7 @@ void SpriteAtlas::SetUVTable(UVTable* uvt){
 UVTable* SpriteAtlas::GetUVTable(){return uvtable;}
 
 void SpriteAtlas::SetIndex(const int& i){
-    if(uvtable->size > i >= 0){index = i;}
+    if(uvtable->GetSize() > i >= 0){index = i;}
     else{index = 0;}
 }
 int SpriteAtlas::GetIndex(){return index;}
@@ -49,8 +49,8 @@ void SpriteAtlas::Render(){
     Uniform::SetUniform(&gly_transform, GetEntity()->GetTransform());
     Uniform::SetUniform(&gly_texture, texture);
     texture->Bind();
-    Uniform::SetUniform(&gly_atlas_offset, uvtable->coords[index].offset);
-    Uniform::SetUniform(&gly_atlas_size, uvtable->coords[index].size);
+    Uniform::SetUniform(&gly_atlas_offset, uvtable->GetCoords()[index].offset);
+    Uniform::SetUniform(&gly_atlas_size, uvtable->GetCoords()[index].size);
     
     RenderCalls::RenderQuad();
 }

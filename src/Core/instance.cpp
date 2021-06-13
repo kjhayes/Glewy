@@ -56,7 +56,7 @@ void Instance::Run()
 		current_root->RenderWith(current_renderer);
 		
 		glViewport(vp_offset.x, vp_offset.y, vp_size.x, vp_size.y);
-		current_renderer->Blit();
+		current_renderer->Blit(clear_color);
 		
 		glfwSwapBuffers(window);
 
@@ -81,6 +81,9 @@ Renderer* Instance::GetCurrentRenderer(){return current_renderer;}
 void Instance::SetCurrentRenderer(Renderer* renderer){
 	current_renderer = renderer;
 }
+
+vec4<gly_float> Instance::GetClearColor(){return clear_color;}
+void Instance::SetClearColor(const vec4<gly_float>& cc){clear_color = cc;}
 
 void Instance::Get_Window_Size(int* x_out, int* y_out){glfwGetWindowSize(window, x_out, y_out);}
 void Instance::Get_Buffer_Size(int* x_out, int* y_out){glfwGetFramebufferSize(window, x_out, y_out);}

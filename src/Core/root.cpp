@@ -92,7 +92,6 @@ void Root::CallRenderables(){
 
 void Root::RenderWith(Renderer* renderer){
     renderer->SetActive();
-    renderer->Clear();
     CallRenderables();
     //renderer->WTF(); //WHY THE HELL DOES IT NOT WORK WITHOUT THIS???? (OR USED TO???? (THIS HAS ME VERY CONFUSED BUT IT SEEMS TO WORK SUDDENLY EVEN WITHOUT THIS?))
 }
