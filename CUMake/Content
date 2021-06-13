@@ -1,0 +1,4 @@
+>g++ -O3 -c -I./include -o./bin/Content/
+testcontent.o ./src/Content/testcontent.cpp
+<
+ar vrcs ./lib/libGLEWY_CONTENT.a ./bin/Content/testcontent.o

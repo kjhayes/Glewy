@@ -1,4 +1,4 @@
->g++ -c -I./include -o./bin/Scene/
+>g++ -O3 -c -I./include -o./bin/Scene/
 attachment.o src/Scene/attachment.cpp
 entity.o src/Scene/entity.cpp
 component.o src/Scene/component.cpp

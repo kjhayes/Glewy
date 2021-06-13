@@ -1,4 +1,4 @@
->g++ -c -I./include -o./bin/Standard/
+>g++ -O3 -c -I./include -o./bin/Standard/
 sprite.o src/Standard/sprite.cpp
 spriteatlas.o src/Standard/spriteatlas.cpp
 <

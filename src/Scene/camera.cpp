@@ -26,7 +26,7 @@ float Camera::GetSize(){return size;}
 
 void Camera::CalculateScale(){
     float d_size = 2.0f*size;
-    SetScale({d_size,d_size*aspect_ratio,1.0f});
+    SetScale({d_size*aspect_ratio,d_size,1.0f});
 }
 
 void Camera::SetPosition(const vec3<gly_float>& pos) {

@@ -1,4 +1,4 @@
->g++ -c -I./include -o./bin/Structures/
+>g++ -O3 -c -I./include -o./bin/Structures/
 dool.o src/Structures/dool.cpp
 transform.o src/Structures/transform.cpp
 tree.o src/Structures/tree.cpp

@@ -5,11 +5,11 @@
 
 namespace gly{
 
-template<class self>
+template<class self, class storage=std::list<self*>>
 class IRegisterable 
 {
 public:
-    static std::list<self*> registry;
+    static storage registry;
     IRegisterable(){
         registry.push_back((self*)this);
     }
@@ -17,7 +17,7 @@ public:
         registry.remove((self*)this);
     }
 };
-template<class self> std::list<self*> IRegisterable<self>::registry;
+template<class self, class storage> storage IRegisterable<self, storage>::registry;
 
 }
 

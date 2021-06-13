@@ -1,4 +1,4 @@
->g++ -c -I./include -o./bin/Rendering/
+>g++ -O3 -c -I./include -o./bin/Rendering/
 material.o src/Rendering/material.cpp
 renderable.o src/Rendering/renderable.cpp
 renderablecache.o src/Rendering/renderablecache.cpp

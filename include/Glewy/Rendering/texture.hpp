@@ -10,25 +10,28 @@ typedef unsigned int GLenum;
 namespace gly
 {
 
-class Texture : public Asset
+class Texture : public Asset<Texture>
 {
-	public:
-		int tex_unit;
-		GLuint handle = 0;
-		int x_size, y_size;
-		
-	Texture();
-	Texture(const char*);
-	Texture(const char*, const int&);
-	Texture(const vec4<gly_float>& color);
+friend class Asset<Texture>;
+
+protected:
+	GLuint handle = 0;
+	int x_size, y_size;
 	
-	void SetTexture(const vec4<gly_float>& color);
+	Texture(const AssetCode& code);
+
+	void SingleColor(const vec4<gly_float>& color);
+
+	void LoadFromFile(const char* file_name);
+	void LoadFromData(const AssetCode& code) override;
 
 	void SetFilter(GLenum);
-	
-	void Bind();
 
-	void LoadFrom(const char* file_name) override;
+	int tex_unit = 0;
+
+public:
+	int GetTexUnit();
+	void Bind();
 };
 
 }

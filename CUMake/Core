@@ -1,4 +1,4 @@
->g++ -c -I./include -o./bin/Core/
+>g++ -O3 -c -I./include -o./bin/Core/
 abstraction.o src/Core/abstraction.cpp
 instance.o src/Core/instance.cpp
 root.o src/Core/root.cpp

@@ -1,4 +1,4 @@
->g++ -c -I./include -o./bin/Utilities/
+>g++ -O3 -c -I./include -o./bin/Utilities/
 util.o src/Utilities/util.cpp
 readfile.o src/Utilities/readfile.cpp
 <
