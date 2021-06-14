@@ -1,6 +1,6 @@
->g++ -O3 -c -I./include -o./bin/Core/
+>g++ -O3 -c -I./include -o./bin/
 abstraction.o src/Core/abstraction.cpp
 instance.o src/Core/instance.cpp
 root.o src/Core/root.cpp
 <
-ar vrcs ./lib/libGLEWY_CORE.a ./bin/Core/abstraction.o ./bin/Core/instance.o ./bin/Core/root.o
+ar vrcs ./lib/libGLEWY_CORE.a ./bin/abstraction.o ./bin/instance.o ./bin/root.o

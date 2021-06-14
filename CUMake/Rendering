@@ -1,4 +1,4 @@
->g++ -O3 -c -I./include -o./bin/Rendering/
+>g++ -O3 -c -I./include -o./bin/
 material.o src/Rendering/material.cpp
 renderable.o src/Rendering/renderable.cpp
 renderablecache.o src/Rendering/renderablecache.cpp
@@ -9,4 +9,4 @@ uniform.o src/Rendering/uniform.cpp
 shaders.o src/Rendering/shaders.cpp
 uvtable.o src/Rendering/uvtable.cpp
 <
-ar vrcs ./lib/libGLEWY_RENDERING.a ./bin/Rendering/material.o ./bin/Rendering/renderable.o ./bin/Rendering/renderablecache.o ./bin/Rendering/renderer.o ./bin/Rendering/texture.o ./bin/Rendering/rendercalls.o ./bin/Rendering/uniform.o ./bin/Rendering/shaders.o ./bin/Rendering/uvtable.o
+ar vrcs ./lib/libGLEWY_RENDERING.a ./bin/material.o ./bin/renderable.o ./bin/renderablecache.o ./bin/renderer.o ./bin/texture.o ./bin/rendercalls.o ./bin/uniform.o ./bin/shaders.o ./bin/uvtable.o

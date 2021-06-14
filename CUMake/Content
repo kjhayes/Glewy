@@ -1,4 +1,4 @@
->g++ -O3 -c -I./include -o./bin/Content/
+>g++ -O3 -c -I./include -o./bin/
 stringserial.o src/Content/stringserial.cpp
 <
-ar vrcs ./lib/libGLEWY_CONTENT.a ./bin/Content/stringserial.o
+ar vrcs ./lib/libGLEWY_CONTENT.a ./bin/stringserial.o

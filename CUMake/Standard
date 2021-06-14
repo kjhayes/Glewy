@@ -1,5 +1,5 @@
->g++ -O3 -c -I./include -o./bin/Standard/
+>g++ -O3 -c -I./include -o./bin/
 sprite.o src/Standard/sprite.cpp
 spriteatlas.o src/Standard/spriteatlas.cpp
 <
-ar vrcs ./lib/libGLEWY_STANDARD.a ./bin/Standard/sprite.o ./bin/Standard/spriteatlas.o
+ar vrcs ./lib/libGLEWY_STANDARD.a ./bin/sprite.o ./bin/spriteatlas.o
