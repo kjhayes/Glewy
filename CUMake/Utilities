@@ -2,4 +2,4 @@
 util.o src/Utilities/util.cpp
 readfile.o src/Utilities/readfile.cpp
 <
-ar vrcs ./lib/libGLEWY_UTILITIES.a ./bin/util.o ./bin/readfile.o
+ar vrcs ./lib/sub/libGLEWY_UTILITIES.a ./bin/util.o ./bin/readfile.o

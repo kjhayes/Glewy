@@ -1,0 +1,1 @@
+ar vrcs ./lib/libGLEWY.a ./lib/libGLEWY_ONLY.a ./lib/dep/libsoil.a ./lib/dep/libglfw3.a ./lib/dep/libglew32.a

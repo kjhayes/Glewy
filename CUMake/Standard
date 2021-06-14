@@ -2,4 +2,4 @@
 sprite.o src/Standard/sprite.cpp
 spriteatlas.o src/Standard/spriteatlas.cpp
 <
-ar vrcs ./lib/libGLEWY_STANDARD.a ./bin/sprite.o ./bin/spriteatlas.o
+ar vrcs ./lib/sub/libGLEWY_STANDARD.a ./bin/sprite.o ./bin/spriteatlas.o

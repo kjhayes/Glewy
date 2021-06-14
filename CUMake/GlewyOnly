@@ -1,0 +1,1 @@
+ar vrcs ./lib/libGLEWY_ONLY.a ./lib/sub/libGLEWY_STANDARD.a ./lib/sub/libGLEWY_CORE.a ./lib/sub/libGLEWY_RENDERING.a ./lib/sub/libGLEWY_SCENE.a ./lib/sub/libGLEWY_STRUCTURES.a ./lib/sub/libGLEWY_CONTENT.a ./lib/sub/libGLEWY_UTILITIES.a
