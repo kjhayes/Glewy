@@ -1,5 +1,5 @@
-#ifndef GLEWY_CLAMP_HPP
-#define GLEWY_CLAMP_HPP
+#ifndef GLEWY_MODULO_HPP
+#define GLEWY_MODULO_HPP
 
 #include<Glewy/Core/imodifiable.hpp>
 #include<bits/stdc++.h>
@@ -25,4 +25,4 @@ public:
 
 }
 
-#endif //GLEWY_CLAMP_HPP
+#endif //GLEWY_MODULO_HPP

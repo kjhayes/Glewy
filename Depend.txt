@@ -1,0 +1,9 @@
+---Glewy Dependancies
+
+#WIN32
+    opengl32
+    gdi32
+    GLEW
+    GLFW
+    SOIL
+    
