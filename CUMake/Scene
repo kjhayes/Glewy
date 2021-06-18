@@ -1,8 +1,0 @@
->g++ -O3 -c -I./include -o./bin/
-attachment.o src/Scene/attachment.cpp
-entity.o src/Scene/entity.cpp
-component.o src/Scene/component.cpp
-camera.o src/Scene/camera.cpp
-transformable.o src/Scene/transformable.cpp
-<
-ar vrcs ./lib/sub/libGLEWY_SCENE.a ./bin/attachment.o ./bin/entity.o ./bin/component.o ./bin/camera.o ./bin/transformable.o
