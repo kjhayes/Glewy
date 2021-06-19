@@ -8,5 +8,6 @@
 #include<Glewy/Structures/structures.hpp>
 #include<Glewy/Utilities/utilities.hpp>
 #include<Glewy/Content/content.hpp>
+#include<Glewy/Audio/audio.hpp>
 
 #endif

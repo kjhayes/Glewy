@@ -2,6 +2,8 @@ cmake_minimum_required(VERSION 3.19)
 
 add_library(GLEWY STATIC 
     ${CMAKE_CURRENT_SOURCE_DIR}/Content/stringserial.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/Content/file.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/Content/data.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/Core/abstraction.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/Core/instance.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/Core/root.cpp
@@ -26,6 +28,7 @@ add_library(GLEWY STATIC
     ${CMAKE_CURRENT_SOURCE_DIR}/Structures/tree.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/Utilities/readfile.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/Utilities/util.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/Audio/sound.cpp
     )
 
 target_include_directories(GLEWY PUBLIC "${CMAKE_SOURCE_DIR}/include")
