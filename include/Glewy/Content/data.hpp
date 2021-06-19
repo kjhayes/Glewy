@@ -5,9 +5,9 @@ namespace gly{
 
 struct Data{
 public:
-    Data(const int& s, unsigned char* d_addr);
+    Data(const int& s, const unsigned char* d_addr);
     int size;
-    unsigned char* data;
+    const unsigned char* data;
 };
 
 

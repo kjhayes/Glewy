@@ -1,5 +1,7 @@
 cmake_minimum_required(VERSION 3.19)
 
+add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/_SoLoud)
+
 add_library(GLEWY STATIC 
     ${CMAKE_CURRENT_SOURCE_DIR}/Content/stringserial.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/Content/file.cpp
@@ -29,6 +31,8 @@ add_library(GLEWY STATIC
     ${CMAKE_CURRENT_SOURCE_DIR}/Utilities/readfile.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/Utilities/util.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/Audio/sound.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/Audio/soundinstance.cpp
     )
 
 target_include_directories(GLEWY PUBLIC "${CMAKE_SOURCE_DIR}/include")
+target_link_libraries(GLEWY PUBLIC SoLoud)

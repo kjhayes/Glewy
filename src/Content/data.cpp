@@ -2,6 +2,6 @@
 
 namespace gly{
 
-Data::Data(const int& s, unsigned char* d_addr):size(s),data(d_addr){}
+Data::Data(const int& s, const unsigned char* d_addr):size(s),data(d_addr){}
 
 }

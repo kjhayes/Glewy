@@ -19,10 +19,11 @@ protected:
 	int x_size, y_size;
 	
 	Texture(const Data& d);
+	Texture(const File& f);
 
 	void SingleColor(const vec4<gly_float>& color);
 
-	void LoadFromFile(const char* file_name);
+	void LoadFromFile(const File& f) override;
 	void LoadFromData(const Data& d) override;
 
 	void SetFilter(GLenum);

@@ -42,6 +42,9 @@ private:
     vec2<gly_int> vp_offset;
     vec2<gly_int> vp_size;
 
+//Audio
+    void* audio_engine;
+
 public:
     Instance(const StartUp&);
     ~Instance();
@@ -65,6 +68,9 @@ public:
     void Set_AR_Option(const ASPECT_RATIO_OPTION& opt);
 
     GLFWwindow* GetWindow();
+
+//Audio
+    void* GetAudioEngine();
 
 private:
     void UpdateViewport();

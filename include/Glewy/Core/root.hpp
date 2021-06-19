@@ -7,6 +7,8 @@
 namespace gly
 {
 
+class Instance;
+
 class Entity;
 class Transform;
 struct UpdateInfo;
@@ -21,14 +23,14 @@ class Root
 private:
 //Render
     std::list<RenderableCache*>* active_materials;
-//Audio
-    std::list<SoundInstance*>* single_play;
-    std::list<SoundInstance*>* loop_play;
 
 public:
     Root();
     ~Root();
 
+    Instance* is_current_root_of = nullptr;
+
+//Entity
     std::list<Entity*> entity_registry;
     
     Entity* CreateEntity();
@@ -43,25 +45,6 @@ public:
 
     void CallRenderables();
     void RenderWith(Renderer*);
-
-//Audio
-    std::list<SoundInstance*>* GetSinglePlay();
-    std::list<SoundInstance*>* GetLoopPlay();
-
-    SoundInstance* PlaySound(Sound* sound, AudioSettings settings);
-    SoundInstance* PlaySound(Sound* sound, AudioSettings settings, const double& time);
-
-    SoundInstance* LoopSound(Sound* sound, AudioSettings settings);
-    SoundInstance* LoopSound(Sound* sound, AudioSettings settings, const double& time);
-
-    bool IsLooping(SoundInstance* sound);
-
-    void StopLooping(SoundInstance* sound);
-
-    void SilencePlay();
-    void SilenceLoop();
-
-    void SilenceAll();
 };
 
 }

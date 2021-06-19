@@ -2,6 +2,6 @@
 
 namespace gly{
 
-File::File(char* file_name):file_name(file_name){}
+File::File(const char* file_name):file_name(file_name){}
 
 }

@@ -51,6 +51,7 @@ UVCoord* UVCoord::Grid(const int& size, const vec2<gly_int>& dim, CORNER corner,
 }
 
 UVTable::UVTable(const Data& data):size(0),coords(nullptr){LoadFromData(data);}
+UVTable::UVTable(const File& file):size(0),coords(nullptr){LoadFromFile(file);}
 
 void UVTable::LoadFromData(const Data& data){
     std::string s_data(reinterpret_cast<const char*>(data.data), data.size);

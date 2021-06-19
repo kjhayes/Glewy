@@ -29,16 +29,16 @@ namespace gly
 		y_size = 1;
 	}
 	
-	void Texture::LoadFromFile(const char* file_name){
+	void Texture::LoadFromFile(const File& f){
 		this->handle = SOIL_load_OGL_texture
 		(
-			file_name,
+			f.file_name,
 			4,
 			handle,
 			SOIL_FLAG_TEXTURE_REPEATS | SOIL_FLAG_INVERT_Y | SOIL_FLAG_MULTIPLY_ALPHA
 		);
 		
-		if(handle == 0){std::cout<<"Error Loading Image: "<<file_name<<std::endl;}
+		if(handle == 0){std::cout<<"Error Loading Image: "<<f.file_name<<std::endl;}
 		
 		glBindTexture(GL_TEXTURE_2D, handle);
 		glGetTexLevelParameteriv(GL_TEXTURE_2D, 0, GL_TEXTURE_WIDTH, &x_size);
@@ -63,6 +63,7 @@ namespace gly
 	}
 
 	Texture::Texture(const Data& d){LoadFromData(d);SetFilter(GL_NEAREST);}
+	Texture::Texture(const File& f){LoadFromFile(f);SetFilter(GL_NEAREST);}
 
 	void Texture::SetFilter(GLenum filter)
 	{

@@ -4,6 +4,8 @@
 #include "GL/glew.h"
 #include "GLFW/glfw3.h"
 
+#include<SoLoud/soloud.h>
+
 #include<Glewy/Core/logging.hpp>
 #include<Glewy/Core/typedef.hpp>
 #include<Glewy/Core/abstraction.hpp>
@@ -27,11 +29,17 @@ Instance::Instance(const StartUp& start):
 {
 	registry.push_back(this);
 	window = glewyCreateWindow(win_size.x, win_size.y, title.c_str());
+
+	audio_engine = new SoLoud::Soloud();
+	((SoLoud::Soloud*)audio_engine)->init();
 }
 
 Instance::~Instance(){
 	registry.remove(this);
 	glfwDestroyWindow(window);
+
+	((SoLoud::Soloud*)audio_engine)->deinit();
+	delete (SoLoud::Soloud*)audio_engine;
 }
 
 void Instance::Run()
@@ -74,6 +82,8 @@ void Instance::TickTime(){
 Root* Instance::GetCurrentRoot(){return current_root;}
 void Instance::SetCurrentRoot(Root* root){
 	current_root = root;
+	current_root->is_current_root_of = nullptr;
+	root->is_current_root_of = this;
 	UpdateViewport();
 }
 
@@ -151,5 +161,7 @@ Instance* Instance::GetInstanceFromWindow(GLFWwindow* window){
 	}	
 	return nullptr;
 }
+
+void* Instance::GetAudioEngine(){return audio_engine;}
 
 }

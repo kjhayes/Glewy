@@ -34,7 +34,7 @@ public:
     }
 
 protected:
-    static std::unordered_map<void*, self*> map;
+    static std::unordered_map<const void*, self*> map;
 
     virtual void LoadFromData(const Data& d) = 0;
     virtual void LoadFromFile(const File& f){
@@ -44,7 +44,7 @@ protected:
         LoadFromData(d);
     }
 };
-template<class self> std::unordered_map<void*, self*> Asset<self>::map;
+template<class self> std::unordered_map<const void*, self*> Asset<self>::map;
 
 }
 

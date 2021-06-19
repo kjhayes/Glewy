@@ -21,6 +21,8 @@ protected:
     UVCoord* coords;
 
     UVTable(const Data& data);
+    UVTable(const File& file);
+
     void LoadFromData(const Data& data) override;
     ~UVTable();
 

@@ -7,8 +7,8 @@ namespace gly{
 
 struct File{
 public:
-    File(char* file_name);
-    char* file_name;
+    File(const char* file_name);
+    const char* file_name;
 };
 
 }
