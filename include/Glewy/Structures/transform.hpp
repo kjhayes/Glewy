@@ -13,18 +13,22 @@ class Transform : public Tree
     friend class Transformable;
 
     protected:
-        bool plugHasChanged = true;
+        bool AABBHasChanged = true;
         bool rotationHasChanged = true;
+
+        bool parentHasChanged = true;
+        bool childrenAreNotified = true;
 
         vec3<gly_float> position;
         vec3<gly_float> scale;
         vec3<modulo_tau<gly_float>> rotation;
 
-        mat4<gly_float> plugMatrix;
+        mat4<gly_float> aabbMatrix;
         mat4<gly_float> rotationMatrix;
-        mat4<gly_float> matrix;
+        mat4<gly_float> local_matrix;
+        mat4<gly_float> global_matrix;
 
-        virtual void CalculatePlugMatrix();
+        virtual void CalculateAABBMatrix();
         void CalculateRotationMatrix();
 
         void CalculateMatrix();
@@ -33,7 +37,7 @@ class Transform : public Tree
         Transform(Transform*);
 
     public:
-        mat4<gly_float> PlugMatrix();
+        mat4<gly_float> AABBMatrix();
         mat4<gly_float> RotationMatrix();
 
         mat4<gly_float> LocalMatrix();
@@ -49,6 +53,8 @@ class Transform : public Tree
         virtual void SetRotation(const vec3<modulo_tau<gly_float>>&);
 
         Transform* GetParent();
+
+        void NotifyChildren();
 };
 
 }

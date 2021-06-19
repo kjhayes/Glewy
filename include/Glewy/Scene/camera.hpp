@@ -14,7 +14,7 @@ protected:
     float aspect_ratio;
     
     void CalculateScale();
-    void CalculatePlugMatrix() override;
+    void CalculateAABBMatrix() override;
 
 public:
     Camera();

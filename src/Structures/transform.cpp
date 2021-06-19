@@ -8,15 +8,13 @@ namespace gly
 Transform::Transform():Tree(nullptr), scale(1.0f,1.0f,1.0f){}
 Transform::Transform(Transform* parent):Tree(parent), scale(1.0f,1.0f,1.0f){}
 
-void Transform::CalculatePlugMatrix()
+void Transform::CalculateAABBMatrix()
 {
-    plugMatrix.Identity();
+    aabbMatrix.t = vec4<gly_float>(position, 1.0f);
 
-    plugMatrix.t = vec4<gly_float>(position, 1.0f);
-
-    plugMatrix.i.x = scale.x;
-    plugMatrix.j.y = scale.y;
-    plugMatrix.k.z = scale.z;
+    aabbMatrix.i.x = scale.x;
+    aabbMatrix.j.y = scale.y;
+    aabbMatrix.k.z = scale.z;
 }
 
 void Transform::CalculateRotationMatrix()
@@ -58,17 +56,17 @@ void Transform::CalculateRotationMatrix()
 
 void Transform::CalculateMatrix()
 {
-    matrix = PlugMatrix() * RotationMatrix();
+    local_matrix = AABBMatrix() * RotationMatrix();
 }
 
-mat4<gly_float> Transform::PlugMatrix()
+mat4<gly_float> Transform::AABBMatrix()
 {
-    if(plugHasChanged)
+    if(AABBHasChanged)
     {
-        CalculatePlugMatrix();
-        plugHasChanged = false;
+        CalculateAABBMatrix();
+        AABBHasChanged = false;
     }
-    return plugMatrix;
+    return aabbMatrix;
 }
 
 mat4<gly_float> Transform::RotationMatrix()
@@ -83,18 +81,23 @@ mat4<gly_float> Transform::RotationMatrix()
 
 mat4<gly_float> Transform::LocalMatrix()
 {
-    if(plugHasChanged || rotationHasChanged)
+    if(AABBHasChanged || rotationHasChanged)
     {CalculateMatrix();}
-    return matrix;
+    return local_matrix;
 }
 
 mat4<gly_float> Transform::GlobalMatrix()
 {
-    if(parent==nullptr)
-    {
-        return LocalMatrix();
+    if(parent != nullptr){
+        if(parentHasChanged){
+            Transform* p = ((Transform*)parent);
+            global_matrix = LocalMatrix() * p->GlobalMatrix();
+            parentHasChanged = false;
+            p->childrenAreNotified = false;
+        }
+        return global_matrix;
     }
-    return (((Transform*)parent)->GlobalMatrix()) * LocalMatrix();
+    else{return LocalMatrix();}
 }
 
 
@@ -102,21 +105,28 @@ vec3<gly_float> Transform::GetPosition() const
 {return position;}
 
 void Transform::SetPosition(const vec3<gly_float>& pos)
-{position = pos; plugHasChanged = true;}
+{if(position != pos){position = pos; AABBHasChanged = true; if(!childrenAreNotified){NotifyChildren();}}}
         
 vec3<gly_float> Transform::GetScale() const
 {return scale;}
 void Transform::SetScale(const vec3<gly_float>& scl)
-{scale = scl; plugHasChanged = true;}
+{if(scale != scl){scale = scl; AABBHasChanged = true; if(!childrenAreNotified){NotifyChildren();}}}
 
 vec3<modulo_tau<gly_float>> Transform::GetRotation() const
 {return rotation;}
 void Transform::SetRotation(const vec3<modulo_tau<gly_float>>& rot)
-{rotation = rot; rotationHasChanged = true;}
+{if(rotation != rot){rotation = rot; rotationHasChanged = true; if(!childrenAreNotified){NotifyChildren();}}}
 
 Transform* Transform::GetParent()
 {
     return (Transform*)parent;
+}
+
+void Transform::NotifyChildren(){
+    for(auto child = children.begin(); child != children.end(); child++){
+        ((Transform*)(*child))->parentHasChanged = true;
+    }
+    childrenAreNotified = true;
 }
 
 }

@@ -49,14 +49,14 @@ vec3<modulo_tau<gly_float>> Camera::GetRotation() const {
     return rotation * -1.0f;
 }
 
-void Camera::CalculatePlugMatrix() {
-    plugMatrix.Identity();
+void Camera::CalculateAABBMatrix() {
+    aabbMatrix.Identity();
 
-    plugMatrix.t = vec4<gly_float>(position.x*scale.x,position.y*scale.y,position.z*scale.z, 1.0f);
+    aabbMatrix.t = vec4<gly_float>(position.x*scale.x,position.y*scale.y,position.z*scale.z, 1.0f);
 
-    plugMatrix.i.x = scale.x;
-    plugMatrix.j.y = scale.y;
-    plugMatrix.k.z = scale.z;
+    aabbMatrix.i.x = scale.x;
+    aabbMatrix.j.y = scale.y;
+    aabbMatrix.k.z = scale.z;
 }
 
 }
