@@ -10,8 +10,16 @@
 
 namespace gly{
 
-UVCoord* UVCoord::Grid(const int& size, const vec2<gly_int>& dim, CORNER corner, bool rows)
+UVCoord::UVCoord():size({1.0f,1.0f}),offset({0.0f,0.0f}){}
+UVCoord::UVCoord(const vec2<gly_float>& size, const vec2<gly_float>& offset):size(size),offset(offset){}
+
+UVCoord* UVCoord::Grid(
+    const int& size, 
+    const vec2<gly_int>& dim,
+    const CORNER& corner, 
+    const bool& rows)
 {
+//
     UVCoord* coords = new UVCoord[size];
 
     vec2<gly_float> cell_size(1.0f/(float)dim.x,1.0f/(float)dim.y);

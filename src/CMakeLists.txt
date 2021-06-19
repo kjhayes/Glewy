@@ -11,7 +11,6 @@ add_library(GLEWY STATIC
     ${CMAKE_CURRENT_SOURCE_DIR}/Core/root.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/Rendering/material.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/Rendering/renderable.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/Rendering/renderablecache.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/Rendering/rendercalls.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/Rendering/renderer.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/Rendering/shaders.cpp
@@ -32,6 +31,10 @@ add_library(GLEWY STATIC
     ${CMAKE_CURRENT_SOURCE_DIR}/Utilities/util.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/Audio/sound.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/Audio/soundinstance.cpp
+
+    ${CMAKE_CURRENT_SOURCE_DIR}/Standard/Tilemap/tilemap.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/Standard/Tilemap/tile.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/Standard/Tilemap/tilemaprenderer.cpp
     )
 
 target_include_directories(GLEWY PUBLIC "${CMAKE_SOURCE_DIR}/include")

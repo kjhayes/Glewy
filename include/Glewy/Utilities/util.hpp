@@ -21,6 +21,6 @@ template<class T> inline bool ListContains(std::list<T>* list, const T& elem){
     return std::find(list->begin(), list->end(), elem) != list->end();
 }
 
-} 
+}
 
 #endif

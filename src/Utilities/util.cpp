@@ -2,6 +2,8 @@
 
 #include<Glewy/Structures/vec.hpp>
 
+#include<functional>
+
 #include<cmath>
 
 namespace gly

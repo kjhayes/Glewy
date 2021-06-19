@@ -4,6 +4,8 @@
 #include<list>
 #include<Glewy/Audio/soundinstance.hpp>
 
+#include<Glewy/Rendering/renderablecache.hpp>
+
 namespace gly
 {
 
@@ -16,7 +18,6 @@ class Camera;
 
 class Renderer;
 class Renderable;
-class RenderableCache;
 
 class Root 
 {

@@ -63,19 +63,19 @@ void Root::LoadRenderable(Renderable* renderable){
     renderable->SetRoot(this);
     Material* material = renderable->GetMaterial();
     for(auto iter = active_materials->begin(); iter != active_materials->end(); iter++){
-        if((*iter)->material == material){(*iter)->CacheRenderable(renderable); return;}
+        if((*iter)->grouper == material){(*iter)->CacheThis(renderable); return;}
     }
     RenderableCache* cache = new RenderableCache(material); 
     active_materials->push_back(cache);
-    cache->CacheRenderable(renderable);
+    cache->CacheThis(renderable);
 }
 
 void Root::UnloadRenderable(Renderable* renderable){
     renderable->SetRoot(nullptr);
     Material* material = renderable->GetMaterial();
     for(auto iter = active_materials->begin(); iter != active_materials->end(); iter++){
-        if((*iter)->material == material){
-            (*iter)->DecacheRenderable(renderable); 
+        if((*iter)->grouper == material){
+            (*iter)->DecacheThis(renderable); 
             if((*iter)->IsEmpty()){
                 active_materials->remove((*iter));
                 delete (*iter);
@@ -87,9 +87,11 @@ void Root::UnloadRenderable(Renderable* renderable){
 
 void Root::CallRenderables(){
     for(auto mat_iter = active_materials->begin(); mat_iter != active_materials->end(); mat_iter++){
-        (*mat_iter)->material->SetActive();
-        (*mat_iter)->material->SetView(camera);
-        (*mat_iter)->Render();
+        (*mat_iter)->grouper->SetActive();
+        (*mat_iter)->grouper->SetView(camera);
+        for(auto iter = (*mat_iter)->cache.begin(); iter != (*mat_iter)->cache.end(); iter++){
+            (*iter)->Render();
+        }
     }
 }
 

@@ -11,7 +11,14 @@ public:
     vec2<gly_float> size;
     vec2<gly_float> offset;
 
-    static UVCoord* Grid(const int& size, const vec2<gly_int>& cells, CORNER = BOTTOM_LEFT, bool rows = true);
+    UVCoord();
+    UVCoord(const vec2<gly_float>& size, const vec2<gly_float>& offset);
+
+    static UVCoord* Grid(
+        const int& size, 
+        const vec2<gly_int>& cells, 
+        const CORNER& = BOTTOM_LEFT, 
+        const bool& rows = true);
 };
 
 class UVTable : public Asset<UVTable> {
