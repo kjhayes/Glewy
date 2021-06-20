@@ -9,5 +9,6 @@
 #include<Glewy/Utilities/utilities.hpp>
 #include<Glewy/Content/content.hpp>
 #include<Glewy/Audio/audio.hpp>
+#include<Glewy/Input/input.hpp>
 
 #endif

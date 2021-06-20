@@ -71,4 +71,16 @@ const char* Shaders::renderer_frag =
     "vec4 color = vec4(texture(gly_texture, TextureCoord).rgb, 1.0);\n"
     "_color = color;\n" //It seems important to pass the texture value in two steps: Not Sure Why
     "}\n";
+
+const char* Shaders::transform_texture_instance2i_vert =    
+    "#version 330\n"
+    "layout (location = 0) in vec3 Position;\n"
+    "layout (location = 1) in vec2 Offset;\n"
+    "out vec2 TextureCoord;\n"
+    "uniform mat4 gly_transform;\n"
+    "uniform mat4 gly_view;\n"
+    "void main()\n"
+    "{\n"
+	"TextureCoord = Position.xy+vec2(0.5,0.5);\n"
+	"gl_Position = gly_view*gly_transform*vec4(Position.xy+Offset, Position.z, 1.0);}";
 }

@@ -1,6 +1,7 @@
 #ifndef GLEWY_INSTANCE_HPP
 #define GLEWY_INSTANCE_HPP
 
+#include<Glewy/Input/mouse.hpp>
 #include<Glewy/Structures/vec.hpp>
 #include<Glewy/Core/iregisterable.hpp>
 #include<Glewy/Core/typedef.hpp>
@@ -45,6 +46,9 @@ private:
 //Audio
     void* audio_engine;
 
+//Input
+    Mouse* mouse;
+
 public:
     Instance(const StartUp&);
     ~Instance();
@@ -71,6 +75,11 @@ public:
 
 //Audio
     void* GetAudioEngine();
+
+//Input
+    void UpdateAllInputs();
+
+    Mouse* GetMouse();
 
 private:
     void UpdateViewport();

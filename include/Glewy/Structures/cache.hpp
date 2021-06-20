@@ -2,6 +2,8 @@
 #define GLEWY_CACHE_HPP
 
 #include<list>
+#include<vector>
+#include<algorithm>
 
 namespace gly{
 
@@ -15,11 +17,11 @@ public:
     }
 
     void CacheThis(const S& s){cache.push_back(s);}
-    void DecacheThis(const S& s){cache.remove(s);}
+    void DecacheThis(const S& s){cache.erase(std::find(cache.begin(), cache.end(), s));}
 
     const C grouper;
 
-    std::list<S> cache;
+    std::vector<S> cache;
 };
 
 }

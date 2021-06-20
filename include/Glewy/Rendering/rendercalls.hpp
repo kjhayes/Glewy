@@ -18,6 +18,14 @@ public:
 
     //Quad
     static void RenderQuad();
+
+    static void RenderQuads2i(vec2<gly_int>* offsets, const unsigned int& number);
+
+    /*
+    static void RenderQuads2f(vec2<gly_float>* offsets, const unsigned int& number);
+    static void RenderQuads3i(vec3<gly_int>* offsets, const unsigned int& number);
+    static void RenderQuads3f(vec3<gly_float>* offsets, const unsigned int& number);
+    */
 };
 
 }

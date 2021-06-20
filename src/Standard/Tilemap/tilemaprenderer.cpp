@@ -22,7 +22,7 @@ Material* TilemapRenderer::tilemap_material_default;
 
 TilemapRenderer::TilemapRenderer(Entity* e):Attachment(e){
     if(tilemap_material_default==nullptr){
-		tilemap_material_default = new Material(Shaders::transform_texture_vert, Shaders::transform_texture_frag, false);
+		tilemap_material_default = new Material(Shaders::transform_texture_instance2i_vert, Shaders::transform_texture_frag, false);
 	} 
 	SetMaterial(tilemap_material_default);
 }
@@ -41,6 +41,8 @@ void TilemapRenderer::Render(){
     Uniform gly_atlas_offset(GetMaterial(), "gly_atlas_offset");
     Uniform gly_atlas_size(GetMaterial(), "gly_atlas_size");
 
+    Uniform::SetUniform(&gly_transform, GetEntity()->GetTransform());
+
     for(auto tilecache = tilemap->active_tiles->begin(); tilecache != tilemap->active_tiles->end(); tilecache++){
 
         Tile* tile = (*tilecache)->grouper;
@@ -52,19 +54,7 @@ void TilemapRenderer::Render(){
         Uniform::SetUniform(&gly_atlas_offset, tile->uvtable->GetCoords()[tile->index_in_table].offset);
         Uniform::SetUniform(&gly_atlas_size, tile->uvtable->GetCoords()[tile->index_in_table].size);
 
-        for(auto pos = (*tilecache)->cache.begin(); pos != (*tilecache)->cache.end(); pos++){
-            
-            mat4<gly_float> mat = GetEntity()->GetTransform()->GlobalMatrix(); 
-            mat.t = vec4<gly_float>((pos->x * mat.i.x) + mat.t.x, 
-                                    (pos->y * mat.j.y) + mat.t.y, 
-                                    mat.t.z, 
-                                    mat.t.w);
-        
-            Uniform::SetUniform(&gly_transform, mat);
-            
-            RenderCalls::RenderQuad();
-
-        }
+        RenderCalls::RenderQuads2i((*tilecache)->cache.data(), (*tilecache)->cache.size());    
     }
 }
 

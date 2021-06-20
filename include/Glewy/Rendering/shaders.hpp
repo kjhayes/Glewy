@@ -17,6 +17,8 @@ public:
 
     static const char* renderer_vert;
     static const char* renderer_frag;
+
+    static const char* transform_texture_instance2i_vert;
 };
 
 }

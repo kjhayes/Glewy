@@ -32,6 +32,8 @@ Instance::Instance(const StartUp& start):
 
 	audio_engine = new SoLoud::Soloud();
 	((SoLoud::Soloud*)audio_engine)->init();
+
+	mouse = new Mouse(this);
 }
 
 Instance::~Instance(){
@@ -40,6 +42,8 @@ Instance::~Instance(){
 
 	((SoLoud::Soloud*)audio_engine)->deinit();
 	delete (SoLoud::Soloud*)audio_engine;
+
+	delete mouse;
 }
 
 void Instance::Run()
@@ -58,6 +62,8 @@ void Instance::Run()
 	while(!glfwWindowShouldClose(window))
 	{	
 		TickTime();
+
+		UpdateAllInputs();
 
 		current_root->UpdateEntities({delta_time, this});
 
@@ -105,6 +111,13 @@ void Instance::Set_AR_Option(const ASPECT_RATIO_OPTION& opt){
 }
 
 GLFWwindow* Instance::GetWindow(){return window;}
+
+void Instance::UpdateAllInputs(){
+	for(auto iter = Inputable::registry.begin(); iter != Inputable::registry.end(); iter++){
+		(*iter)->Update();
+	}
+}
+Mouse* Instance::GetMouse(){return mouse;}
 
 void Instance::UpdateViewport(){
 	int x, y;
