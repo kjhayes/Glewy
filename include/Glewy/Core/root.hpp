@@ -14,6 +14,7 @@ class Instance;
 class Entity;
 class Transform;
 struct UpdateInfo;
+struct AwakeInfo;
 class Camera;
 
 class Renderer;
@@ -29,14 +30,15 @@ public:
     Root();
     ~Root();
 
-    Instance* is_current_root_of = nullptr;
-
 //Entity
     std::list<Entity*> entity_registry;
     
     Entity* CreateEntity();
     Entity* CreateEntity(Transform*);
     void DestroyEntity(Entity*);
+
+    void AwakeEntities(const AwakeInfo&);
+    void SleepEntities(const AwakeInfo&);
     void UpdateEntities(const UpdateInfo&);
 
 //Render

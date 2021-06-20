@@ -1,6 +1,8 @@
 #ifndef GLEWY_ATTACHMENT_HPP
 #define GLEWY_ATTACHMENT_HPP
 
+#include<Glewy/Core/awakeinfo.hpp>
+
 namespace gly{
 
 class Entity;
@@ -11,6 +13,9 @@ public:
     friend class Entity;
     Entity* GetEntity();
     virtual bool IsComponent();
+
+    virtual void Awake(const AwakeInfo&);
+    virtual void Sleep(const AwakeInfo&);
 
 protected:
     Entity* entity;

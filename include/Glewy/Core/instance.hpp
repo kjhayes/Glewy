@@ -24,6 +24,8 @@ struct StartUp
 class Instance : public IRegisterable<Instance>
 {
 private:
+    bool running = false;
+
     double last_time;
     double curr_time;
     double delta_time;
@@ -72,6 +74,8 @@ public:
     void Set_AR_Option(const ASPECT_RATIO_OPTION& opt);
 
     GLFWwindow* GetWindow();
+
+    bool IsRunning();
 
 //Audio
     void* GetAudioEngine();

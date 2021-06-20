@@ -33,6 +33,7 @@ add_library(GLEWY STATIC
     ${CMAKE_CURRENT_SOURCE_DIR}/Audio/soundinstance.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/Input/inputable.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/Input/mouse.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/Input/button.cpp
 
     ${CMAKE_CURRENT_SOURCE_DIR}/Standard/Tilemap/tilemap.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/Standard/Tilemap/tile.cpp

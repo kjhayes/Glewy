@@ -10,6 +10,7 @@
 #include<Glewy/Core/typedef.hpp>
 #include<Glewy/Core/abstraction.hpp>
 #include<Glewy/Core/updateinfo.hpp>
+#include<Glewy/Core/awakeinfo.hpp>
 #include<Glewy/Core/root.hpp>
 #include<Glewy/Scene/camera.hpp>
 #include<Glewy/Rendering/material.hpp>
@@ -59,10 +60,11 @@ void Instance::Run()
 
 	UpdateViewport();
 
+	running = true;
+	current_root->AwakeEntities({this});
 	while(!glfwWindowShouldClose(window))
 	{	
 		TickTime();
-
 		UpdateAllInputs();
 
 		current_root->UpdateEntities({delta_time, this});
@@ -76,6 +78,7 @@ void Instance::Run()
 
 		glfwPollEvents();
 	}
+	running = false;
     glfwTerminate();
 }
 
@@ -86,10 +89,15 @@ void Instance::TickTime(){
 }
 
 Root* Instance::GetCurrentRoot(){return current_root;}
+
 void Instance::SetCurrentRoot(Root* root){
+	if(running){
+		current_root->SleepEntities({this});
+		root->AwakeEntities({this});
+	}
 	current_root = root;
-	current_root->is_current_root_of = nullptr;
-	root->is_current_root_of = this;
+	std::cout<<"RUN"<<std::endl;
+
 	UpdateViewport();
 }
 
@@ -111,6 +119,8 @@ void Instance::Set_AR_Option(const ASPECT_RATIO_OPTION& opt){
 }
 
 GLFWwindow* Instance::GetWindow(){return window;}
+
+bool Instance::IsRunning(){return running;}
 
 void Instance::UpdateAllInputs(){
 	for(auto iter = Inputable::registry.begin(); iter != Inputable::registry.end(); iter++){

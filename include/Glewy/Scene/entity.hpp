@@ -12,6 +12,7 @@ class Root;
 class Component;
 class Attachment;
 struct UpdateInfo;
+struct AwakeInfo;
 
 class Entity : public Transformable
 {
@@ -22,6 +23,9 @@ class Entity : public Transformable
         std::list<Component*>* components;
 
         int root_registry_index;
+
+        void AwakeAttachments(const AwakeInfo&);
+        void SleepAttachments(const AwakeInfo&);
         void UpdateComponents(const UpdateInfo&);
 
         void RecieveAttachment(Attachment*);

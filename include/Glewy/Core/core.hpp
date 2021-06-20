@@ -10,5 +10,6 @@
 #include<Glewy/Core/iregisterable.hpp>
 #include<Glewy/Core/imodifiable.hpp>
 #include<Glewy/Core/root.hpp>
+#include<Glewy/Core/awakeinfo.hpp>
 
 #endif //GLEWY_CORE_HPP

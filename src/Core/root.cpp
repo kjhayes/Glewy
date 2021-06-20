@@ -51,6 +51,20 @@ void Root::DestroyEntity(Entity* entity)
     delete entity;
     entity_registry.remove(entity);
 }
+
+void Root::AwakeEntities(const AwakeInfo& info){
+    for(auto entity = entity_registry.begin(); entity != entity_registry.end(); entity++)
+    {
+        (*entity)->AwakeAttachments(info);
+    }
+} 
+void Root::SleepEntities(const AwakeInfo& info){
+    for(auto entity = entity_registry.begin(); entity != entity_registry.end(); entity++)
+    {
+        (*entity)->SleepAttachments(info);
+    }
+} 
+
 void Root::UpdateEntities(const UpdateInfo& info)
 {
     for(auto entity = entity_registry.begin(); entity != entity_registry.end(); entity++)

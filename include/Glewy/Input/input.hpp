@@ -3,5 +3,6 @@
 
 #include<Glewy/Input/inputable.hpp>
 #include<Glewy/Input/mouse.hpp>
+#include<Glewy/Input/button.hpp>
 
 #endif

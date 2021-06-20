@@ -22,6 +22,15 @@ Entity::~Entity(){
     delete components;
 }
 
+void Entity::AwakeAttachments(const AwakeInfo& info){
+    for(auto att = attachments->begin(); att != attachments->end(); att++)
+    {(*att)->Awake(info);}
+}
+void Entity::SleepAttachments(const AwakeInfo& info){
+    for(auto att = attachments->begin(); att != attachments->end(); att++)
+    {(*att)->Sleep(info);}
+}
+
 void Entity::UpdateComponents(const UpdateInfo& info)
 {
     for(auto comp = components->begin(); comp != components->end(); comp++)
