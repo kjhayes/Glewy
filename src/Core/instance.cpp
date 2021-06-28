@@ -4,7 +4,7 @@
 #include "GL/glew.h"
 #include "GLFW/glfw3.h"
 
-#include<SoLoud/soloud.h>
+#include "SoLoud/soloud.h"
 
 #include<Glewy/Core/logging.hpp>
 #include<Glewy/Core/typedef.hpp>
@@ -96,7 +96,6 @@ void Instance::SetCurrentRoot(Root* root){
 		root->AwakeEntities({this});
 	}
 	current_root = root;
-	std::cout<<"RUN"<<std::endl;
 
 	UpdateViewport();
 }

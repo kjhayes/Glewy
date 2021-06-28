@@ -37,7 +37,7 @@ protected:
     static std::unordered_map<const void*, self*> map;
 
     virtual void LoadFromData(const Data& d) = 0;
-    void LoadFromFile(const File& f){
+    virtual void LoadFromFile(const File& f){
         std::vector<unsigned char> file_bytes;
         ReadFile(f.file_name, file_bytes);
         Data d(file_bytes.size(), file_bytes.data());

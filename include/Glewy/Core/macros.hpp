@@ -3,6 +3,6 @@
 
 #define GLEWY_DEBUG
 
-#define GLEWY_SHADER_DEBUG
+//#define GLEWY_SHADER_DEBUG
 
 #endif

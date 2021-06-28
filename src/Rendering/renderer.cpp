@@ -91,7 +91,7 @@ void Renderer::SetActive(){
 }
 
 void Renderer::Clear(const vec4<gly_float>& color){
-    glClearColor(color.r,color.g,color.b,color.a);
+    glClearColor(color.x,color.y,color.z,color.w);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 }
 

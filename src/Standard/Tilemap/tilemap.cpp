@@ -14,51 +14,46 @@ Tilemap::~Tilemap(){
     delete active_tiles;
 }
 
-void Tilemap::SetTile(Tile* tile, const vec2<gly_int>& pos){
+TileCache* Tilemap::GetCache(Tile* tile){
     for(auto iter = active_tiles->begin(); iter != active_tiles->end(); iter++){
-        if((*iter)->grouper == tile){(*iter)->CacheThis(pos); return;}
+        if((*iter)->grouper == tile){return (*iter);}
     }
-    TileCache* cache = new TileCache(tile); 
+    TileCache* cache = new TileCache(tile);
     active_tiles->push_back(cache);
-    cache->CacheThis(pos);
+    return cache;
+}
+
+void Tilemap::SetTile(Tile* tile, const vec2<gly_int>& pos){
+    GetCache(tile)->CacheThis(pos);
 }
 
 void Tilemap::RemoveTile(Tile* tile, const vec2<gly_int>& pos){
-    for(auto iter = active_tiles->begin(); iter != active_tiles->end(); iter++){
-        if((*iter)->grouper == tile){
-            (*iter)->DecacheThis(pos); 
-            if((*iter)->IsEmpty()){
-                delete (*iter);
-                active_tiles->remove((*iter));
-            }
-            return;
-        }
+    TileCache* c = GetCache(tile);
+    c->DecacheThis(pos);
+    if(c->IsEmpty()){
+        active_tiles->remove(c);
+        delete c;
     }
 }
 
 void Tilemap::SetGrid(Tile* tile, Grid* grid){
-    for(auto iter = active_tiles->begin(); iter != active_tiles->end(); iter++){
-        if((*iter)->grouper == tile)
-        {
-            (*iter)->cache.clear();
-            for(auto v = grid->coords.begin(); v != grid->coords.end(); v++){
-                (*iter)->cache.push_back(*v);
-            }
-            return;
-        }
+    TileCache* c = GetCache(tile);
+    c->cache.clear();
+    c->cache.reserve(grid->coords.size());
+    for(auto iter = grid->coords.begin(); iter != grid->coords.end(); iter++){
+        c->cache.push_back(*iter);
     }
 }
 void Tilemap::LayerGrid(Tile* tile, Grid* grid){
-    for(auto iter = active_tiles->begin(); iter != active_tiles->end(); iter++){
-        if((*iter)->grouper == tile)
-        {
-            for(auto v = grid->coords.begin(); v != grid->coords.end(); v++){
-                if(std::find((*iter)->cache.begin(), (*iter)->cache.end(), *v) == (*iter)->cache.end()){
-                    (*iter)->cache.push_back(*v);
-                }
-            }
-            return;
-        }
+    TileCache* c = GetCache(tile);
+    std::set<vec2<gly_int>> set(grid->coords);
+    for(auto iter = c->cache.begin(); iter != c->cache.end(); iter++){
+        set.insert((*iter));
+    }
+    c->cache.clear();
+    c->cache.reserve(set.size());
+    for(auto iter = set.begin(); iter != set.end(); iter++){
+        c->cache.push_back(*iter);
     }
 }
 

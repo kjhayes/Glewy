@@ -9,16 +9,12 @@ namespace gly
 
 template<typename T> class vec3;
 template<typename T> class vec4;
-	
+
 template<typename T> class vec2
 {
 public:
-	union
-	{
-	struct {T x, y;};
-	T array[2];
-    };
-	
+    T x,y;
+
     vec2(const T& x = (T)0.0f, const T& y = (T)0.0f):x(x), y(y){}
 	vec2(const vec2<T>& other):x(other.x), y(other.y){}
 	vec2(const T(&array)[2]):x(array[0]),y(array[1]){}
@@ -34,6 +30,9 @@ public:
     
     vec2<T> Quot(const T& scalar) const {return vec2<T>(x/scalar, y/scalar);}
     void Div(const T& scalar) {*this = this->Quot(scalar);}
+
+    T MagnitudeSqr() const {return (x*x)+(y*y);}
+    T Magnitude() const {return sqrt((x*x)+(y*y));}
 
     T Dot(const vec2<T>& other) const {return (x*other.x)+(y*other.y);}
     bool Equals(const vec2<T>& other) const {return ((x==other.x) && (y==other.y));}
@@ -56,6 +55,11 @@ public:
     bool operator==(const vec2<T>& other) const {return Equals(other);}
     bool operator!=(const vec2<T>& other) const {return !Equals(other);}
 
+    bool operator>(const vec2<T>& other) const {return MagnitudeSqr() > other.MagnitudeSqr();}
+    bool operator>=(const vec2<T>& other) const {return MagnitudeSqr() >= other.MagnitudeSqr();}
+    bool operator<(const vec2<T>& other) const {return MagnitudeSqr() < other.MagnitudeSqr();}
+    bool operator<=(const vec2<T>& other) const {return MagnitudeSqr() <= other.MagnitudeSqr();}
+
     friend std::ostream& operator<<(std::ostream& o,const vec2<T>& v)
     {o<<"("<<v.x<<", "<<v.y<<")";return o;}
 	
@@ -68,13 +72,7 @@ public:
 template<typename T> class vec3
 {
 public:
-    union
-	{
-	struct {T x, y, z;};
-    struct {T r, g, b;};
-	T array[3];
-    };
-	
+    T x, y, z;
     
     vec3(const T& x = (T)0.0f, const T& y = (T)0.0f, const T& z = (T)0.0f):x(x), y(y), z(z){}
     vec3(const vec3<T>& other):x(other.x), y(other.y), z(other.z){}
@@ -98,6 +96,9 @@ public:
     vec3<T> Cross(const vec3<T>& other)const
     {return vec3<T>((y*other.z)-(z*other.y), (z*other.x)+(x*other.z), (x*other.y)+(y*other.x));}
     
+    T MagnitudeSqr() const {return (x*x)+(y*y)+(z*z);}
+    T Magnitude() const {return sqrt((x*x)+(y*y)+(z*z));}
+
     bool Equals(const vec3<T>& other)const{return ((x==other.x) && (y==other.y) && (z==other.z));}
 
     //operator overloading
@@ -118,6 +119,11 @@ public:
     bool operator==(const vec3<T>& other)const{return Equals(other);}
     bool operator!=(const vec3<T>& other)const{return !Equals(other);}
 
+    bool operator>(const vec3<T>& other) const {return MagnitudeSqr() > other.MagnitudeSqr();}
+    bool operator>=(const vec3<T>& other) const {return MagnitudeSqr() >= other.MagnitudeSqr();}
+    bool operator<(const vec3<T>& other) const {return MagnitudeSqr() < other.MagnitudeSqr();}
+    bool operator<=(const vec3<T>& other) const {return MagnitudeSqr() <= other.MagnitudeSqr();}
+
     friend std::ostream& operator<<(std::ostream& o,const vec3<T>& v)
     {o<<"("<<v.x<<", "<<v.y<<", "<<v.z<<")";return o;}
 	
@@ -131,12 +137,7 @@ public:
 template<typename T> class vec4
 {
 public:
-    union
-	{
-	struct {T x, y, z, w;};
-    struct {T r, g, b, a;};
-	T array[4];
-    };
+    T x, y, z, w;
 	
     vec4(const T& x = (T)0.0f, const T& y = (T)0.0f, const T& z = (T)0.0f, const T& w = (T)0.0f):x(x), y(y), z(z), w(w){}
 	vec4(const vec4<T>& other):x(other.x),y(other.y),z(other.z),w(other.w){}
@@ -161,6 +162,10 @@ public:
     void Div(const T& scalar){*this = this->Quot(scalar);}
 
     float Dot(const vec4<T>& other)const{return (x*other.x)+(y*other.y)+(z*other.z)+(w*other.w);}
+    
+    T MagnitudeSqr() const {return (x*x)+(y*y)+(z*z)+(w*w);}
+    T Magnitude() const {return sqrt((x*x)+(y*y)+(z*z)+(w*w));}
+    
     bool Equals(const vec4<T>& other)const{return ((x==other.x) && (y==other.y) && (z==other.z) && (w==other.w));}
 
     //operator overloading
@@ -180,6 +185,11 @@ public:
 
     bool operator==(const vec4<T>& other)const{return Equals(other);}
     bool operator!=(const vec4<T>& other)const{return !Equals(other);}
+
+    bool operator>(const vec4<T>& other) const {return MagnitudeSqr() > other.MagnitudeSqr();}
+    bool operator>=(const vec4<T>& other) const {return MagnitudeSqr() >= other.MagnitudeSqr();}
+    bool operator<(const vec4<T>& other) const {return MagnitudeSqr() < other.MagnitudeSqr();}
+    bool operator<=(const vec4<T>& other) const {return MagnitudeSqr() <= other.MagnitudeSqr();}
 
     friend std::ostream& operator<<(std::ostream& o,const vec4<T>& v)
 	{o<<"("<<v.x<<", "<<v.y<<", "<<v.z<<", "<<v.w<<")";return o;}

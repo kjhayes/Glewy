@@ -5,5 +5,4 @@ project(Glewy VERSION 1.0)
 add_subdirectory(${CMAKE_SOURCE_DIR}/src)
 
 install(TARGETS GLEWY LIBRARY)
-install(TARGETS SoLoud LIBRARY)
 install(DIRECTORY ${CMAKE_SOURCE_DIR}/include/Glewy TYPE INCLUDE)

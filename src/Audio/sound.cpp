@@ -2,9 +2,9 @@
 
 #include<Glewy/Core/instance.hpp>
 
-#include<SoLoud/soloud.h>
-#include<SoLoud/soloud_wav.h>
-#include<SoLoud/soloud_wavstream.h>
+#include "SoLoud/soloud.h"
+#include "SoLoud/soloud_wav.h"
+#include "SoLoud/soloud_wavstream.h"
 
 namespace gly{
 
@@ -20,35 +20,34 @@ Sound::~Sound(){
 }
 
 void Sound::LoadFromData(const Data& d){
-    //FromMem = true;
+    FromMem = true;
     SoLoud::Wav* w = new SoLoud::Wav();
     w->loadMem(d.data, d.size, false, false);
-    audioSource = w;
+    audioSource = dynamic_cast<SoLoud::AudioSource*>(w);
 }
 
-/*
-void Sound::LoadFromFile(const File& f){
+
+void Sound::LoadFromFile(const File& f) {
     FromMem = false;
     SoLoud::WavStream* w = new SoLoud::WavStream();
     w->load(f.file_name);
-    audioSource = w;
+    audioSource = dynamic_cast<SoLoud::AudioSource*>(w);
 }
-*/
 
-SoundInstance Sound::Play(Instance* with){
-    //if(FromMem){((SoLoud::Wav*)audioSource)->setLooping(false);}
-    //else{((SoLoud::WavStream*)audioSource)->setLooping(false);}
+SoundInstance* Sound::Play(Instance* with){
+    if(FromMem){((SoLoud::Wav*)audioSource)->setLooping(false);}
+    else{((SoLoud::WavStream*)audioSource)->setLooping(false);}
     audioSource->setLooping(false);
     SoLoud::Soloud* sl = (SoLoud::Soloud*)with->GetAudioEngine();
-    return {sl->play(*audioSource), sl};
+    return new SoundInstance(sl->play(*audioSource), sl);
 }
 
-SoundInstance Sound::Loop(Instance* with){
-    //if(FromMem){((SoLoud::Wav*)audioSource)->setLooping(true);}
-    //else{((SoLoud::WavStream*)audioSource)->setLooping(true);}
+SoundInstance* Sound::Loop(Instance* with){
+    if(FromMem){((SoLoud::Wav*)audioSource)->setLooping(true);}
+    else{((SoLoud::WavStream*)audioSource)->setLooping(true);}
     audioSource->setLooping(true);
     SoLoud::Soloud* sl = (SoLoud::Soloud*)with->GetAudioEngine();
-    return {sl->play(*audioSource), sl};
+    return new SoundInstance(sl->play(*audioSource), sl);
 }
 
 void Sound::SilenceAll(Instance* with){

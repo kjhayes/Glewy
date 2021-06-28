@@ -4,7 +4,11 @@
             "name": "Win32",
             "includePath": [
                 "C:/MinGW/lib/gcc/mingw32/9.2.0/include",
-                "${workspaceFolder}/include"
+                "${workspaceFolder}/include",
+                "C:/Program Files (x86)/GLEW/include",
+                "C:/Program Files (x86)/GLFW/include",
+                "C:/Program Files (x86)/SOIL/include",
+                "C:/Program Files (x86)/SoLoud_MA/include"
             ],
             "defines": [
                 "_DEBUG",

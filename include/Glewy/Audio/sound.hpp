@@ -7,7 +7,7 @@
 #include<Glewy/Content/asset.hpp>
 
 namespace SoLoud{
-    class Wav;
+    class AudioSource;
 }
 
 namespace gly{
@@ -15,18 +15,19 @@ namespace gly{
 class Sound : public Asset<Sound> {
 friend class Asset<Sound>;
 private:
-    SoLoud::Wav* audioSource;
-    //bool FromMem = false;
+    SoLoud::AudioSource* audioSource;
+    bool FromMem = false;
 
     Sound(const Data& d);
     Sound(const File& f);
     ~Sound();
 
     void LoadFromData(const Data& d) override;
+    void LoadFromFile(const File& f) override;
 
 public:
-    SoundInstance Play(Instance* with);
-    SoundInstance Loop(Instance* with);
+    SoundInstance* Play(Instance* with);
+    SoundInstance* Loop(Instance* with);
 
     static void SilenceAll(Instance* with);
 };

@@ -2,7 +2,7 @@
 #define GLEWY_MODULO_HPP
 
 #include<Glewy/Core/imodifiable.hpp>
-#include<bits/stdc++.h>
+#include<cmath>
 
 namespace gly{
 

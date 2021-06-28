@@ -13,7 +13,7 @@ void Grid::LoadFromData(const Data& d){
     int s_pos = 0;
     while(s_pos<s_data.length()){
         
-        int end_of_section = PositionOfNextMarker(s_data, s_pos, "vb", 2);
+        int end_of_section = PositionOfNextMarker(s_data, s_pos+1, "vb", 2);
         
         switch (s_data[s_pos])
         {

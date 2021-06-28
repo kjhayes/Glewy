@@ -8,7 +8,7 @@ namespace gly{
 class Material;
 class Renderable;
 
-typedef Cache<Material*, Renderable*> RenderableCache;
+typedef VectorCache<Material*, Renderable*> RenderableCache;
 
 }
 

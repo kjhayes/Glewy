@@ -1,3 +1,9 @@
+(Up To Date External Dependancies)
+-GLEW
+-GLFW
+-SOIL
+-SoLoud_MA
+
 (WAY OUT OF DATE)
 
 -Glewy File Overview and Dependancies

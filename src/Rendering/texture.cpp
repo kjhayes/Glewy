@@ -11,12 +11,9 @@ namespace gly
 {
 	void Texture::SingleColor(const vec4<gly_float>& color){
 		vec4<unsigned char> data;
-		data.r = color.r*255;
-		data.g = color.g*255;
-		data.b = color.b*255;
-		data.a = color.a*255;
+		data = color * 255;
 		this->handle = SOIL_create_OGL_texture(
-			data.array,
+			(unsigned char*)&data,
 			1,
 			1,
 			4,

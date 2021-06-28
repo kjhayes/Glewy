@@ -1,6 +1,8 @@
 #ifndef GLEWY_TILEMAP_HPP
 #define GLEWY_TILEMAP_HPP
 
+#include<set>
+
 #include<Glewy/Standard/Tilemap/tile.hpp>
 
 #include<Glewy/Structures/vec.hpp>
@@ -12,11 +14,11 @@
 
 namespace gly{
 
-typedef Cache<Tile*, vec2<gly_int>> TileCache;
+typedef VectorCache<Tile*, vec2<gly_int>> TileCache;
 
 class Grid;
 
-class Tilemap : public Asset<Tilemap> {
+class Tilemap {
 friend class TilemapRenderer;
 protected:
     std::list<TileCache*>* active_tiles;
@@ -24,6 +26,8 @@ protected:
 public:
     Tilemap();
     ~Tilemap();
+
+    TileCache* GetCache(Tile* tile);
 
     void SetTile(Tile* tile, const vec2<gly_int>& pos);
     void RemoveTile(Tile* tile, const vec2<gly_int>& pos);
