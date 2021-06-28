@@ -66,16 +66,8 @@ void UVTable::LoadFromData(const Data& data){
     std::vector<UVCoord> read_coords;
     int s_pos = 0;
     while(s_pos<s_data.length()){
-        int end_of_section;
         
-        int g_pos = s_data.find_first_of('g',s_pos);
-        int c_pos = s_data.find_first_of('c',s_pos);
-        if((g_pos==std::string::npos) && (c_pos==std::string::npos))
-        {
-            end_of_section = s_data.length();
-        }
-        else if(g_pos < c_pos){end_of_section = g_pos;}
-        else{end_of_section = c_pos;}
+        int end_of_section = PositionOfNextMarker(s_data, s_pos, "gc", 2);
         
         switch (s_data[s_pos])
         {
@@ -102,6 +94,8 @@ void UVTable::LoadFromData(const Data& data){
         default:{s_pos++;}
         }
     }
+    
+    //Actually Put The Data Into The Class' Scope Instead of Method Scope
     size = read_coords.size();
     coords = new UVCoord[size];
     memcpy(coords, read_coords.data(), size*sizeof(UVCoord));

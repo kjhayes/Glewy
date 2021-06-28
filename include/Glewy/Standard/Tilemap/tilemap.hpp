@@ -7,15 +7,16 @@
 #include<Glewy/Structures/cache.hpp>
 
 #include<Glewy/Utilities/util.hpp>
-#include<unordered_map>
+
+#include<Glewy/Content/asset.hpp>
 
 namespace gly{
 
-
 typedef Cache<Tile*, vec2<gly_int>> TileCache;
 
-//Tilemaps Must Only Contain Positive Points
-class Tilemap{
+class Grid;
+
+class Tilemap : public Asset<Tilemap> {
 friend class TilemapRenderer;
 protected:
     std::list<TileCache*>* active_tiles;
@@ -26,6 +27,12 @@ public:
 
     void SetTile(Tile* tile, const vec2<gly_int>& pos);
     void RemoveTile(Tile* tile, const vec2<gly_int>& pos);
+
+    void SetGrid(Tile* tile, Grid* grid);
+    void LayerGrid(Tile* tile, Grid* grid);
+
+    void Clear();
+    void Clear(Tile*);
 };
 
 }

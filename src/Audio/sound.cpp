@@ -20,28 +20,33 @@ Sound::~Sound(){
 }
 
 void Sound::LoadFromData(const Data& d){
-    FromMem = true;
+    //FromMem = true;
     SoLoud::Wav* w = new SoLoud::Wav();
     w->loadMem(d.data, d.size, false, false);
     audioSource = w;
 }
+
+/*
 void Sound::LoadFromFile(const File& f){
     FromMem = false;
     SoLoud::WavStream* w = new SoLoud::WavStream();
     w->load(f.file_name);
     audioSource = w;
 }
+*/
 
 SoundInstance Sound::Play(Instance* with){
-    if(FromMem){((SoLoud::Wav*)audioSource)->setLooping(false);}
-    else{((SoLoud::WavStream*)audioSource)->setLooping(false);}
+    //if(FromMem){((SoLoud::Wav*)audioSource)->setLooping(false);}
+    //else{((SoLoud::WavStream*)audioSource)->setLooping(false);}
+    audioSource->setLooping(false);
     SoLoud::Soloud* sl = (SoLoud::Soloud*)with->GetAudioEngine();
     return {sl->play(*audioSource), sl};
 }
 
 SoundInstance Sound::Loop(Instance* with){
-    if(FromMem){((SoLoud::Wav*)audioSource)->setLooping(true);}
-    else{((SoLoud::WavStream*)audioSource)->setLooping(true);}
+    //if(FromMem){((SoLoud::Wav*)audioSource)->setLooping(true);}
+    //else{((SoLoud::WavStream*)audioSource)->setLooping(true);}
+    audioSource->setLooping(true);
     SoLoud::Soloud* sl = (SoLoud::Soloud*)with->GetAudioEngine();
     return {sl->play(*audioSource), sl};
 }

@@ -38,6 +38,8 @@ add_library(GLEWY STATIC
     ${CMAKE_CURRENT_SOURCE_DIR}/Standard/Tilemap/tilemap.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/Standard/Tilemap/tile.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/Standard/Tilemap/tilemaprenderer.cpp
+
+    ${CMAKE_CURRENT_SOURCE_DIR}/Standard/UtilAttachments/cameracontroller.cpp
     )
 
 target_include_directories(GLEWY PUBLIC "${CMAKE_SOURCE_DIR}/include")
