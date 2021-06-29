@@ -47,11 +47,23 @@ class Transform : public Tree
         virtual vec3<gly_float> GetPosition() const;
         virtual void SetPosition(const vec3<gly_float>&);
         
+        virtual void SetPositionX(const gly_float&);
+        virtual void SetPositionY(const gly_float&);
+        virtual void SetPositionZ(const gly_float&);
+
         virtual vec3<gly_float> GetScale() const;
         virtual void SetScale(const vec3<gly_float>&);
 
+        virtual void SetScaleX(const gly_float&);
+        virtual void SetScaleY(const gly_float&);
+        virtual void SetScaleZ(const gly_float&);
+
         virtual vec3<modulo_tau<gly_float>> GetRotation() const;
         virtual void SetRotation(const vec3<modulo_tau<gly_float>>&);
+
+        virtual void SetRotationX(const modulo_tau<gly_float>&);
+        virtual void SetRotationY(const modulo_tau<gly_float>&);
+        virtual void SetRotationZ(const modulo_tau<gly_float>&);
 
         Rect<gly_float> GetRect();
         void SetRect(const Rect<gly_float>&);

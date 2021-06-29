@@ -103,19 +103,48 @@ mat4<gly_float> Transform::GlobalMatrix()
 
 vec3<gly_float> Transform::GetPosition() const
 {return position;}
-
 void Transform::SetPosition(const vec3<gly_float>& pos)
 {if(position != pos){position = pos; AABBHasChanged = true; if(!childrenAreNotified){NotifyChildren();}}}
         
+void Transform::SetPositionX(const gly_float& x){
+    if(position.x != x){position.x = x; AABBHasChanged = true; if(!childrenAreNotified){NotifyChildren();}}
+}
+void Transform::SetPositionY(const gly_float& y){
+    if(position.y != y){position.y = y; AABBHasChanged = true; if(!childrenAreNotified){NotifyChildren();}}
+}
+void Transform::SetPositionZ(const gly_float& z){
+    if(position.z != z){position.z = z; AABBHasChanged = true; if(!childrenAreNotified){NotifyChildren();}}
+}
+
 vec3<gly_float> Transform::GetScale() const
 {return scale;}
 void Transform::SetScale(const vec3<gly_float>& scl)
 {if(scale != scl){scale = scl; AABBHasChanged = true; if(!childrenAreNotified){NotifyChildren();}}}
 
+void Transform::SetScaleX(const gly_float& x){
+    if(scale.x != x){scale.x = x; AABBHasChanged = true; if(!childrenAreNotified){NotifyChildren();}}
+}
+void Transform::SetScaleY(const gly_float& y){
+    if(scale.y != y){scale.y = y; AABBHasChanged = true; if(!childrenAreNotified){NotifyChildren();}}
+}
+void Transform::SetScaleZ(const gly_float& z){
+    if(scale.z != z){scale.z = z; AABBHasChanged = true; if(!childrenAreNotified){NotifyChildren();}}
+}
+
 vec3<modulo_tau<gly_float>> Transform::GetRotation() const
 {return rotation;}
 void Transform::SetRotation(const vec3<modulo_tau<gly_float>>& rot)
 {if(rotation != rot){rotation = rot; rotationHasChanged = true; if(!childrenAreNotified){NotifyChildren();}}}
+
+void Transform::SetRotationX(const modulo_tau<gly_float>& x){
+    if(rotation.x != x){rotation.x = x; rotationHasChanged = true; if(!childrenAreNotified){NotifyChildren();}}
+}
+void Transform::SetRotationY(const modulo_tau<gly_float>& y){
+    if(rotation.y != y){rotation.y = y; rotationHasChanged = true; if(!childrenAreNotified){NotifyChildren();}}
+}
+void Transform::SetRotationZ(const modulo_tau<gly_float>& z){
+    if(rotation.z != z){rotation.z = z; rotationHasChanged = true; if(!childrenAreNotified){NotifyChildren();}}
+}
 
 Rect<gly_float> Transform::GetRect(){
     return Rect<gly_float>({position.x,position.y}, {scale.x,scale.y});

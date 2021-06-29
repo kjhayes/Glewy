@@ -5,7 +5,12 @@
 
 namespace gly{
 
-static vec2<gly_float> UnitCorner[4];
+const vec2<gly_float> UnitCorner[4] = {
+    {-0.5f,-0.5f},
+    {0.5f,-0.5f},
+    {-0.5f,0.5f},
+    {0.5f,0.5f}
+};
 
 template<class T>
 struct Rect{
@@ -18,7 +23,7 @@ public:
     Rect(const vec2<T>& cen, const vec2<T>& dim):center(cen),dimensions(dim){}
 
     vec2<T> GetCorner(const CORNER& corner){
-        return center + {UnitCorner[corner].x*dimensions.x, UnitCorner[corner].y*dimensions.y}; 
+        return center + vec2<T>(UnitCorner[corner].x*dimensions.x, UnitCorner[corner].y*dimensions.y); 
     }
 };
 
