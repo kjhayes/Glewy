@@ -10,7 +10,6 @@ namespace gly
 class Camera : public Transform
 {
 protected:
-    float size;
     float aspect_ratio;
     
     void CalculateScale();
@@ -23,12 +22,25 @@ public:
     float GetAspectRatio();
     void SetAspectRatio(const float&);
 
-    void SetSize(const float&);
-    float GetSize();
+    void SetSize(const gly_float&);
 
     void SetPosition(const vec3<gly_float>&) override;
+
+    void SetPositionX(const gly_float&) override;
+    void SetPositionY(const gly_float&) override;
+    void SetPositionZ(const gly_float&) override;
+
     void SetScale(const vec3<gly_float>&) override;
+
+    void SetScaleX(const gly_float&) override;
+    void SetScaleY(const gly_float&) override;
+    void SetScaleZ(const gly_float&) override;
+
     void SetRotation(const vec3<modulo_tau<gly_float>>&) override;
+
+    void SetRotationX(const modulo_tau<gly_float>&) override;
+    void SetRotationY(const modulo_tau<gly_float>&) override;
+    void SetRotationZ(const modulo_tau<gly_float>&) override;
 
     vec3<gly_float> GetPosition() const override;    
     vec3<gly_float> GetScale() const override;

@@ -8,6 +8,6 @@
 #include<Glewy/Standard/Tilemap/tile.hpp>
 #include<Glewy/Standard/Tilemap/tilemaprenderer.hpp>
 
-#include<Glewy/Standard/UtilAttachments/cameracontroller.hpp>
+#include<Glewy/Standard/UtilAttachments/transformcontroller.hpp>
 
 #endif //GLEWY_STANDARD_HPP

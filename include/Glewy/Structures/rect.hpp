@@ -22,8 +22,20 @@ public:
     Rect(const vec2<T>& cen):center(cen),dimensions(1.0f,1.0f){}
     Rect(const vec2<T>& cen, const vec2<T>& dim):center(cen),dimensions(dim){}
 
-    vec2<T> GetCorner(const CORNER& corner){
+    vec2<T> GetCorner(const CORNER& corner) const {
         return center + vec2<T>(UnitCorner[corner].x*dimensions.x, UnitCorner[corner].y*dimensions.y); 
+    }
+
+    bool Overlap(const Rect<T>& other){
+        vec2<T> bl = GetCorner(BOTTOM_LEFT);
+        vec2<T> other_bl = other.GetCorner(BOTTOM_LEFT);
+        if(
+            (bl.x < other_bl.x + other.dimensions.x) &&
+            (other_bl.x < bl.x + dimensions.x) &&
+            (bl.y < other_bl.y + other.dimensions.y) &&
+            (other_bl.y < bl.y + dimensions.y)
+        ){return true;}
+        else{return false;}
     }
 };
 

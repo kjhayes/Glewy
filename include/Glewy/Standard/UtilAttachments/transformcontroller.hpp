@@ -8,17 +8,22 @@ namespace gly{
 
 class Entity;
 class Button;
+class Transform;
 
-class CameraController : public Component{
+class TransformController : public Component{
 friend class gly::Entity;
 
 public:
     vec2<gly_float> speed = {1.0f,1.0f};
     gly_float zoom_speed = 1.1f;
 
+    void SetTransform(Transform*);
+
 protected:
-    CameraController(Entity* e);
+    TransformController(Entity* e);
     
+    Transform* transform;
+
     Button* W;
     Button* A;
     Button* S;
