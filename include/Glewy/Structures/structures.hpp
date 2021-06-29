@@ -7,7 +7,8 @@
 #include<Glewy/Structures/transform.hpp>
 #include<Glewy/Structures/vec.hpp>
 #include<Glewy/Structures/modulo.hpp>
-#include<Glewy/Structures/ray.hpp>
 #include<Glewy/Structures/grid.hpp>
+#include<Glewy/Structures/spatialmap.hpp>
+#include<Glewy/Structures/rect.hpp>
 
 #endif //GLEWY_STRUCTURES_HPP

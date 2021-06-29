@@ -1,4 +1,4 @@
-#include<Glewy/Standard/sprite.hpp>
+#include<Glewy/Standard/Sprite/sprite.hpp>
 
 #include<Glewy/Structures/mat.hpp>
 

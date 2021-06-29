@@ -26,6 +26,7 @@ add_library(GLEWY STATIC
     ${CMAKE_CURRENT_SOURCE_DIR}/Structures/transform.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/Structures/tree.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/Structures/grid.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/Structures/rect.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/Utilities/readfile.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/Utilities/util.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/Audio/sound.cpp

@@ -12,6 +12,8 @@
 
 #include<Glewy/Content/asset.hpp>
 
+#include<Glewy/Structures/spatialmap.hpp>
+
 namespace gly{
 
 typedef VectorCache<Tile*, vec2<gly_int>> TileCache;

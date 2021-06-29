@@ -1,4 +1,4 @@
-#include<Glewy/Standard/spriteatlas.hpp>
+#include<Glewy/Standard/Sprite/spriteatlas.hpp>
 
 #include<Glewy/Rendering/shaders.hpp>
 #include<Glewy/Rendering/material.hpp>

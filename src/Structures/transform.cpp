@@ -117,6 +117,16 @@ vec3<modulo_tau<gly_float>> Transform::GetRotation() const
 void Transform::SetRotation(const vec3<modulo_tau<gly_float>>& rot)
 {if(rotation != rot){rotation = rot; rotationHasChanged = true; if(!childrenAreNotified){NotifyChildren();}}}
 
+Rect<gly_float> Transform::GetRect(){
+    return Rect<gly_float>({position.x,position.y}, {scale.x,scale.y});
+}
+void Transform::SetRect(const Rect<gly_float>& r){
+    position.x = r.center.x;
+    position.y = r.center.y;
+    scale.x = r.dimensions.x;
+    scale.y = r.dimensions.y;
+}
+
 Transform* Transform::GetParent()
 {
     return (Transform*)parent;

@@ -4,6 +4,7 @@
 #include<Glewy/Structures/tree.hpp>
 #include<Glewy/Structures/mat.hpp>
 #include<Glewy/Structures/modulo.hpp>
+#include<Glewy/Structures/rect.hpp>
 
 namespace gly
 {
@@ -51,6 +52,9 @@ class Transform : public Tree
 
         virtual vec3<modulo_tau<gly_float>> GetRotation() const;
         virtual void SetRotation(const vec3<modulo_tau<gly_float>>&);
+
+        Rect<gly_float> GetRect();
+        void SetRect(const Rect<gly_float>&);
 
         Transform* GetParent();
 
