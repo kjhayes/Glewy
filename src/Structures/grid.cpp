@@ -12,7 +12,6 @@ void Grid::LoadFromData(const Data& d){
     std::string s_data(reinterpret_cast<const char*>(d.data), d.size);
     int s_pos = 0;
     while(s_pos<s_data.length()){
-        
         int end_of_section = PositionOfNextMarker(s_data, s_pos+1, "vb", 2);
         
         switch (s_data[s_pos])
@@ -20,6 +19,8 @@ void Grid::LoadFromData(const Data& d){
         case 'v':{
             vec2<gly_int> v = StringTo<vec2<gly_int>>(s_data.substr(s_pos+1,end_of_section-(s_pos+1)));
             AddCoord(v);
+            s_pos = end_of_section;
+            break;
         }
         case 'b':{
             int c;
@@ -34,6 +35,8 @@ void Grid::LoadFromData(const Data& d){
                 std::cout<<"Error Loading Block Of Grid"<<std::endl;
             }
             delete vs;
+            s_pos = end_of_section;
+            break;
         }
         default:{s_pos++;}
         }

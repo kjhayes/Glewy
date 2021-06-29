@@ -55,10 +55,20 @@ public:
     bool operator==(const vec2<T>& other) const {return Equals(other);}
     bool operator!=(const vec2<T>& other) const {return !Equals(other);}
 
-    bool operator>(const vec2<T>& other) const {return MagnitudeSqr() > other.MagnitudeSqr();}
-    bool operator>=(const vec2<T>& other) const {return MagnitudeSqr() >= other.MagnitudeSqr();}
-    bool operator<(const vec2<T>& other) const {return MagnitudeSqr() < other.MagnitudeSqr();}
-    bool operator<=(const vec2<T>& other) const {return MagnitudeSqr() <= other.MagnitudeSqr();}
+    bool operator>(const vec2<T>& other) const {
+        if(x > other.x){return true;}
+        return y > other.y;
+    }
+    bool operator<(const vec2<T>& other) const {
+        if(x < other.x){return true;}
+        return y < other.y;
+    }
+    bool operator>=(const vec2<T>& other) const {
+        return !(*this < other);
+    }
+    bool operator<=(const vec2<T>& other) const {
+        return !(*this > other);
+    }
 
     friend std::ostream& operator<<(std::ostream& o,const vec2<T>& v)
     {o<<"("<<v.x<<", "<<v.y<<")";return o;}
@@ -119,10 +129,22 @@ public:
     bool operator==(const vec3<T>& other)const{return Equals(other);}
     bool operator!=(const vec3<T>& other)const{return !Equals(other);}
 
-    bool operator>(const vec3<T>& other) const {return MagnitudeSqr() > other.MagnitudeSqr();}
-    bool operator>=(const vec3<T>& other) const {return MagnitudeSqr() >= other.MagnitudeSqr();}
-    bool operator<(const vec3<T>& other) const {return MagnitudeSqr() < other.MagnitudeSqr();}
-    bool operator<=(const vec3<T>& other) const {return MagnitudeSqr() <= other.MagnitudeSqr();}
+    bool operator>(const vec3<T>& other) const {
+        if(x > other.x){return true;}
+        else if(y > other.y){return true;}
+        return z > other.z;
+    }
+    bool operator<(const vec3<T>& other) const {
+        if(x < other.x){return true;}
+        else if(y < other.y){return true;}
+        return z < other.z;    
+    }
+    bool operator>=(const vec3<T>& other) const {
+        return !(*this < other);
+    }
+    bool operator<=(const vec3<T>& other) const {
+        return !(*this > other);
+    }
 
     friend std::ostream& operator<<(std::ostream& o,const vec3<T>& v)
     {o<<"("<<v.x<<", "<<v.y<<", "<<v.z<<")";return o;}
@@ -186,10 +208,24 @@ public:
     bool operator==(const vec4<T>& other)const{return Equals(other);}
     bool operator!=(const vec4<T>& other)const{return !Equals(other);}
 
-    bool operator>(const vec4<T>& other) const {return MagnitudeSqr() > other.MagnitudeSqr();}
-    bool operator>=(const vec4<T>& other) const {return MagnitudeSqr() >= other.MagnitudeSqr();}
-    bool operator<(const vec4<T>& other) const {return MagnitudeSqr() < other.MagnitudeSqr();}
-    bool operator<=(const vec4<T>& other) const {return MagnitudeSqr() <= other.MagnitudeSqr();}
+    bool operator>(const vec4<T>& other) const {
+        if(x > other.x){return true;}
+        else if(y > other.y){return true;}
+        else if(z > other.z){return true;}
+        return w > other.w;
+    }
+    bool operator<(const vec4<T>& other) const {
+        if(x < other.x){return true;}
+        else if(y < other.y){return true;}
+        else if(z < other.z){return true;}
+        return w < other.w;
+    }
+    bool operator>=(const vec4<T>& other) const {
+        return !(*this < other);
+    }
+    bool operator<=(const vec4<T>& other) const {
+        return !(*this > other);
+    }
 
     friend std::ostream& operator<<(std::ostream& o,const vec4<T>& v)
 	{o<<"("<<v.x<<", "<<v.y<<", "<<v.z<<", "<<v.w<<")";return o;}
