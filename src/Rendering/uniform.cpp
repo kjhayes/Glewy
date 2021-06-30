@@ -43,7 +43,7 @@ void Uniform::SetUniform(Uniform* u, const mat2<float>& m){glUniformMatrix2fv(u-
 void Uniform::SetUniform(Uniform* u, const mat3<float>& m){glUniformMatrix3fv(u->GetLocation(), 1, GL_FALSE, (const float*)&m); }
 void Uniform::SetUniform(Uniform* u, const mat4<float>& m){glUniformMatrix4fv(u->GetLocation(), 1, GL_FALSE, (const float*)&m); }
  
-void Uniform::SetUniform(Uniform* u, Transform* trans){Uniform::SetUniform(u,trans->GlobalMatrix());}
+void Uniform::SetUniform(Uniform* u, Transform* trans){Uniform::SetUniform(u,trans->GetGlobalMatrix());}
 void Uniform::SetUniform(Uniform* u, Texture* tex){glUniform1i(u->GetLocation(), tex->GetTexUnit());}
 
 }

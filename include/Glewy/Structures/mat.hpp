@@ -28,14 +28,26 @@ public:
             );
     }
 
-    vec2<T> operator*(const vec2<T>& right)const{return VecMult(right);}
-    mat2<T> operator*(const mat2<T>& right)const{return MatMult(right);}
+    T MinorI() const {return j.y;}
+    T MinorJ() const {return i.y;}
+
+    T Determinant() const {
+        //return (i.x*MinorI()/*.Determinant()*/-j.x*MinorJ()/*.Determinant*/;
+        return (i.x*j.y)-(i.y*j.x);
+    }
+
+    mat2<T> Inverse() const {
+        return mat2<T>();
+    }
 
     void Identity()
     {
         i = vec2<T>((T)1,(T)0);
         j = vec2<T>((T)0,(T)1);
     }
+
+    vec2<T> operator*(const vec2<T>& right)const{return VecMult(right);}
+    mat2<T> operator*(const mat2<T>& right)const{return MatMult(right);}
 };
 
 template<typename T> class mat3
@@ -65,8 +77,44 @@ public:
             );
     }
 
-    vec3<T> operator*(const vec3<T>& right)const{return VecMult(right);}
-    mat3<T> operator*(const mat3<T>& right)const{return MatMult(right);}
+    mat2<T> MinorI() const {
+        return mat2<T>(
+            {j.y,j.z},
+            {k.y,k.z}
+        );
+    }
+    mat2<T> MinorJ() const {
+        return mat2<T>(
+            {i.y,i.z},
+            {k.y,k.z}
+        );
+    }
+    mat2<T> MinorK() const {
+        return mat2<T>(
+            {i.y,i.z},
+            {j.y,j.z}
+        );
+    }
+
+    T Determinant() const {
+/*
+        return  (i.x * MinorI().Determinant()) - 
+                (j.x * MinorJ().Determinant()) +
+                (k.x * MinorK().Determinant());
+*/
+        return (
+            (i.x*j.y*k.z)+ 
+            (j.x*k.y*i.z)+
+            (k.x*i.y*j.z)
+            -(i.x*k.y*j.z)
+            -(j.x*i.y*k.z)
+            -(k.x*j.y*i.z)
+        );
+    }
+
+    mat3<T> Inverse() const {
+        return mat3<T>();
+    }
 
     void Identity()
     {
@@ -75,6 +123,8 @@ public:
         k = vec3<T>((T)0,(T)0,(T)1);
     }
 
+    vec3<T> operator*(const vec3<T>& right)const{return VecMult(right);}
+    mat3<T> operator*(const mat3<T>& right)const{return MatMult(right);}
 };
 
 template<typename T> class mat4
@@ -105,11 +155,50 @@ public:
             vec4<T>(right.j.Dot(RowX()), right.j.Dot(RowY()), right.j.Dot(RowZ()), right.j.Dot(RowW())),
             vec4<T>(right.k.Dot(RowX()), right.k.Dot(RowY()), right.k.Dot(RowZ()), right.k.Dot(RowW())),
             vec4<T>(right.t.Dot(RowX()), right.t.Dot(RowY()), right.t.Dot(RowZ()), right.t.Dot(RowW()))
-            );
+        );
     }
 
-    vec4<T> operator*(const vec4<T>& right)const{return VecMult(right);}
-    mat4<T> operator*(const mat4<T>& right)const{return MatMult(right);}
+    mat3<T> MinorI() const {
+        return mat3<T>(
+            {j.y,j.z,j.w},
+            {k.y,k.z,k.w},
+            {t.y,t.z,t.w}
+        );
+    }
+    mat3<T> MinorJ() const {
+        return mat3<T>(
+            {i.y,i.z,i.w},
+            {k.y,k.z,k.w},
+            {t.y,t.z,t.w}
+        );
+    }
+    mat3<T> MinorK() const {
+        return mat3<T>(
+            {i.y,i.z,i.w},
+            {j.y,j.z,j.w},
+            {t.y,t.z,t.w}
+        );
+    }
+    mat3<T> MinorT() const {
+        return mat3<T>(
+            {i.y,i.z,i.w},
+            {j.y,j.z,j.w},
+            {k.y,k.z,k.w}
+        );
+    }
+
+    T Determinant() const {
+        return (
+            i.x*MinorI().Determinant() -
+            j.x*MinorJ().Determinant() +
+            k.x*MinorK().Determinant() -
+            t.x*MinorT().Determinant()
+        );
+    }
+
+    mat4<T> Inverse() const {
+        return mat4<T>();
+    }
 
     void Identity()
     {
@@ -119,6 +208,10 @@ public:
         t = vec4<T>((T)0,(T)0,(T)0,(T)1);
     }
 
+    vec4<T> operator*(const vec4<T>& right)const{return VecMult(right);}
+    mat4<T> operator*(const mat4<T>& right)const{return MatMult(right);}
+
+/*
     void PerspectiveProjection
     (const vec2<T>& dim, const T& vfov, const T& near, const T& far)
     {
@@ -134,7 +227,7 @@ public:
         t.z = (((T)2) * far * near) /range;
         t.w = (T)0;
     }
-
+*/
 };
 
 }

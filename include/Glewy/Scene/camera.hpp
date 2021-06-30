@@ -13,7 +13,7 @@ protected:
     float aspect_ratio;
     
     void CalculateScale();
-    void CalculateAABBMatrix() override;
+    void CalculateLocalAABBMatrix() const override;
 
 public:
     Camera();
@@ -24,27 +24,27 @@ public:
 
     void SetSize(const gly_float&);
 
-    void SetPosition(const vec3<gly_float>&) override;
+    void SetLocalPosition(const vec3<gly_float>&) override;
 
-    void SetPositionX(const gly_float&) override;
-    void SetPositionY(const gly_float&) override;
-    void SetPositionZ(const gly_float&) override;
+    void SetLocalPositionX(const gly_float&) override;
+    void SetLocalPositionY(const gly_float&) override;
+    void SetLocalPositionZ(const gly_float&) override;
 
-    void SetScale(const vec3<gly_float>&) override;
+    void SetLocalScale(const vec3<gly_float>&) override;
 
-    void SetScaleX(const gly_float&) override;
-    void SetScaleY(const gly_float&) override;
-    void SetScaleZ(const gly_float&) override;
+    void SetLocalScaleX(const gly_float&) override;
+    void SetLocalScaleY(const gly_float&) override;
+    void SetLocalScaleZ(const gly_float&) override;
 
-    void SetRotation(const vec3<modulo_tau<gly_float>>&) override;
+    void SetLocalRotation(const vec3<modulo_tau<gly_float>>&) override;
 
-    void SetRotationX(const modulo_tau<gly_float>&) override;
-    void SetRotationY(const modulo_tau<gly_float>&) override;
-    void SetRotationZ(const modulo_tau<gly_float>&) override;
+    void SetLocalRotationX(const modulo_tau<gly_float>&) override;
+    void SetLocalRotationY(const modulo_tau<gly_float>&) override;
+    void SetLocalRotationZ(const modulo_tau<gly_float>&) override;
 
-    vec3<gly_float> GetPosition() const override;    
-    vec3<gly_float> GetScale() const override;
-    vec3<modulo_tau<gly_float>> GetRotation() const override;
+    vec3<gly_float> GetLocalPosition() const override;    
+    vec3<gly_float> GetLocalScale() const override;
+    vec3<modulo_tau<gly_float>> GetLocalRotation() const override;
 };
 
 }

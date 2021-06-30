@@ -5,158 +5,171 @@
 namespace gly
 {
 
-Transform::Transform():Tree(nullptr), scale(1.0f,1.0f,1.0f){}
-Transform::Transform(Transform* parent):Tree(parent), scale(1.0f,1.0f,1.0f){}
+Transform::Transform():Tree(nullptr), local_scale(1.0f,1.0f,1.0f){}
+Transform::Transform(Transform* parent):Tree(parent), local_scale(1.0f,1.0f,1.0f){}
 
-void Transform::CalculateAABBMatrix()
+void Transform::CalculateLocalAABBMatrix() const
 {
-    aabbMatrix.t = vec4<gly_float>(position, 1.0f);
+    localAABBMatrix.t = vec4<gly_float>(local_position, 1.0f);
 
-    aabbMatrix.i.x = scale.x;
-    aabbMatrix.j.y = scale.y;
-    aabbMatrix.k.z = scale.z;
+    localAABBMatrix.i.x = local_scale.x;
+    localAABBMatrix.j.y = local_scale.y;
+    localAABBMatrix.k.z = local_scale.z;
 }
 
-void Transform::CalculateRotationMatrix()
+void Transform::CalculateLocalRotationMatrix() const
 {
-    rotationMatrix.Identity();
+    localRotationMatrix.Identity();
     float cos, sin;
-    if(rotation.z!=0.0f)
+    if(local_rotation.z!=0.0f)
     {
-        cos = std::cos(rotation.z);
-        sin = std::sin(rotation.z);
-        rotationMatrix.i.x = cos;
-        rotationMatrix.i.y = sin;
-        rotationMatrix.j.x = -sin;
-        rotationMatrix.j.y = cos;
+        cos = std::cos(local_rotation.z);
+        sin = std::sin(local_rotation.z);
+        localRotationMatrix.i.x = cos;
+        localRotationMatrix.i.y = sin;
+        localRotationMatrix.j.x = -sin;
+        localRotationMatrix.j.y = cos;
     }
-    if(rotation.y!=0.0f)
+    if(local_rotation.y!=0.0f)
     {
-        cos = std::cos(rotation.y);
-        sin = std::sin(rotation.y);
+        cos = std::cos(local_rotation.y);
+        sin = std::sin(local_rotation.y);
         mat4<gly_float> yrot;
         yrot.i.x = cos;
         yrot.i.z = -sin;
         yrot.k.x = sin;
         yrot.k.z = cos;
-        rotationMatrix = yrot*rotationMatrix;
+        localRotationMatrix = yrot*localRotationMatrix;
     }
-    if(rotation.x!=0.0f)
+    if(local_rotation.x!=0.0f)
     {
-        cos = std::cos(rotation.x);
-        sin = std::sin(rotation.x);
+        cos = std::cos(local_rotation.x);
+        sin = std::sin(local_rotation.x);
         mat4<gly_float> xrot;
         xrot.j.y = cos;
         xrot.j.z = sin;
         xrot.k.y = -sin;
         xrot.k.z = cos;
-        rotationMatrix = xrot*rotationMatrix;    
+        localRotationMatrix = xrot*localRotationMatrix;    
     }
 }
 
-void Transform::CalculateMatrix()
+void Transform::CalculateLocalMatrix() const
 {
-    local_matrix = AABBMatrix() * RotationMatrix();
+    localMatrix = GetLocalAABBMatrix() * GetLocalRotationMatrix();
 }
 
-mat4<gly_float> Transform::AABBMatrix()
+mat4<gly_float> Transform::GetLocalAABBMatrix() const
 {
-    if(AABBHasChanged)
+    if(localAABBHasChanged)
     {
-        CalculateAABBMatrix();
-        AABBHasChanged = false;
+        CalculateLocalAABBMatrix();
+        localAABBHasChanged = false;
     }
-    return aabbMatrix;
+    return localAABBMatrix;
 }
 
-mat4<gly_float> Transform::RotationMatrix()
+mat4<gly_float> Transform::GetLocalRotationMatrix() const
 {
-    if(rotationHasChanged)
+    if(localRotationHasChanged)
     {
-        CalculateRotationMatrix();
-        rotationHasChanged = false;
+        CalculateLocalRotationMatrix();
+        localRotationHasChanged = false;
     }
-    return rotationMatrix;
+    return localRotationMatrix;
 }
 
-mat4<gly_float> Transform::LocalMatrix()
+mat4<gly_float> Transform::GetLocalMatrix() const
 {
-    if(AABBHasChanged || rotationHasChanged)
-    {CalculateMatrix();}
-    return local_matrix;
+    if(localAABBHasChanged || localRotationHasChanged)
+    {CalculateLocalMatrix();}
+    return localMatrix;
 }
 
-mat4<gly_float> Transform::GlobalMatrix()
+mat4<gly_float> Transform::GetGlobalMatrix() const
 {
+    UpdateGlobals();
+    return globalMatrix;
+}
+
+vec3<gly_float> Transform::GetLocalPosition() const
+{return local_position;}
+void Transform::SetLocalPosition(const vec3<gly_float>& pos)
+{if(local_position != pos){local_position = pos; FlagLocalAABBChange();}}
+        
+void Transform::SetLocalPositionX(const gly_float& x){
+    if(local_position.x != x){local_position.x = x; FlagLocalAABBChange();}
+}
+void Transform::SetLocalPositionY(const gly_float& y){
+    if(local_position.y != y){local_position.y = y; FlagLocalAABBChange();}
+}
+void Transform::SetLocalPositionZ(const gly_float& z){
+    if(local_position.z != z){local_position.z = z; FlagLocalAABBChange();}
+}
+
+vec3<gly_float> Transform::GetGlobalPosition() const {
+    UpdateGlobals();
+    return global_position;
+}
+void Transform::SetGlobalPosition(const vec3<gly_float>& gp) {
+    SetLocalPosition(GetGlobalMatrix().Inverse()*vec4<gly_float>(gp,1.0f));
+}
+
+vec3<gly_float> Transform::GetLocalScale() const
+{return local_scale;}
+void Transform::SetLocalScale(const vec3<gly_float>& scl)
+{if(local_scale != scl){local_scale = scl; FlagLocalAABBChange();}}
+
+void Transform::SetLocalScaleX(const gly_float& x){
+    if(local_scale.x != x){local_scale.x = x; FlagLocalAABBChange();}
+}
+void Transform::SetLocalScaleY(const gly_float& y){
+    if(local_scale.y != y){local_scale.y = y; FlagLocalAABBChange();}
+}
+void Transform::SetLocalScaleZ(const gly_float& z){
+    if(local_scale.z != z){local_scale.z = z; FlagLocalAABBChange();}
+}
+
+vec3<modulo_tau<gly_float>> Transform::GetLocalRotation() const
+{return local_rotation;}
+void Transform::SetLocalRotation(const vec3<modulo_tau<gly_float>>& rot)
+{if(local_rotation != rot){local_rotation = rot; FlagLocalRotationChange();}}
+
+void Transform::SetLocalRotationX(const modulo_tau<gly_float>& x){
+    if(local_rotation.x != x){local_rotation.x = x; FlagLocalRotationChange();}
+}
+void Transform::SetLocalRotationY(const modulo_tau<gly_float>& y){
+    if(local_rotation.y != y){local_rotation.y = y; FlagLocalRotationChange();}
+}
+void Transform::SetLocalRotationZ(const modulo_tau<gly_float>& z){
+    if(local_rotation.z != z){local_rotation.z = z; FlagLocalRotationChange();}
+}
+
+Rect<gly_float> Transform::GetLocalRect() const {
+    return Rect<gly_float>(local_position, local_scale);
+}
+void Transform::SetLocalRect(const Rect<gly_float>& r){
+    SetLocalPosition(vec3<gly_float>(r.center));
+    SetLocalScale(vec3<gly_float>(r.dimensions));
+}
+
+void Transform::UpdateGlobals() const {
     if(parent != nullptr){
         if(parentHasChanged){
             Transform* p = ((Transform*)parent);
-            global_matrix = LocalMatrix() * p->GlobalMatrix();
+            globalMatrix = GetLocalMatrix() * p->GetGlobalMatrix();
+            global_position = globalMatrix.VecMult(vec4<gly_float>(local_position,1));
             parentHasChanged = false;
             p->childrenAreNotified = false;
         }
-        return global_matrix;
     }
-    else{return LocalMatrix();}
+    else{
+        globalMatrix = GetLocalMatrix();
+        global_position = local_position;
+    }
 }
 
-
-vec3<gly_float> Transform::GetPosition() const
-{return position;}
-void Transform::SetPosition(const vec3<gly_float>& pos)
-{if(position != pos){position = pos; AABBHasChanged = true; if(!childrenAreNotified){NotifyChildren();}}}
-        
-void Transform::SetPositionX(const gly_float& x){
-    if(position.x != x){position.x = x; AABBHasChanged = true; if(!childrenAreNotified){NotifyChildren();}}
-}
-void Transform::SetPositionY(const gly_float& y){
-    if(position.y != y){position.y = y; AABBHasChanged = true; if(!childrenAreNotified){NotifyChildren();}}
-}
-void Transform::SetPositionZ(const gly_float& z){
-    if(position.z != z){position.z = z; AABBHasChanged = true; if(!childrenAreNotified){NotifyChildren();}}
-}
-
-vec3<gly_float> Transform::GetScale() const
-{return scale;}
-void Transform::SetScale(const vec3<gly_float>& scl)
-{if(scale != scl){scale = scl; AABBHasChanged = true; if(!childrenAreNotified){NotifyChildren();}}}
-
-void Transform::SetScaleX(const gly_float& x){
-    if(scale.x != x){scale.x = x; AABBHasChanged = true; if(!childrenAreNotified){NotifyChildren();}}
-}
-void Transform::SetScaleY(const gly_float& y){
-    if(scale.y != y){scale.y = y; AABBHasChanged = true; if(!childrenAreNotified){NotifyChildren();}}
-}
-void Transform::SetScaleZ(const gly_float& z){
-    if(scale.z != z){scale.z = z; AABBHasChanged = true; if(!childrenAreNotified){NotifyChildren();}}
-}
-
-vec3<modulo_tau<gly_float>> Transform::GetRotation() const
-{return rotation;}
-void Transform::SetRotation(const vec3<modulo_tau<gly_float>>& rot)
-{if(rotation != rot){rotation = rot; rotationHasChanged = true; if(!childrenAreNotified){NotifyChildren();}}}
-
-void Transform::SetRotationX(const modulo_tau<gly_float>& x){
-    if(rotation.x != x){rotation.x = x; rotationHasChanged = true; if(!childrenAreNotified){NotifyChildren();}}
-}
-void Transform::SetRotationY(const modulo_tau<gly_float>& y){
-    if(rotation.y != y){rotation.y = y; rotationHasChanged = true; if(!childrenAreNotified){NotifyChildren();}}
-}
-void Transform::SetRotationZ(const modulo_tau<gly_float>& z){
-    if(rotation.z != z){rotation.z = z; rotationHasChanged = true; if(!childrenAreNotified){NotifyChildren();}}
-}
-
-Rect<gly_float> Transform::GetRect(){
-    return Rect<gly_float>({position.x,position.y}, {scale.x,scale.y});
-}
-void Transform::SetRect(const Rect<gly_float>& r){
-    position.x = r.center.x;
-    position.y = r.center.y;
-    scale.x = r.dimensions.x;
-    scale.y = r.dimensions.y;
-}
-
-Transform* Transform::GetParent()
+Transform* Transform::GetParent() const
 {
     return (Transform*)parent;
 }
@@ -166,6 +179,15 @@ void Transform::NotifyChildren(){
         ((Transform*)(*child))->parentHasChanged = true;
     }
     childrenAreNotified = true;
+}
+
+void Transform::FlagLocalAABBChange(){
+    localAABBHasChanged = true;
+    if(!childrenAreNotified){NotifyChildren();}
+}
+void Transform::FlagLocalRotationChange(){
+    localRotationHasChanged = true;
+    if(!childrenAreNotified){NotifyChildren();}
 }
 
 }

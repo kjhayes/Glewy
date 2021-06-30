@@ -156,7 +156,7 @@ public:
     friend std::ostream& operator<<(std::ostream& o,const vec3<T>& v)
     {o<<"("<<v.x<<", "<<v.y<<", "<<v.z<<")";return o;}
 	
-	explicit operator vec2<T>() const {return vec2<T>(this->x, this->y);}
+	operator vec2<T>() const {return vec2<T>(this->x, this->y);}
 	explicit operator vec4<T>() const {return vec4<T>(this->x, this->y, this->z);}
 
 
@@ -239,8 +239,8 @@ public:
     friend std::ostream& operator<<(std::ostream& o,const vec4<T>& v)
 	{o<<"("<<v.x<<", "<<v.y<<", "<<v.z<<", "<<v.w<<")";return o;}
 
-	explicit operator vec2<T>() const {return vec2<T>(this->x, this->y);}
-	explicit operator vec3<T>() const {return vec3<T>(this->x, this->y, this->z);}
+	operator vec2<T>() const {return vec2<T>(this->x, this->y);}
+	operator vec3<T>() const {return vec3<T>(this->x, this->y, this->z);}
 
     template<class O> operator vec4<O>() const {return vec4<O>((O)this->x, (O)this->y, (O)this->z, (O)this->w);}
 };

@@ -15,73 +15,73 @@ Camera::Camera(Transform* parent):Transform(parent),aspect_ratio(1.0f){
     SetSize(1.0f);
 }
 
-void Camera::SetAspectRatio(const float& ar){aspect_ratio = ar; SetScale(GetScale());}
+void Camera::SetAspectRatio(const float& ar){aspect_ratio = ar; SetLocalScale(GetLocalScale());}
 float Camera::GetAspectRatio(){return aspect_ratio;}
 
 void Camera::SetSize(const gly_float& s){
-    SetScale({s,s,1.0f});
+    SetLocalScale({s,s,1.0f});
 }
 
-void Camera::SetPosition(const vec3<gly_float>& pos) {
-    Transform::SetPosition(pos * -1.0f);
+void Camera::SetLocalPosition(const vec3<gly_float>& pos) {
+    Transform::SetLocalPosition(pos * -1.0f);
 }
 
-void Camera::SetPositionX(const gly_float& x){
-    Transform::SetPositionX(x*-1.0f);
+void Camera::SetLocalPositionX(const gly_float& x){
+    Transform::SetLocalPositionX(x*-1.0f);
 }
-void Camera::SetPositionY(const gly_float& y){
-    Transform::SetPositionY(y*-1.0f);
+void Camera::SetLocalPositionY(const gly_float& y){
+    Transform::SetLocalPositionY(y*-1.0f);
 }
-void Camera::SetPositionZ(const gly_float& z){
-    Transform::SetPositionZ(z*-1.0f);
-}
-
-void Camera::SetScale(const vec3<gly_float>& scal) {
-    Transform::SetScale({2.0f/(scal.x*aspect_ratio),2.0f/scal.y,2.0f/scal.z});
+void Camera::SetLocalPositionZ(const gly_float& z){
+    Transform::SetLocalPositionZ(z*-1.0f);
 }
 
-void Camera::SetScaleX(const gly_float& x){
-    Transform::SetScaleX(2.0f/(x*aspect_ratio));
-}
-void Camera::SetScaleY(const gly_float& y){
-    Transform::SetScaleY(2.0f/y);
-}
-void Camera::SetScaleZ(const gly_float& z){
-    Transform::SetScaleZ(2.0f/z);
+void Camera::SetLocalScale(const vec3<gly_float>& scal) {
+    Transform::SetLocalScale({2.0f/(scal.x*aspect_ratio),2.0f/scal.y,2.0f/scal.z});
 }
 
-void Camera::SetRotation(const vec3<modulo_tau<gly_float>>& rot) {
-    Transform::SetRotation(rot * -1.0f);
+void Camera::SetLocalScaleX(const gly_float& x){
+    Transform::SetLocalScaleX(2.0f/(x*aspect_ratio));
+}
+void Camera::SetLocalScaleY(const gly_float& y){
+    Transform::SetLocalScaleY(2.0f/y);
+}
+void Camera::SetLocalScaleZ(const gly_float& z){
+    Transform::SetLocalScaleZ(2.0f/z);
 }
 
-void Camera::SetRotationX(const modulo_tau<gly_float>& x){
-    Transform::SetRotationX(x*-1.0f);
-}
-void Camera::SetRotationY(const modulo_tau<gly_float>& y){
-    Transform::SetRotationY(y*-1.0f);
-}
-void Camera::SetRotationZ(const modulo_tau<gly_float>& z){
-    Transform::SetRotationZ(z*-1.0f);
+void Camera::SetLocalRotation(const vec3<modulo_tau<gly_float>>& rot) {
+    Transform::SetLocalRotation(rot * -1.0f);
 }
 
-vec3<gly_float> Camera::GetPosition() const {
-    return position * -1.0f;
+void Camera::SetLocalRotationX(const modulo_tau<gly_float>& x){
+    Transform::SetLocalRotationX(x*-1.0f);
+}
+void Camera::SetLocalRotationY(const modulo_tau<gly_float>& y){
+    Transform::SetLocalRotationY(y*-1.0f);
+}
+void Camera::SetLocalRotationZ(const modulo_tau<gly_float>& z){
+    Transform::SetLocalRotationZ(z*-1.0f);
+}
+
+vec3<gly_float> Camera::GetLocalPosition() const {
+    return local_position * -1.0f;
 }    
-vec3<gly_float> Camera::GetScale() const {
-    return {2.0f/(scale.x*aspect_ratio),2.0f/scale.y,1.0f};
+vec3<gly_float> Camera::GetLocalScale() const {
+    return {2.0f/(Transform::local_scale.x*aspect_ratio),2.0f/Transform::local_scale.y,1.0f};
 }
-vec3<modulo_tau<gly_float>> Camera::GetRotation() const {
-    return rotation * -1.0f;
+vec3<modulo_tau<gly_float>> Camera::GetLocalRotation() const {
+    return local_rotation * -1.0f;
 }
 
-void Camera::CalculateAABBMatrix() {
-    aabbMatrix.Identity();
+void Camera::CalculateLocalAABBMatrix() const {
+    localAABBMatrix.Identity();
 
-    aabbMatrix.t = vec4<gly_float>(position.x*scale.x,position.y*scale.y,position.z*scale.z, 1.0f);
+    localAABBMatrix.t = vec4<gly_float>(local_position.x*local_scale.x,local_position.y*local_scale.y,local_position.z*local_scale.z, 1.0f);
 
-    aabbMatrix.i.x = scale.x;
-    aabbMatrix.j.y = scale.y;
-    aabbMatrix.k.z = scale.z;
+    localAABBMatrix.i.x = local_scale.x;
+    localAABBMatrix.j.y = local_scale.y;
+    localAABBMatrix.k.z = local_scale.z;
 }
 
 }

@@ -38,18 +38,18 @@ void TransformController::Sleep(const AwakeInfo& info){
 }
 
 void TransformController::Update(const UpdateInfo& info){
-    vec3<gly_float> s = transform->GetScale();
+    vec3<gly_float> s = transform->GetLocalScale();
     if(Q->active.GetValue()){s*=1.0f+(zoom_speed*info.delta_time);}
     if(E->active.GetValue()){s/=1.0f+(zoom_speed*info.delta_time);}
-    transform->SetScale(s);
+    transform->SetLocalScale(s);
     
-    vec3<gly_float> pos = transform->GetPosition();
+    vec3<gly_float> pos = transform->GetLocalPosition();
     if(D->active.GetValue()){pos.x += s.x*speed.x*info.delta_time;}
     if(A->active.GetValue()){pos.x -= s.x*speed.x*info.delta_time;}
 
     if(W->active.GetValue()){pos.y += s.y*speed.y*info.delta_time;}
     if(S->active.GetValue()){pos.y -= s.y*speed.y*info.delta_time;}
-    transform->SetPosition(pos);
+    transform->SetLocalPosition(pos);
 }
 
 }
