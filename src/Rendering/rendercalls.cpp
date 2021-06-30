@@ -119,4 +119,8 @@ void RenderCalls::RenderQuads3f(vec3<gly_float>* offsets, const unsigned int& nu
 }
 */
 
+void RenderCalls::RenderLine(){
+	glDrawArrays(GL_LINES, 0, 2);
+}
+
 }

@@ -1,17 +1,67 @@
 #ifndef GLEWY_MATH_HPP
 #define GLEWY_MATH_HPP
 
+#include<Glewy/Structures/range.hpp>
 #include<Glewy/Core/typedef.hpp>
+#include<algorithm>
+#include<cmath>
 
 namespace gly{
 
-typedef double(&DoubleFloorFunction)(double);
-typedef int(&IntAbsFunction)(int);
-
 //Static
 class Math{
-    static DoubleFloorFunction DoubleFloor;
-    static IntAbsFunction IntAbs;
+public:
+
+    template<class T> static double Floor(const T& f){
+        return floor(f);        
+    }
+    template<class T> static T Abs(const T& num){
+        return abs(num);
+    }
+
+//MinMax Functions
+
+    template<class T> static T Max(const T& a, const T& b){
+        if(b>a){return b;}
+        else{return a;}
+    }    
+    template<class T> static T Min(const T& a, const T& b){
+        if(b<a){return b;}
+        else{return a;}
+    }
+
+//
+
+//Closest Functions
+
+    template<class T> static T Nearest(const T& a, const T& b, const T& to){
+        return Min<T>(Abs<T>(to-a),Abs<T>(to-b));
+    }
+    template<class T> static T Nearest(const Range<T>& r, const T& to){
+        if(to<=r.GetMidpoint()){return r.GetMin();}
+        else{return r.GetMax();}
+    }
+    
+
+//Between Functions
+
+    template<class T> static bool InclusiveBetween(const T& a, const T& b, const T& is_between){
+        if(b>a){std::swap(a,b);}
+        return (a<=is_between && is_between<=b);
+    }
+    template<class T> static bool InclusiveBetween(const Range<T>& r, const T& is_between){
+        return (r.GetMin()<=is_between && is_between<=r.GetMax());
+    }
+    template<class T> static bool ExclusiveBetween(const T& a, const T& b, const T& is_between){
+        if(b>a){std::swap(a,b);}
+        return (a<is_between && is_between<b);
+    }
+    template<class T> static bool ExclusiveBetween(const Range<T>& r, const T& is_between){
+        return (r.GetMin()<is_between && is_between<r.GetMax());
+    }
+
+//
+
 };
 
 }

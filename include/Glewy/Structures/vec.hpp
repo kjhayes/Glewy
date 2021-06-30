@@ -3,6 +3,7 @@
 
 #include<iostream>
 #include<Glewy/Core/typedef.hpp>
+#include<cmath>
 
 namespace gly
 {
@@ -26,9 +27,11 @@ public:
     void Sub(const vec2<T>& other) {*this = this->Dif(other);}
     
     vec2<T> Prod(const T& scalar) const {return vec2<T>(x*scalar, y*scalar);}
+    vec2<T> LeftProd(const T& scalar) const {return vec2<T>(scalar*x, scalar*x);}
     void Mult(const T& scalar) {*this = this->Prod(scalar);}
     
     vec2<T> Quot(const T& scalar) const {return vec2<T>(x/scalar, y/scalar);}
+    vec2<T> LeftQuot(const T& scalar) const {return vec2<T>(scalar/x, scalar/y);}
     void Div(const T& scalar) {*this = this->Quot(scalar);}
 
     T MagnitudeSqr() const {return (x*x)+(y*y);}
@@ -47,9 +50,11 @@ public:
     void operator-=(const vec2<T>& other) {Sub(other);}
     
     vec2<T> operator*(const T& scalar) const {return Prod(scalar);}
+    friend vec2<T> operator*(const T& scalar,const vec2<T>& v){return v.LeftProd(scalar);}
     void operator*=(const T& scalar) {Mult(scalar);}
     
     vec2<T> operator/(const T& scalar) const {return Quot(scalar);}
+    friend vec2<T> operator/(const T& scalar,const vec2<T>& v){return v.LeftQuot(scalar);}
     void operator/=(const T& scalar) {Div(scalar);}
     
     bool operator==(const vec2<T>& other) const {return Equals(other);}
@@ -97,9 +102,11 @@ public:
     void Sub(const vec3<T>& other){*this = this->Dif(other);}
 
     vec3<T> Prod(const T& scalar)const{return vec3<T>(x*scalar, y*scalar, z*scalar);}
+    vec3<T> LeftProd(const T& scalar)const{return vec3<T>(scalar*x, scalar*y, scalar*z);}
     void Mult(const T& scalar){*this = this->Prod(scalar);}
     
     vec3<T> Quot(const T& scalar)const{return vec3<T>(x/scalar, y/scalar, z/scalar);}
+    vec3<T> LeftQuot(const T& scalar)const{return vec3<T>(scalar/x, scalar/y, scalar/z);}
     void Div(const T& scalar){*this = this->Quot(scalar);}
 
     T Dot(const vec3<T>& other)const {return (x*other.x)+(y*other.y)+(z*other.z);}
@@ -178,9 +185,11 @@ public:
     void Sub(const vec4<T>& other){*this = this->Dif(other);}
 
     vec4<T> Prod(const T& scalar)const{return vec4<T>(x*scalar, y*scalar, z*scalar, w*scalar);}
+    vec4<T> LeftProd(const T& scalar)const{return vec4<T>(scalar*x, scalar*y, scalar*z, scalar*w);}
     void Mult(const T& scalar){*this = this->Prod(scalar);}
 
     vec4<T> Quot(const T& scalar)const{return vec4<T>(x/scalar, y/scalar, z/scalar, w*scalar);}
+    vec4<T> LeftQuot(const T& scalar)const{return vec4<T>(scalar/x, scalar/y, scalar/z, scalar/w);}
     void Div(const T& scalar){*this = this->Quot(scalar);}
 
     float Dot(const vec4<T>& other)const{return (x*other.x)+(y*other.y)+(z*other.z)+(w*other.w);}

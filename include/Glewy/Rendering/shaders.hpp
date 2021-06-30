@@ -10,6 +10,11 @@ public:
     static const char* default_vert;
     static const char* default_frag;
 
+    static const char* solid_color_frag;
+
+    static const char* default_line_vert;
+    static const char* default_line_frag;
+
     static const char* transform_texture_vert;
     static const char* transform_texture_frag;
     

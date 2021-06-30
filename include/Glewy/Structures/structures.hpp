@@ -10,5 +10,7 @@
 #include<Glewy/Structures/grid.hpp>
 #include<Glewy/Structures/spatialmap.hpp>
 #include<Glewy/Structures/rect.hpp>
+#include<Glewy/Structures/ray.hpp>
+#include<Glewy/Structures/range.hpp>
 
 #endif //GLEWY_STRUCTURES_HPP

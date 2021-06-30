@@ -17,6 +17,34 @@ const char* Shaders::default_frag =
 	"color = vec4(1.0,0.0,1.0,1.0);\n"
 	"}\n";
 
+const char* Shaders::solid_color_frag = 
+    "#version 330\n"
+	"out vec4 color;\n"
+    "uniform vec4 gly_color;\n"
+	"void main(){\n"
+	"color = gly_color;\n"
+	"}\n";
+
+const char* Shaders::default_line_vert =
+    "#version 330\n"
+    "uniform vec3 gly_pos_x;\n"
+    "uniform vec3 gly_pos_y;\n"
+    "uniform vec4 gly_color_x;\n"
+    "uniform vec4 gly_color_y;\n"
+    "out vec4 col;\n"
+	"void main(){\n"
+	"if(gl_VertexID == 0){col = gly_color_x; gl_Position = vec4(gly_pos_x, 1.0);}\n"
+	"else{col = gly_color_y; gl_Position = vec4(gly_pos_y, 1.0);}\n"
+    "}\n";
+	
+const char* Shaders::default_line_frag =
+    "#version 330\n"
+	"out vec4 color;\n"
+    "in vec4 col;\n"
+	"void main(){\n"
+	"color = col;\n"
+	"}\n";
+
 const char* Shaders::transform_texture_vert = 
     "#version 330\n"
     "layout (location = 0) in vec3 Position;\n"

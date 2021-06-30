@@ -39,6 +39,8 @@ add_library(GLEWY STATIC
     ${CMAKE_CURRENT_SOURCE_DIR}/Input/mouse.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/Input/button.cpp
 
+    ${CMAKE_CURRENT_SOURCE_DIR}/Standard/Shapes/line.cpp
+
     ${CMAKE_CURRENT_SOURCE_DIR}/Standard/Sprite/sprite.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/Standard/Sprite/spriteatlas.cpp
 

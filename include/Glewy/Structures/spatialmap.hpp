@@ -16,7 +16,7 @@ public:
     std::unordered_map<gly_int, std::unordered_set<T*>*> map;
 
     void AddObject(const vec2<gly_int>& pos, T* t){
-        gly_int index = SignedSzudzikPair(Math::DoubleFloor(pos.x/cell_size.x), Math::DoubleFloor(pos.y/cell_size.y));
+        gly_int index = SignedSzudzikPair(Math::Floor<gly_int>(pos.x/cell_size.x), Math::Floor<gly_int>(pos.y/cell_size.y));
         if(map.at(index) == nullptr){map.insert(index, new std::unordered_set<T*>());}
         map.at(index)->insert(t);
     }
@@ -29,7 +29,7 @@ public:
     }
 
     std::unordered_set<T*>* GetSet(const vec2<gly_int>& pos){
-        return map.at(SignedSzudzikPair(Math::DoubleFloor(pos.x/cell_size.x), Math::DoubleFloor(pos.y/cell_size.y)));
+        return map.at(SignedSzudzikPair(Math::Floor<gly_int>(pos.x/cell_size.x), Math::Floor<gly_int>(pos.y/cell_size.y)));
     }    
 };
 

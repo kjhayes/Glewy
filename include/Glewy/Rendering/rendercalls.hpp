@@ -26,6 +26,10 @@ public:
     static void RenderQuads3i(vec3<gly_int>* offsets, const unsigned int& number);
     static void RenderQuads3f(vec3<gly_float>* offsets, const unsigned int& number);
     */
+
+   //Line
+    static void RenderLine();
+   //
 };
 
 }
