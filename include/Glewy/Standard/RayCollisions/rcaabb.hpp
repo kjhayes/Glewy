@@ -32,7 +32,9 @@ public:
         vec2<RCType> tr = GetEntity()->GetTransform()->GetGlobalRect().GetCorner(TOP_RIGHT);
         vec2<RCType> origin = ray.GetOrigin();
         vec2<RCType> dir = ray.GetDirection();
+        
         if(!Math::InclusiveBetween(SortedRange<RCType>(bl.y,tr.y), origin.y)){std::cout<<"Not Between Y"<<std::endl;return Math::Abs(dir.x);}
+        
         SortedRange<RCType> x_range = SortedRange<RCType>(bl.x,tr.x);
         if(Math::ExclusiveBetween(x_range, origin.x)){return dir.x;}
         else{
@@ -44,11 +46,13 @@ public:
         vec2<RCType> tr = GetEntity()->GetTransform()->GetGlobalRect().GetCorner(TOP_RIGHT);
         vec2<RCType> origin = ray.GetOrigin();
         vec2<RCType> dir = ray.GetDirection();
+        
         if(!Math::InclusiveBetween(SortedRange<RCType>(bl.x,tr.x), origin.x)){std::cout<<"Not Between X"<<std::endl;return Math::Abs(dir.y);}
+        
         SortedRange<RCType> y_range = SortedRange<RCType>(bl.y,tr.y);
         if(Math::ExclusiveBetween(y_range, origin.y)){return dir.y;}
         else{
-            return Math::Abs<RCType>(LinearRayHit<RCType>(origin.y, dir.y, tr.y));//Math::Nearest<RCType>(y_range, origin.y)));
+            return Math::Abs<RCType>(LinearRayHit<RCType>(origin.y, dir.y, Math::Nearest<RCType>(y_range, origin.y)));
         }
     } 
 };

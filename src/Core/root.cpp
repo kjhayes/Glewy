@@ -1,5 +1,7 @@
 #include<Glewy/Core/root.hpp>
 
+#include<Glewy/Core/macros.hpp>
+
 #include<Glewy/Scene/entity.hpp>
 #include<Glewy/Scene/camera.hpp>
 
@@ -11,6 +13,8 @@
 #include<Glewy/Utilities/util.hpp>
 #include<Glewy/Audio/sound.hpp>
 #include<Glewy/Audio/soundinstance.hpp>
+
+#include<Glewy/Debug/debugrendercalls.hpp>
 
 namespace gly
 {
@@ -102,11 +106,14 @@ void Root::UnloadRenderable(Renderable* renderable){
 void Root::CallRenderables(){
     for(auto mat_iter = active_materials->begin(); mat_iter != active_materials->end(); mat_iter++){
         (*mat_iter)->grouper->SetActive();
-        (*mat_iter)->grouper->SetView(camera);
+        (*mat_iter)->grouper->SetView(*camera);
         for(auto iter = (*mat_iter)->cache.begin(); iter != (*mat_iter)->cache.end(); iter++){
             (*iter)->Render();
         }
     }
+#ifdef GLEWY_DEBUG
+    DebugRenderCalls::RenderAndClearQueue(*camera);
+#endif
 }
 
 void Root::RenderWith(Renderer* renderer){

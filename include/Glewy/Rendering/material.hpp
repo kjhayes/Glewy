@@ -32,7 +32,7 @@ class Material
 		void Link() const;
 
 		void SetActive() const;
-		void SetView(Camera*) const;
+		void SetView(const Camera&) const;
 };
 
 }

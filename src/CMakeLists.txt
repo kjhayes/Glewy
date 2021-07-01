@@ -8,7 +8,10 @@ add_library(GLEWY STATIC
     ${CMAKE_CURRENT_SOURCE_DIR}/Core/abstraction.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/Core/instance.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/Core/root.cpp
-    
+
+    ${CMAKE_CURRENT_SOURCE_DIR}/Debug/debugrendercalls.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/Debug/debugline.cpp
+
     ${CMAKE_CURRENT_SOURCE_DIR}/Rendering/material.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/Rendering/renderable.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/Rendering/rendercalls.cpp

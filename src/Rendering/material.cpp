@@ -138,9 +138,9 @@ void Material::SetActive() const
 	glUseProgram(program);
 }
 
-void Material::SetView(Camera* camera) const {
+void Material::SetView(const Camera& camera) const {
 	GLuint gly_view_location = glGetUniformLocation(program, "gly_view");
-	if(gly_view_location!=-1){mat4<gly_float> view = camera->GetGlobalMatrix();
+	if(gly_view_location!=-1){mat4<gly_float> view = camera.GetGlobalMatrix();
 		glUniformMatrix4fv(gly_view_location, 1, GL_FALSE, (const float*)&view);}	
 }
 

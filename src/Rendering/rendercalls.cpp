@@ -120,6 +120,11 @@ void RenderCalls::RenderQuads3f(vec3<gly_float>* offsets, const unsigned int& nu
 */
 
 void RenderCalls::RenderLine(){
+	glLineWidth(1.0f);
+	glDrawArrays(GL_LINES, 0, 2);
+}
+void RenderCalls::RenderLine(const gly_float& f){
+	glLineWidth(f);
 	glDrawArrays(GL_LINES, 0, 2);
 }
 

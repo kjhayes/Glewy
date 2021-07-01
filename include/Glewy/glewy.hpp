@@ -11,4 +11,6 @@
 #include<Glewy/Audio/audio.hpp>
 #include<Glewy/Input/input.hpp>
 
+#include<Glewy/Debug/debug.hpp>
+
 #endif

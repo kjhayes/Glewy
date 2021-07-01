@@ -29,6 +29,7 @@ public:
 
    //Line
     static void RenderLine();
+    static void RenderLine(const gly_float&);
    //
 };
 
