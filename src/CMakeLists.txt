@@ -39,6 +39,10 @@ add_library(GLEWY STATIC
     ${CMAKE_CURRENT_SOURCE_DIR}/Input/mouse.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/Input/button.cpp
 
+    ${CMAKE_CURRENT_SOURCE_DIR}/Standard/RayCollisions/dynraybox.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/Standard/RayCollisions/raycollidable.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/Standard/RayCollisions/raycollisiongroup.cpp
+
     ${CMAKE_CURRENT_SOURCE_DIR}/Standard/Shapes/line.cpp
 
     ${CMAKE_CURRENT_SOURCE_DIR}/Standard/Sprite/sprite.cpp

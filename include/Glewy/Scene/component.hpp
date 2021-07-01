@@ -14,7 +14,7 @@ class Component : public Attachment
     friend class Entity;
     
     public:
-        bool IsComponent() override;
+        bool IsComponent() const override;
 
     protected:
         Component(Entity*);

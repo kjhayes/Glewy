@@ -45,8 +45,8 @@ bool Overlap(const Ray<T>& ray, const Rect<T>& rect){
 }
 
 template<class T>
-T LinearRayHit(const T& origin, const T& magnitude, const T& wall_pos){
-    if(!Math::InclusiveBetween(origin,magnitude,wall_pos)){return magnitude;}
+T LinearRayHit(const T& origin, const T& dir, const T& wall_pos){
+    if(!Math::InclusiveBetween(origin,origin+dir,wall_pos)){return dir;}
     else{return wall_pos-origin;}
 }
 

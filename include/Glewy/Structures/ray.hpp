@@ -2,6 +2,7 @@
 #define GLEWY_RAY_HPP
 
 #include<Glewy/Structures/vec.hpp>
+#include<Glewy/Utilities/math.hpp>
 
 namespace gly{
 
@@ -81,6 +82,78 @@ public:
     virtual void SetDirectionY(const T& y) override {if(BasicRay<T>::dir.y!=y){BasicRay<T>::dir.y=y; CalculateMagnitude();}}
 
     virtual gly_float GetMagnitude() const override {return magnitude;}
+};
+
+template<class T>
+struct HorizontalDirRay : public Ray<T> {
+protected:
+    vec2<T> origin;
+    T dir;
+
+public:
+    HorizontalDirRay():origin(0,0),dir(1){}
+    HorizontalDirRay(const vec2<T>& origin): origin(origin), dir(1){}
+    HorizontalDirRay(const vec2<T>& origin, const T& dir):origin(origin), dir(dir){}
+
+    virtual void SetOrigin(const vec2<T>& origin) {this->origin = origin;}
+    virtual void SetOriginX(const T& x) {origin.x = x;}
+    virtual void SetOriginY(const T& y) {origin.y = y;}
+    virtual vec2<T> GetOrigin() const {return origin;}
+
+    virtual void SetDirection(const vec2<T>& d) {dir = d.x;}
+    virtual void SetDirectionX(const T& x) {dir = x;}
+    virtual void SetDirectionY(const T&) {}
+    virtual vec2<T> GetDirection() const {return vec2<T>(dir,0);}
+
+    virtual void SetTip(const vec2<T>& d) {dir = d.x;}
+    virtual void SetTipX(const T& x) {dir = x;} 
+    virtual void SetTipY(const T&) {}
+    virtual vec2<T> GetTip() const {return vec2<T>(origin.x+dir, origin.y);}
+
+    virtual void SetMagnitude(const gly_float& m) {dir = Normalized().x * m;}
+    virtual gly_float GetMagnitude() const {return Math::Abs(dir);}
+
+    virtual vec2<T> Normalized() const {
+        if(dir == 0){return vec2<T>(0,0);}
+        else if(dir > 0){return vec2<T>(1,0);}
+        else {return vec2<T>(-1,0);}
+    }
+};
+
+template<class T>
+struct VerticalDirRay : public Ray<T> {
+protected:
+    vec2<T> origin;
+    T dir;
+
+public:
+    VerticalDirRay():origin(0,0),dir(1){}
+    VerticalDirRay(const vec2<T>& origin): origin(origin), dir(1){}
+    VerticalDirRay(const vec2<T>& origin, const T& dir):origin(origin), dir(dir){}
+
+    virtual void SetOrigin(const vec2<T>& origin) {this->origin = origin;}
+    virtual void SetOriginX(const T& x) {origin.x = x;}
+    virtual void SetOriginY(const T& y) {origin.y = y;}
+    virtual vec2<T> GetOrigin() const {return origin;}
+
+    virtual void SetDirection(const vec2<T>& d) {dir = d.y;}
+    virtual void SetDirectionX(const T&) {}
+    virtual void SetDirectionY(const T& y) {dir = y;}
+    virtual vec2<T> GetDirection() const {return vec2<T>(0,dir);}
+
+    virtual void SetTip(const vec2<T>& d) {dir = d.y;}
+    virtual void SetTipX(const T&) {} 
+    virtual void SetTipY(const T& y) {dir = y;}
+    virtual vec2<T> GetTip() const {return vec2<T>(origin.x, origin.y+dir);}
+
+    virtual void SetMagnitude(const gly_float& m) {dir = Normalized().y * m;}
+    virtual gly_float GetMagnitude() const {return Math::Abs(dir);}
+
+    virtual vec2<T> Normalized() const {
+        if(dir == 0){return vec2<T>(0,0);}
+        else if(dir > 0){return vec2<T>(0,1);}
+        else {return vec2<T>(0,-1);}
+    }
 };
 
 }

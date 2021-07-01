@@ -11,8 +11,8 @@ class Attachment
 {
 public:
     friend class Entity;
-    Entity* GetEntity();
-    virtual bool IsComponent();
+    Entity* GetEntity() const;
+    virtual bool IsComponent() const;
 
     virtual void Awake(const AwakeInfo&);
     virtual void Sleep(const AwakeInfo&);

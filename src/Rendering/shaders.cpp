@@ -2,7 +2,6 @@
 
 namespace gly{
 
-
 const char* Shaders::default_vert = 
     "#version 330\n"
 	"layout (location = 0) in vec3 Position;\n"

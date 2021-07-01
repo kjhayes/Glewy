@@ -76,6 +76,8 @@ class Transform : public Tree
         Rect<gly_float> GetLocalRect() const;
         void SetLocalRect(const Rect<gly_float>&);
 
+        Rect<gly_float> GetGlobalRect() const;
+
         void UpdateGlobals() const;
 
         Transform* GetParent() const;

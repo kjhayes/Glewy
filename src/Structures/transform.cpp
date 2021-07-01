@@ -153,6 +153,10 @@ void Transform::SetLocalRect(const Rect<gly_float>& r){
     SetLocalScale(vec3<gly_float>(r.dimensions));
 }
 
+Rect<gly_float> Transform::GetGlobalRect() const {
+    return Rect<gly_float>(GetGlobalPosition(), GetLocalScale());
+};
+
 void Transform::UpdateGlobals() const {
     if(parent != nullptr){
         if(parentHasChanged){

@@ -27,6 +27,7 @@ protected:
 
 public:
     BasicRange():val(0,1){}
+    BasicRange(const T& a, const T& b){SetEndPoints({a,b});}
     BasicRange(const vec2<T>& v){SetEndPoints(v);}
     BasicRange(const T& zero_to){SetEndPoints({zero_to,0});}
 
@@ -88,6 +89,17 @@ public:
 
     virtual T GetSpan() const override {return span;}
     virtual gly_midpoint GetMidpoint() const override {return midpoint;}
+};
+
+template<class T>
+class SortedRange : public BasicRange<T> {
+public:
+    SortedRange():BasicRange<T>(){}
+    SortedRange(const T& a, const T& b):BasicRange<T>(a,b){}
+    SortedRange(const vec2<T>& v):BasicRange<T>(v){}
+    void SetEndPoints(const vec2<T>& end_points) override {
+        BasicRange<T>::val = end_points;
+    }
 };
 
 }
