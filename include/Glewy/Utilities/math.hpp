@@ -70,6 +70,12 @@ public:
 
 //
 
+//Lerp
+
+    template<class T> static T Lerp(const T& a, const T& b, const gly_float& f){
+        return (b*f) + (a*(1.0f-f));
+    }
+
 };
 
 }
