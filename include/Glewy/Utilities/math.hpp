@@ -13,6 +13,10 @@ namespace gly{
 class Math{
 public:
 
+    template<class T> static double Pow(const T& base, const T& pow){
+        return std::pow((double)base, (double)pow);
+    }
+
     template<class T> static double Floor(const T& f){
         return floor(f);        
     }
