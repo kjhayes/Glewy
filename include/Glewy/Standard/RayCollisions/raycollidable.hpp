@@ -2,6 +2,7 @@
 #define GLEWY_RAYCOLLIDABLE_HPP
 
 #include<Glewy/Structures/ray.hpp>
+#include<Glewy/Core/typedef.hpp>    
 
 namespace gly{
 

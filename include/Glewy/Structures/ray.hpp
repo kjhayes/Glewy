@@ -2,6 +2,7 @@
 #define GLEWY_RAY_HPP
 
 #include<Glewy/Structures/vec.hpp>
+#include<Glewy/Core/typedef.hpp>
 #include<Glewy/Utilities/math.hpp>
 
 namespace gly{

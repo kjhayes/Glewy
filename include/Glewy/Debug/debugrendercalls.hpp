@@ -1,7 +1,7 @@
 #ifndef GLEWY_DEBUGRENDERCALLS_HPP
 #define GLEWY_DEBUGRENDERCALLS_HPP
 
-#include<queue>
+#include<list>
 
 #include<Glewy/Debug/debugrenderable.hpp>
 
@@ -13,7 +13,7 @@ namespace gly{
 
 //static
 class DebugRenderCalls{
-    static std::queue<DebugRenderable*> queue;
+    static std::list<DebugRenderable*> queue;
 
 friend class Root;
 

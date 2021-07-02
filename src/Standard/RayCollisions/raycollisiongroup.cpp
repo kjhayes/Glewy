@@ -19,7 +19,7 @@ RCReturnType RayCollisionGroup::HorizontalCollide(const RCRay& ray) const {
     RCReturnType ret = ray.GetMagnitude();
     for(auto iter = colliders->begin(); iter != colliders->end(); iter++){
         RCReturnType curr = (*iter)->HorizontalCollide(ray);
-        if(curr<ret){ret = curr;}
+        ret = Math::Min(ret, curr);
     }
     return ret;
 }
@@ -27,7 +27,7 @@ RCReturnType RayCollisionGroup::VerticalCollide(const RCRay& ray) const {
     RCReturnType ret = ray.GetMagnitude();
     for(auto iter = colliders->begin(); iter != colliders->end(); iter++){
         RCReturnType curr = (*iter)->VerticalCollide(ray);
-        if(curr<ret){ret = curr;}
+        ret = Math::Min(ret, curr);
     }
     return ret;
 }

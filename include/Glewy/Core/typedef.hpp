@@ -29,4 +29,11 @@ constexpr double gly_tau = 6.28318530717958647692;
 constexpr double gly_pi_div_180 = 0.01745329251;
 constexpr double gly_180_div_pi = 57.2957795131;
 
+using gly_color = gly::vec4<gly_float>;
+
+const static gly_color gly_red(1.0f,0.0f,0.0f,1.0f);
+const static gly_color gly_green(0.0f,1.0f,0.0f,1.0f);
+const static gly_color gly_blue(0.0f,0.0f,1.0f,1.0f);
+
+
 #endif

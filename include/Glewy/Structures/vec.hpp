@@ -2,7 +2,6 @@
 #define GLEWY_VEC_HPP
 
 #include<iostream>
-#include<Glewy/Core/typedef.hpp>
 #include<cmath>
 
 namespace gly

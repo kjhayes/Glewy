@@ -1,6 +1,7 @@
 #ifndef GLEWY_MODULO_HPP
 #define GLEWY_MODULO_HPP
 
+#include<Glewy/Core/typedef.hpp>
 #include<Glewy/Core/imodifiable.hpp>
 #include<cmath>
 

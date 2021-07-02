@@ -8,6 +8,16 @@
 
 namespace gly{
 
+
+template<class T>
+bool InclusiveOverlap(const Range<T>& a, const Range<T>& b){
+    return ((a.GetMin() <= b.GetMax()) && (b.GetMin() <= a.GetMax()));
+}
+template<class T>
+bool ExclusiveOverlap(const Range<T>& a, const Range<T>& b){
+    return ((a.GetMin() < b.GetMax()) && (b.GetMin() < a.GetMax()));
+}
+
 template<class T>
 bool Overlap(const Rect<T>& a, const Rect<T>& b){
     vec2<T> ac = a.GetCorner(BOTTOM_LEFT);
@@ -49,6 +59,7 @@ T LinearRayHit(const T& origin, const T& dir, const T& wall_pos){
     if(!Math::InclusiveBetween(origin,origin+dir,wall_pos)){return dir;}
     else{return wall_pos-origin;}
 }
+
 
 }
 

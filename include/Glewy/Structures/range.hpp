@@ -3,6 +3,7 @@
 
 #include<algorithm>
 #include<Glewy/Structures/vec.hpp>
+#include<Glewy/Core/typedef.hpp>
 
 namespace gly{
 

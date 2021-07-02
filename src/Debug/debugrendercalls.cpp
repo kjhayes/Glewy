@@ -4,17 +4,16 @@
 
 namespace gly{
 
-std::queue<DebugRenderable*> DebugRenderCalls::queue; 
+std::list<DebugRenderable*> DebugRenderCalls::queue; 
 
-void DebugRenderCalls::Queue(DebugRenderable* r){queue.push(r);}
+void DebugRenderCalls::Queue(DebugRenderable* r){queue.push_back(r);}
 
 void DebugRenderCalls::RenderAndClearQueue(const Camera& camera){
-    int s = queue.size();
-    for(int i = 0; i<s; i++){
-        queue.back()->Render(camera);
-        delete queue.back();
-        queue.pop();
+    for(auto iter = queue.begin(); iter != queue.end(); iter++){
+        (*iter)->Render(camera);
+        delete (*iter);
     }
+    queue.clear();
 }
 
 void DebugRenderCalls::DrawLine(const vec2<gly_float>& a, const vec2<gly_float>& b){

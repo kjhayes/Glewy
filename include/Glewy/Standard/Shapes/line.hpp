@@ -2,6 +2,7 @@
 #define GLEWY_LINE_HPP
 
 #include<Glewy/Structures/vec.hpp>
+#include<Glewy/Core/typedef.hpp>
 
 #include<Glewy/Scene/attachment.hpp>
 #include<Glewy/Rendering/renderable.hpp>

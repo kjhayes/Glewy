@@ -2,6 +2,7 @@
 #define GLEWY_CAMERACONTROLLER_HPP
 
 #include<Glewy/Structures/vec.hpp>
+#include<Glewy/Core/typedef.hpp>
 #include<Glewy/Scene/component.hpp>
 
 namespace gly{

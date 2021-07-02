@@ -54,14 +54,14 @@ public:
 //Between Functions
 
     template<class T> static bool InclusiveBetween(T a, T b, const T& is_between){
-        if(b>a){std::swap(a,b);}
+        if(b<a){std::swap(a,b);}
         return (a<=is_between && is_between<=b);
     }
     template<class T> static bool InclusiveBetween(const Range<T>& r, const T& is_between){
         return (r.GetMin()<=is_between && is_between<=r.GetMax());
     }
     template<class T> static bool ExclusiveBetween(T a, T b, const T& is_between){
-        if(b>a){std::swap(a,b);}
+        if(b<a){std::swap(a,b);}
         return (a<is_between && is_between<b);
     }
     template<class T> static bool ExclusiveBetween(const Range<T>& r, const T& is_between){

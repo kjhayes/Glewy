@@ -2,6 +2,7 @@
 #define GLEWY_VECPAIR_HPP
 
 #include<Glewy/Structures/vec.hpp>
+#include<Glewy/Core/typedef.hpp>
 
 namespace gly{
 

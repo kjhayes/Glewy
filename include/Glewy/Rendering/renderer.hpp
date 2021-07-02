@@ -2,6 +2,7 @@
 #define GLEWY_RENDERER_HPP
 
 #include<Glewy/Structures/vec.hpp>
+#include<Glewy/Core/typedef.hpp>
 
 typedef unsigned int GLuint;
 

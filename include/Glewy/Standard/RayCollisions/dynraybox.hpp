@@ -2,6 +2,8 @@
 #define GLEWY_DYNRAYBOX_HPP
 
 #include<Glewy/Structures/vec.hpp>
+#include<Glewy/Core/typedef.hpp>
+
 
 namespace gly{
 
