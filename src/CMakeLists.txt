@@ -31,6 +31,7 @@ add_library(GLEWY STATIC
     ${CMAKE_CURRENT_SOURCE_DIR}/Structures/transform.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/Structures/tree.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/Structures/grid.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/Structures/cellmap.cpp
 
     ${CMAKE_CURRENT_SOURCE_DIR}/Utilities/readfile.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/Utilities/util.cpp
@@ -42,9 +43,10 @@ add_library(GLEWY STATIC
     ${CMAKE_CURRENT_SOURCE_DIR}/Input/mouse.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/Input/button.cpp
 
-    ${CMAKE_CURRENT_SOURCE_DIR}/Standard/RayCollisions/dynraybox.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/Standard/RayCollisions/aabbraychecker.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/Standard/RayCollisions/raycollidable.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/Standard/RayCollisions/raycollisiongroup.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/Standard/RayCollisions/aabbraycollider.cpp
 
     ${CMAKE_CURRENT_SOURCE_DIR}/Standard/Shapes/line.cpp
 

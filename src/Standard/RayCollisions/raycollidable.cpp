@@ -2,8 +2,8 @@
 
 namespace gly{
 
-RCReturnType RayCollidable::Collide(const RCRay& ray) const {return ray.GetMagnitude();}
-RCReturnType RayCollidable::HorizontalCollide(const RCRay& ray) const {return Collide(ray);}
-RCReturnType RayCollidable::VerticalCollide(const RCRay& ray) const {return Collide(ray);}
+RayCollidable::RCReturnType RayCollidable::Collide(const RCRay& ray) const {return ray.GetMagnitude();}
+RayCollidable::RCReturnType RayCollidable::HorizontalCollide(const RCRay& ray) const {return Collide(ray);}
+RayCollidable::RCReturnType RayCollidable::VerticalCollide(const RCRay& ray) const {return Collide(ray);}
 
 }

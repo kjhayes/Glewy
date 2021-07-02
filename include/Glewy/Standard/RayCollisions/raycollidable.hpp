@@ -6,11 +6,11 @@
 
 namespace gly{
 
-typedef gly_float RCType;
-typedef Ray<RCType> RCRay;
-typedef gly_float RCReturnType;
-
 class RayCollidable{
+protected:
+    typedef gly_float RCType;
+    typedef Ray<RCType> RCRay;
+    typedef gly_float RCReturnType;
 public:
     virtual RCReturnType Collide(const RCRay& ray) const;
     virtual RCReturnType HorizontalCollide(const RCRay& ray) const;

@@ -7,47 +7,46 @@
 
 namespace gly{
 
-template<class C, class S> class Cache{
+template<class GrouperType, class CachedType> class Cache{
 public:
-    Cache(const C& grouper):grouper(grouper){}
+    Cache(const GrouperType& grouper):grouper(grouper){}
 
     virtual bool IsEmpty() = 0;
 
-    virtual void CacheThis(const S& s) = 0;
-    virtual void DecacheThis(const S& s) = 0;
+    virtual void CacheThis(const CachedType& s) = 0;
+    virtual void DecacheThis(const CachedType& s) = 0;
 
-    const C grouper;
+    const GrouperType grouper;
 };
 
-template<class C, class S> class VectorCache : public Cache<C,S>{
+template<class GrouperType, class CachedType> class VectorCache : public Cache<GrouperType,CachedType>{
 public:
-    std::vector<S> cache;
+    std::vector<CachedType> cache;
 
-
-    VectorCache(const C& g):Cache<C,S>(g){}
+    VectorCache(const GrouperType& g):Cache<GrouperType,CachedType>(g){}
 
     bool IsEmpty(){
         if(this->cache.size() == 0){return true;}
         return false;
     }
 
-    void CacheThis(const S& s) override {this->cache.push_back(s);}
-    void DecacheThis(const S& s) override {this->cache.erase(std::find(cache.begin(), cache.end(), s));}
+    void CacheThis(const CachedType& s) override {this->cache.push_back(s);}
+    void DecacheThis(const CachedType& s) override {this->cache.erase(std::find(cache.begin(), cache.end(), s));}
 };
 
-template<class C, class S> class SetCache : public Cache<C,S>{
+template<class GrouperType, class CachedType> class SetCache : public Cache<GrouperType,CachedType>{
 public:
-    std::set<S> cache;
+    std::set<CachedType> cache;
 
-    SetCache(const C& g):Cache<C,S>(g){}
+    SetCache(const GrouperType& g):Cache<GrouperType,CachedType>(g){}
 
     bool IsEmpty(){
         if(this->cache.size() == 0){return true;}
         return false;
     }
 
-    void CacheThis(const S& s) override {this->cache.insert(s);}
-    void DecacheThis(const S& s) override {this->cache.erase(s);}
+    void CacheThis(const CachedType& s) override {this->cache.insert(s);}
+    void DecacheThis(const CachedType& s) override {this->cache.erase(s);}
 };
 
 

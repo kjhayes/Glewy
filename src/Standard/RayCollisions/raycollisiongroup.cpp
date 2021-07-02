@@ -7,7 +7,7 @@ namespace gly{
 RayCollisionGroup::RayCollisionGroup(){colliders = new std::list<RayCollidable*>();}
 RayCollisionGroup::~RayCollisionGroup(){delete colliders;}
 
-RCReturnType RayCollisionGroup::Collide(const RCRay& ray) const {
+RayCollidable::RCReturnType RayCollisionGroup::Collide(const RCRay& ray) const {
     RCReturnType ret = ray.GetMagnitude();
     for(auto iter = colliders->begin(); iter != colliders->end(); iter++){
         RCReturnType curr = (*iter)->Collide(ray);
@@ -15,7 +15,7 @@ RCReturnType RayCollisionGroup::Collide(const RCRay& ray) const {
     }
     return ret;
 }
-RCReturnType RayCollisionGroup::HorizontalCollide(const RCRay& ray) const {
+RayCollidable::RCReturnType RayCollisionGroup::HorizontalCollide(const RCRay& ray) const {
     RCReturnType ret = ray.GetMagnitude();
     for(auto iter = colliders->begin(); iter != colliders->end(); iter++){
         RCReturnType curr = (*iter)->HorizontalCollide(ray);
@@ -23,7 +23,7 @@ RCReturnType RayCollisionGroup::HorizontalCollide(const RCRay& ray) const {
     }
     return ret;
 }
-RCReturnType RayCollisionGroup::VerticalCollide(const RCRay& ray) const {
+RayCollidable::RCReturnType RayCollisionGroup::VerticalCollide(const RCRay& ray) const {
     RCReturnType ret = ray.GetMagnitude();
     for(auto iter = colliders->begin(); iter != colliders->end(); iter++){
         RCReturnType curr = (*iter)->VerticalCollide(ray);

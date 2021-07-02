@@ -1,4 +1,4 @@
-#include<Glewy/Standard/RayCollisions/dynraybox.hpp>
+#include<Glewy/Standard/RayCollisions/aabbraychecker.hpp>
 
 #include<Glewy/Structures/transform.hpp>
 #include<Glewy/Structures/rect.hpp>
@@ -11,7 +11,7 @@
 
 namespace gly{
 
-gly_float DynRayBox::AllowedHorizontalMove(const gly_float& attempt, RayCollisionGroup* group) const {
+gly_float AABBRayChecker::AllowedHorizontalMove(const gly_float& attempt, RayCollisionGroup* group) const {
     if(attempt == 0.0f){return attempt;}
     Rect<gly_float> rect = transform->GetGlobalRect();
     gly_float curr_mag = Math::Abs(attempt);
@@ -32,7 +32,7 @@ gly_float DynRayBox::AllowedHorizontalMove(const gly_float& attempt, RayCollisio
         return -curr_mag;
     }
 }
-gly_float DynRayBox::AllowedVerticalMove(const gly_float& attempt, RayCollisionGroup* group) const {
+gly_float AABBRayChecker::AllowedVerticalMove(const gly_float& attempt, RayCollisionGroup* group) const {
     if(attempt == 0.0f){return attempt;}
     Rect<gly_float> rect = transform->GetGlobalRect();
     gly_float curr_mag = Math::Abs(attempt);
@@ -55,29 +55,13 @@ gly_float DynRayBox::AllowedVerticalMove(const gly_float& attempt, RayCollisionG
         return -curr_mag;
     }
 }
-vec2<gly_float> DynRayBox::MoveAsAllowed(const vec2<gly_float>& attempt, RayCollisionGroup* group) const{
+vec2<gly_float> AABBRayChecker::AllowedMove(const vec2<gly_float>& attempt, RayCollisionGroup* group) const{
     vec2<gly_float> dis;
     vec2<gly_float> start_pos = transform->GetLocalPosition();
     dis.x = AllowedHorizontalMove(attempt.x, group);
-    if(Math::Abs(dis.x) < Math::Abs(attempt.x) && (dis.x != 0)){
-        std::cout<<"X Reduced:";
-        //if(dis.x == 0.0f){std::cout<<" (To Zero)";}
-        //else{
-            std::cout<<"(To "<<dis.x<<")";
-        //}
-        std::cout<<std::endl;
-        }
     transform->SetLocalPositionX(start_pos.x + dis.x);
     dis.y = AllowedVerticalMove(attempt.y, group);
-    if(Math::Abs(dis.y) < Math::Abs(attempt.y) && (dis.y != 0)){
-        std::cout<<"Y Reduced:";
-        //if(dis.y == 0.0f){std::cout<<" (To Zero)";}
-        //else{
-            std::cout<<"(To "<<dis.y<<")";
-        //}
-        std::cout<<std::endl;
-        }
-    transform->SetLocalPositionY(start_pos.y + dis.y);
+    transform->SetLocalPositionX(start_pos.x);
     return dis;
 }
 

@@ -12,7 +12,7 @@
 
 #include<Glewy/Content/asset.hpp>
 
-#include<Glewy/Structures/spatialmap.hpp>
+#include<Glewy/Structures/cellmap.hpp>
 
 namespace gly{
 
