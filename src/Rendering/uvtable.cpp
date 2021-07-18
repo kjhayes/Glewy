@@ -7,6 +7,7 @@
 #include<string>
 #include<vector>
 #include<iostream>
+#include<fstream>
 
 namespace gly{
 
@@ -103,5 +104,14 @@ UVTable::~UVTable(){delete coords;}
 
 UVCoord* UVTable::GetCoords(){return coords;}
 int UVTable::GetSize(){return size;}
+
+void UVTable::Serialize(const char* file_name) {
+    std::ofstream file(file_name);
+    file.clear();
+    for(int i = 0; i < size; i++){
+        file<<"c,"<<coords[i].offset.x<<','<<coords[i].offset.y<<','<<coords[i].size.x<<','<<coords[i].size.y;
+    }
+    file.close();
+}
 
 }

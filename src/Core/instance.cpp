@@ -68,7 +68,7 @@ void Instance::Run()
 		UpdateAllInputs();
 
 		current_root->UpdateEntities({delta_time, this});
-
+		
 		current_root->RenderWith(current_renderer);
 		
 		glViewport(vp_offset.x, vp_offset.y, vp_size.x, vp_size.y);

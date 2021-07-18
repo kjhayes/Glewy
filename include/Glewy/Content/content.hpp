@@ -4,5 +4,6 @@
 #include<Glewy/Content/asset.hpp>
 #include<Glewy/Content/data.hpp>
 #include<Glewy/Content/stringserial.hpp>
+#include<Glewy/Content/serializable.hpp>
 
 #endif

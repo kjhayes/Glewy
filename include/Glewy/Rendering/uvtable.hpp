@@ -3,6 +3,7 @@
 
 #include<Glewy/Structures/vec.hpp>
 #include<Glewy/Content/asset.hpp>
+#include<Glewy/Content/serializable.hpp>
 
 namespace gly{
 
@@ -21,7 +22,7 @@ public:
         const bool& rows = true);
 };
 
-class UVTable : public Asset<UVTable> {
+class UVTable : public Asset<UVTable>, public Serializable {
     friend class Asset<UVTable>;
 protected:
     int size;
@@ -36,6 +37,8 @@ protected:
 public:
     int GetSize();
     UVCoord* GetCoords();
+
+    void Serialize(const char* file_name) override;
 };
 
 }

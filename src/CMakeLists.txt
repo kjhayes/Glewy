@@ -4,6 +4,7 @@ add_library(GLEWY STATIC
     ${CMAKE_CURRENT_SOURCE_DIR}/Content/stringserial.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/Content/file.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/Content/data.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/Content/serializable.cpp
     
     ${CMAKE_CURRENT_SOURCE_DIR}/Core/abstraction.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/Core/instance.cpp
