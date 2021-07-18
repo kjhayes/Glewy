@@ -1,4 +1,4 @@
-#include<Glewy/Rendering/uvtable.hpp>
+#include<Glewy/Structures/uvtable.hpp>
 
 #include<Glewy/Content/stringserial.hpp>
 

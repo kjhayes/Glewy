@@ -9,7 +9,5 @@
 #include<Glewy/Rendering/rendercalls.hpp>
 #include<Glewy/Rendering/uniform.hpp>
 #include<Glewy/Rendering/shaders.hpp>
-#include<Glewy/Rendering/uvtable.hpp>
-#include<Glewy/Rendering/animation.hpp>
 
 #endif //GLEWY_RENDERING_HPP

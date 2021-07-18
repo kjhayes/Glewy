@@ -12,5 +12,7 @@
 #include<Glewy/Structures/rect.hpp>
 #include<Glewy/Structures/ray.hpp>
 #include<Glewy/Structures/range.hpp>
+#include<Glewy/Structures/animation.hpp>
+#include<Glewy/Structures/uvtable.hpp>
 
 #endif //GLEWY_STRUCTURES_HPP

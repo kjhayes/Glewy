@@ -7,7 +7,7 @@
 #include<Glewy/Rendering/uniform.hpp>
 #include<Glewy/Rendering/rendercalls.hpp>
 #include<Glewy/Rendering/texture.hpp>
-#include<Glewy/Rendering/uvtable.hpp>
+#include<Glewy/Structures/uvtable.hpp>
 
 namespace gly{
 

@@ -20,7 +20,6 @@ add_library(GLEWY STATIC
     ${CMAKE_CURRENT_SOURCE_DIR}/Rendering/shaders.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/Rendering/texture.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/Rendering/uniform.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/Rendering/uvtable.cpp
     
     ${CMAKE_CURRENT_SOURCE_DIR}/Scene/attachment.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/Scene/camera.cpp
@@ -33,7 +32,8 @@ add_library(GLEWY STATIC
     ${CMAKE_CURRENT_SOURCE_DIR}/Structures/tree.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/Structures/grid.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/Structures/cellmap.cpp
-
+    ${CMAKE_CURRENT_SOURCE_DIR}/Structures/uvtable.cpp
+    
     ${CMAKE_CURRENT_SOURCE_DIR}/Utilities/readfile.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/Utilities/util.cpp
     
