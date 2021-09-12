@@ -7,8 +7,6 @@
 #include<Glewy/Core/updateinfo.hpp>
 #include<Glewy/Core/instance.hpp>
 #include<Glewy/Core/logging.hpp>
-#include<Glewy/Core/iregisterable.hpp>
-#include<Glewy/Core/imodifiable.hpp>
 #include<Glewy/Core/root.hpp>
 #include<Glewy/Core/awakeinfo.hpp>
 

@@ -2,7 +2,7 @@
 #define GLEWY_STRINGSERIAL_HPP
 
 #include<string>
-#include<Glewy/Structures/vec.hpp>
+#include<substd/vec.hpp>
 #include<Glewy/Core/typedef.hpp>
 
 namespace gly{
@@ -31,7 +31,7 @@ int PositionOfNextMarker(const std::string& str, const int& start_pos, const cha
 template<> int StringTo<int>(const std::string&);
 template<> float StringTo<float>(const std::string&);
 template<> double StringTo<double>(const std::string&);
-template<> vec2<gly_int> StringTo<vec2<gly_int>>(const std::string&); 
+template<> ss::vec2<gly_int> StringTo<ss::vec2<gly_int>>(const std::string&); 
 }
 
 #endif

@@ -1,6 +1,6 @@
 #include<Glewy/Standard/RayCollisions/raycollisiongroup.hpp>
 
-#include<Glewy/Utilities/math.hpp>
+#include<substd/math.hpp>
 
 namespace gly{
 
@@ -11,7 +11,7 @@ RayCollidable::RCReturnType RayCollisionGroup::Collide(const RCRay& ray) const {
     RCReturnType ret = ray.GetMagnitude();
     for(auto iter = colliders->begin(); iter != colliders->end(); iter++){
         RCReturnType curr = (*iter)->Collide(ray);
-        if(Math::Abs(curr)<Math::Abs(ret)){ret = curr;}
+        if(ss::Math::Abs(curr)<ss::Math::Abs(ret)){ret = curr;}
     }
     return ret;
 }
@@ -19,7 +19,7 @@ RayCollidable::RCReturnType RayCollisionGroup::HorizontalCollide(const RCRay& ra
     RCReturnType ret = ray.GetMagnitude();
     for(auto iter = colliders->begin(); iter != colliders->end(); iter++){
         RCReturnType curr = (*iter)->HorizontalCollide(ray);
-        ret = Math::Min(ret, curr);
+        ret = ss::Math::Min(ret, curr);
     }
     return ret;
 }
@@ -27,7 +27,7 @@ RayCollidable::RCReturnType RayCollisionGroup::VerticalCollide(const RCRay& ray)
     RCReturnType ret = ray.GetMagnitude();
     for(auto iter = colliders->begin(); iter != colliders->end(); iter++){
         RCReturnType curr = (*iter)->VerticalCollide(ray);
-        ret = Math::Min(ret, curr);
+        ret = ss::Math::Min(ret, curr);
     }
     return ret;
 }

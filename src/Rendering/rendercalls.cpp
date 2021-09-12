@@ -4,7 +4,7 @@
 #include<GL/glew.h>
 #include<GLFW/glfw3.h>
 
-#include<Glewy/Structures/transform.hpp>
+#include<substd/transform.hpp>
 #include<Glewy/Rendering/texture.hpp>
 #include<Glewy/Rendering/material.hpp>
 #include<Glewy/Core/logging.hpp>
@@ -25,7 +25,7 @@ void RenderCalls::Init(){
 }
 
 
-const vec3<gly_float> RenderCalls::quad_vertices_default[4] = 
+const ss::vec3<gly_float> RenderCalls::quad_vertices_default[4] = 
 {
 	{-0.5f,-0.5f,0.0f},
 	{0.5f,-0.5f,0.0f},
@@ -46,7 +46,7 @@ void RenderCalls::RenderQuad(){
 
 }
 
-void RenderCalls::RenderQuads2i(vec2<gly_int>* offsets, const unsigned int& number)
+void RenderCalls::RenderQuads2i(ss::vec2<gly_int>* offsets, const unsigned int& number)
 {
 	glEnableVertexAttribArray(0);
 	glBindBuffer(GL_ARRAY_BUFFER, quad_VBO);
@@ -54,7 +54,7 @@ void RenderCalls::RenderQuads2i(vec2<gly_int>* offsets, const unsigned int& numb
 	
 	glEnableVertexAttribArray(1);
 	glBindBuffer(GL_ARRAY_BUFFER, offset_VBO);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(vec2<gly_int>) * number, offsets, GL_DYNAMIC_DRAW);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(ss::vec2<gly_int>) * number, offsets, GL_DYNAMIC_DRAW);
 	glVertexAttribPointer(1, 2, GL_INT, GL_FALSE, 2 * sizeof(gly_int), (void*)0);
 
 	glVertexAttribDivisor(1, 1);

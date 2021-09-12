@@ -33,11 +33,11 @@ template<> double StringTo<double>(const std::string& str){
     stream >> ret;
     return ret;
 }
-template<> vec2<gly_int> StringTo<vec2<gly_int>>(const std::string& str){
+template<> ss::vec2<gly_int> StringTo<ss::vec2<gly_int>>(const std::string& str){
     int c = 0;
     gly_int* arr = StringToArray<gly_int>(str, c, ',');
     if(c>=2){
-        vec2<gly_int> v(arr[0],arr[1]);
+        ss::vec2<gly_int> v(arr[0],arr[1]);
         delete arr;
         return v;
     }

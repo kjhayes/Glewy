@@ -1,5 +1,6 @@
-#include<Glewy/Structures/grid.hpp>
+#include<Glewy/Standard/Tilemap/grid.hpp>
 
+#include<Glewy/Core/typedef.hpp>
 #include<Glewy/Content/stringserial.hpp>
 #include<algorithm>
 
@@ -17,16 +18,16 @@ void Grid::LoadFromData(const Data& d){
         switch (s_data[s_pos])
         {
         case 'v':{
-            vec2<gly_int> v = StringTo<vec2<gly_int>>(s_data.substr(s_pos+1,end_of_section-(s_pos+1)));
+            ss::vec2<gly_int> v = StringTo<ss::vec2<gly_int>>(s_data.substr(s_pos+1,end_of_section-(s_pos+1)));
             AddCoord(v);
             s_pos = end_of_section;
             break;
         }
         case 'b':{
             int c;
-            vec2<gly_int>* vs = StringToArray<vec2<gly_int>>(s_data.substr(s_pos+1,end_of_section-(s_pos+1)), c, ' ');
+            ss::vec2<gly_int>* vs = StringToArray<ss::vec2<gly_int>>(s_data.substr(s_pos+1,end_of_section-(s_pos+1)), c, ' ');
             if(c >= 2){
-                vec2<gly_int> dif = vs[1] - vs[0];
+                ss::vec2<gly_int> dif = vs[1] - vs[0];
                 for(int x = 0; x<=dif.x; x++){for(int y = 0; y<=dif.y; y++){
                     AddCoord({vs[0].x + x, vs[0].y + y});
                 }}
@@ -43,13 +44,13 @@ void Grid::LoadFromData(const Data& d){
     }
 }
 
-void Grid::AddCoord(const vec2<gly_int>& c){
+void Grid::AddCoord(const ss::vec2<gly_int>& c){
     coords.insert(c);
 }
-void Grid::RemoveCoord(const vec2<gly_int>& c){
+void Grid::RemoveCoord(const ss::vec2<gly_int>& c){
     coords.erase(c);
 }
-bool Grid::GetCoord(const vec2<gly_int>& c){
+bool Grid::GetCoord(const ss::vec2<gly_int>& c){
     return coords.find(c)!=coords.end();
 }
 

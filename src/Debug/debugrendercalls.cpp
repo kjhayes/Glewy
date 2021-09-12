@@ -16,23 +16,23 @@ void DebugRenderCalls::RenderAndClearQueue(const Camera& camera){
     queue.clear();
 }
 
-void DebugRenderCalls::DrawLine(const vec2<gly_float>& a, const vec2<gly_float>& b){
+void DebugRenderCalls::DrawLine(const ss::vec2<gly_float>& a, const ss::vec2<gly_float>& b){
     Queue(new DebugLine(a,b));
 }
-void DebugRenderCalls::DrawLine(const vec2<gly_float>& a, const vec2<gly_float>& b, const vec4<gly_float>& color){
+void DebugRenderCalls::DrawLine(const ss::vec2<gly_float>& a, const ss::vec2<gly_float>& b, const ss::vec4<gly_float>& color){
     Queue(new DebugLine(a,b,color));
 }
-void DebugRenderCalls::DrawLine(const vec2<gly_float>& a, const vec2<gly_float>& b, const vec4<gly_float>& a_color, const vec4<gly_float>& b_color){
+void DebugRenderCalls::DrawLine(const ss::vec2<gly_float>& a, const ss::vec2<gly_float>& b, const ss::vec4<gly_float>& a_color, const ss::vec4<gly_float>& b_color){
     Queue(new DebugLine(a,b,a_color,b_color));
 }
 
-void DebugRenderCalls::DrawRay(const Ray<gly_float>& ray){
+void DebugRenderCalls::DrawRay(const ss::Ray<gly_float>& ray){
     Queue(new DebugLine(ray.GetOrigin(),ray.GetTip()));
 }
-void DebugRenderCalls::DrawRay(const Ray<gly_float>& ray, const vec4<gly_float>& color){
+void DebugRenderCalls::DrawRay(const ss::Ray<gly_float>& ray, const ss::vec4<gly_float>& color){
     Queue(new DebugLine(ray.GetOrigin(),ray.GetTip(),color));
 }
-void DebugRenderCalls::DrawRay(const Ray<gly_float>& ray, const vec4<gly_float>& a_color, const vec4<gly_float>& b_color){
+void DebugRenderCalls::DrawRay(const ss::Ray<gly_float>& ray, const ss::vec4<gly_float>& a_color, const ss::vec4<gly_float>& b_color){
     Queue(new DebugLine(ray.GetOrigin(),ray.GetTip(),a_color,b_color));
 }
 

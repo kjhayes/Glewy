@@ -1,13 +1,13 @@
 #include<Glewy/Rendering/material.hpp>
 
 #include<Glewy/Core/macros.hpp>
-#include<Glewy/Structures/mat.hpp>
+#include<substd/mat.hpp>
 
 #define GLEW_STATIC
 #include<GL/glew.h>
 
 #include<Glewy/Scene/camera.hpp>
-#include<Glewy/Utilities/readfile.hpp>
+#include<substd/readfile.hpp>
 #include<Glewy/Rendering/shaders.hpp>
 
 namespace gly
@@ -67,7 +67,7 @@ Material::Material(bool load_def)
 void Material::SetVert(const char* vs_path)
 {
 	std::string data;
-	if(ReadFile(vs_path, data)){return;}
+	if(ss::ReadFile(vs_path, data)){return;}
 	const char* c_str_data = data.c_str();
 	glShaderSource(vert, 1, &c_str_data, NULL);
 	glCompileShader(vert);
@@ -92,7 +92,7 @@ void Material::SetVert_Data(const char* vs_data)
 void Material::SetFrag(const char* fs_path)
 {
 	std::string data;
-	if(ReadFile(fs_path, data)){return;}
+	if(ss::ReadFile(fs_path, data)){return;}
 	const char* c_str_data = data.c_str();
 	glShaderSource(frag, 1, &c_str_data, NULL);
 	glCompileShader(frag);
@@ -140,7 +140,7 @@ void Material::SetActive() const
 
 void Material::SetView(const Camera& camera) const {
 	GLuint gly_view_location = glGetUniformLocation(program, "gly_view");
-	if(gly_view_location!=-1){mat4<gly_float> view = camera.GetGlobalMatrix();
+	if(gly_view_location!=-1){ss::mat4<gly_float> view = camera.GetGlobalMatrix();
 		glUniformMatrix4fv(gly_view_location, 1, GL_FALSE, (const float*)&view);}	
 }
 

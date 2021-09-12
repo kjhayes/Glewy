@@ -1,12 +1,16 @@
 #ifndef GLEWY_UNIFORM_HPP
 #define GLEWY_UNIFORM_HPP
 
-#include<Glewy/Structures/mat.hpp>
+#include<Glewy/Core/typedef.hpp>
+#include<substd/mat.hpp>
+
+namespace ss{
+    class Transform;
+}
 
 namespace gly{
 
 class Material;
-class Transform;
 class Texture;
 
 class Uniform{
@@ -25,22 +29,22 @@ public:
     bool Exists();
 
     static void SetUniform(Uniform*, const float&);
-    static void SetUniform(Uniform*, const vec2<float>&);
-    static void SetUniform(Uniform*, const vec3<float>&);
-    static void SetUniform(Uniform*, const vec4<float>&);
+    static void SetUniform(Uniform*, const ss::vec2<float>&);
+    static void SetUniform(Uniform*, const ss::vec3<float>&);
+    static void SetUniform(Uniform*, const ss::vec4<float>&);
     static void SetUniform(Uniform*, const int&);
-    static void SetUniform(Uniform*, const vec2<int>&);
-    static void SetUniform(Uniform*, const vec3<int>&);
-    static void SetUniform(Uniform*, const vec4<int>&);
+    static void SetUniform(Uniform*, const ss::vec2<int>&);
+    static void SetUniform(Uniform*, const ss::vec3<int>&);
+    static void SetUniform(Uniform*, const ss::vec4<int>&);
     static void SetUniform(Uniform*, const unsigned int&);
-    static void SetUniform(Uniform*, const vec2<unsigned int>&);
-    static void SetUniform(Uniform*, const vec3<unsigned int>&);
-    static void SetUniform(Uniform*, const vec4<unsigned int>&);
-    static void SetUniform(Uniform*, const mat2<float>&);
-    static void SetUniform(Uniform*, const mat3<float>&);
-    static void SetUniform(Uniform*, const mat4<float>&);
+    static void SetUniform(Uniform*, const ss::vec2<unsigned int>&);
+    static void SetUniform(Uniform*, const ss::vec3<unsigned int>&);
+    static void SetUniform(Uniform*, const ss::vec4<unsigned int>&);
+    static void SetUniform(Uniform*, const ss::mat2<float>&);
+    static void SetUniform(Uniform*, const ss::mat3<float>&);
+    static void SetUniform(Uniform*, const ss::mat4<float>&);
     
-    static void SetUniform(Uniform*, Transform*);
+    static void SetUniform(Uniform*, ss::Transform*);
     static void SetUniform(Uniform*, Texture*);
 };
 

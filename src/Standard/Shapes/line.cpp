@@ -40,20 +40,20 @@ void Line::Render(){
     RenderCalls::RenderLine();    
 }
 
-void Line::SetEndpointX(const vec3<gly_float>& x){
+void Line::SetEndpointX(const ss::vec3<gly_float>& x){
     end_points.x = x;
 }
-void Line::SetEndpointY(const vec3<gly_float>& y){
+void Line::SetEndpointY(const ss::vec3<gly_float>& y){
     end_points.y = y;
 }
 
-void Line::SetColorX(const vec4<gly_float>& c_x){
+void Line::SetColorX(const ss::vec4<gly_float>& c_x){
     colors.x = c_x;
 }
-void Line::SetColorY(const vec4<gly_float>& c_y){
+void Line::SetColorY(const ss::vec4<gly_float>& c_y){
     colors.y = c_y;
 }
-void Line::SetBothColor(const vec4<gly_float>& color){
+void Line::SetBothColor(const ss::vec4<gly_float>& color){
     colors.x = color;
     colors.y = color;
 }

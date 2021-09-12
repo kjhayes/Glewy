@@ -1,7 +1,7 @@
 #ifndef GLEWY_RENDERCALLS_HPP
 #define GLEWY_RENDERCALLS_HPP
 
-#include<Glewy/Structures/vec.hpp>
+#include<substd/vec.hpp>
 #include<Glewy/Core/typedef.hpp>
 
 namespace gly{
@@ -15,12 +15,12 @@ class RenderCalls{
 public:
     static void Init();
 
-    static const vec3<gly_float> quad_vertices_default[4];
+    static const ss::vec3<gly_float> quad_vertices_default[4];
 
     //Quad
     static void RenderQuad();
 
-    static void RenderQuads2i(vec2<gly_int>* offsets, const unsigned int& number);
+    static void RenderQuads2i(ss::vec2<gly_int>* offsets, const unsigned int& number);
 
     /*
     static void RenderQuads2f(vec2<gly_float>* offsets, const unsigned int& number);

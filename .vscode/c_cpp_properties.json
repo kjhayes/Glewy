@@ -8,7 +8,8 @@
                 "C:/Program Files (x86)/GLEW/include",
                 "C:/Program Files (x86)/GLFW/include",
                 "C:/Program Files (x86)/SOIL/include",
-                "C:/Program Files (x86)/SoLoud_MA/include"
+                "C:/Program Files (x86)/SoLoud_MA/include",
+                "C:/Program Files (x86)/substd/include"
             ],
             "defines": [
                 "_DEBUG",

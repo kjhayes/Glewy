@@ -2,17 +2,17 @@
 
 #include<Glewy/Scene/attachment.hpp>
 #include<Glewy/Scene/component.hpp>
-#include<Glewy/Structures/transform.hpp>
+#include<substd/transform.hpp>
 
 namespace gly
 {
 
-Entity::Entity():Transformable(){
+Entity::Entity():ss::ITransformable(){
     attachments = new std::list<Attachment*>();
     components = new std::list<Component*>();
 }
 
-Entity::Entity(Transform* parent):Transformable(parent){
+Entity::Entity(ss::Transform* parent):ss::ITransformable(parent){
     attachments = new std::list<Attachment*>();
     components = new std::list<Component*>();
 }

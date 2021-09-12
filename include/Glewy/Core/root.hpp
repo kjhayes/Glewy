@@ -6,13 +6,16 @@
 
 #include<Glewy/Rendering/renderablecache.hpp>
 
+namespace ss{
+    class Transform;
+}
+
 namespace gly
 {
 
 class Instance;
 
 class Entity;
-class Transform;
 struct UpdateInfo;
 struct AwakeInfo;
 class Camera;
@@ -34,7 +37,7 @@ public:
     std::list<Entity*> entity_registry;
     
     Entity* CreateEntity();
-    Entity* CreateEntity(Transform*);
+    Entity* CreateEntity(ss::Transform*);
     void DestroyEntity(Entity*);
 
     void AwakeEntities(const AwakeInfo&);

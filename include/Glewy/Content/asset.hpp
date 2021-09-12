@@ -4,7 +4,7 @@
 #include<Glewy/Core/typedef.hpp>
 #include<Glewy/Content/data.hpp>
 #include<Glewy/Content/file.hpp>
-#include<Glewy/Utilities/readfile.hpp>
+#include<substd/readfile.hpp>
 #include<unordered_map>
 
 #include<Glewy/Core/logging.hpp>
@@ -39,7 +39,7 @@ protected:
     virtual void LoadFromData(const Data& d) = 0;
     virtual void LoadFromFile(const File& f){
         std::vector<unsigned char> file_bytes;
-        ReadFile(f.file_name, file_bytes);
+        ss::ReadFile(f.file_name, file_bytes);
         Data d(file_bytes.size(), file_bytes.data());
         LoadFromData(d);
     }

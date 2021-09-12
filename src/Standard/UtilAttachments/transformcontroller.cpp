@@ -9,7 +9,7 @@
 
 namespace gly{
 
-void TransformController::SetTransform(Transform* t){transform = t;}
+void TransformController::SetTransform(ss::Transform* t){transform = t;}
 
 TransformController::TransformController(Entity* e):Component(e){transform = e->GetTransform();}
 
@@ -38,12 +38,12 @@ void TransformController::Sleep(const AwakeInfo& info){
 }
 
 void TransformController::Update(const UpdateInfo& info){
-    vec3<gly_float> s = transform->GetLocalScale();
+    ss::vec3<gly_float> s = transform->GetLocalScale();
     if(Q->active.GetValue()){s*=1.0f+(zoom_speed*info.delta_time);}
     if(E->active.GetValue()){s/=1.0f+(zoom_speed*info.delta_time);}
     transform->SetLocalScale(s);
     
-    vec3<gly_float> pos = transform->GetLocalPosition();
+    ss::vec3<gly_float> pos = transform->GetLocalPosition();
     if(D->active.GetValue()){pos.x += s.x*speed.x*info.delta_time;}
     if(A->active.GetValue()){pos.x -= s.x*speed.x*info.delta_time;}
 

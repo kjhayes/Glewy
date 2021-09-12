@@ -105,8 +105,8 @@ void Instance::SetCurrentRenderer(Renderer* renderer){
 	current_renderer = renderer;
 }
 
-vec4<gly_float> Instance::GetClearColor(){return clear_color;}
-void Instance::SetClearColor(const vec4<gly_float>& cc){clear_color = cc;}
+ss::vec4<gly_float> Instance::GetClearColor(){return clear_color;}
+void Instance::SetClearColor(const ss::vec4<gly_float>& cc){clear_color = cc;}
 
 void Instance::Get_Window_Size(int* x_out, int* y_out){glfwGetWindowSize(window, x_out, y_out);}
 void Instance::Get_Buffer_Size(int* x_out, int* y_out){glfwGetFramebufferSize(window, x_out, y_out);}
@@ -133,7 +133,7 @@ void Instance::UpdateViewport(){
 	glfwGetWindowSize(window, &x, &y);
 	UpdateViewport({x, y});
 }
-void Instance::UpdateViewport(const vec2<gly_int>& vec){
+void Instance::UpdateViewport(const ss::vec2<gly_int>& vec){
 	float window_ar = ((float)vec.x)/((float)vec.y);
 	//AR Close to Zero = Tall; Close to Infinity = Wide;
 	float ar;
@@ -172,7 +172,7 @@ void Instance::OnWindowResize(GLFWwindow* window, int x, int y){
 	if(i!=nullptr){i->OnOwnWindowResize({x,y});}
 }	
 
-void Instance::OnOwnWindowResize(const vec2<gly_int>& size){
+void Instance::OnOwnWindowResize(const ss::vec2<gly_int>& size){
 	win_size = size;
 	UpdateViewport(size);
 }

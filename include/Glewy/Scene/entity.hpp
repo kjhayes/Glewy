@@ -2,7 +2,7 @@
 #define GLEWY_ENTITY_HPP
 
 #include<Glewy/Core/logging.hpp>
-#include<Glewy/Scene/transformable.hpp>
+#include<substd/itransformable.hpp>
 #include<list>
 
 namespace gly
@@ -14,7 +14,7 @@ class Attachment;
 struct UpdateInfo;
 struct AwakeInfo;
 
-class Entity : public Transformable
+class Entity : public ss::ITransformable
 {
     friend class Root;
 
@@ -34,7 +34,7 @@ class Entity : public Transformable
         Root* root;
 
         Entity();
-        Entity(Transform*);
+        Entity(ss::Transform*);
         ~Entity();
 
     public:

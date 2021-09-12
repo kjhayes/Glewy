@@ -2,7 +2,7 @@
 
 #include<iostream>
 #include<Glewy/Content/stringserial.hpp>
-#include<Glewy/Structures/grid.hpp>
+#include<Glewy/Standard/Tilemap/grid.hpp>
 
 namespace gly{
 
@@ -23,11 +23,11 @@ TileCache* Tilemap::GetCache(Tile* tile){
     return cache;
 }
 
-void Tilemap::SetTile(Tile* tile, const vec2<gly_int>& pos){
+void Tilemap::SetTile(Tile* tile, const ss::vec2<gly_int>& pos){
     GetCache(tile)->CacheThis(pos);
 }
 
-void Tilemap::RemoveTile(Tile* tile, const vec2<gly_int>& pos){
+void Tilemap::RemoveTile(Tile* tile, const ss::vec2<gly_int>& pos){
     TileCache* c = GetCache(tile);
     c->DecacheThis(pos);
     if(c->IsEmpty()){
@@ -46,7 +46,7 @@ void Tilemap::SetGrid(Tile* tile, Grid* grid){
 }
 void Tilemap::LayerGrid(Tile* tile, Grid* grid){
     TileCache* c = GetCache(tile);
-    std::set<vec2<gly_int>> set(grid->coords);
+    std::set<ss::vec2<gly_int>> set(grid->coords);
     for(auto iter = c->cache.begin(); iter != c->cache.end(); iter++){
         set.insert((*iter));
     }

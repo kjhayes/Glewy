@@ -1,6 +1,6 @@
 #include<Glewy/Scene/camera.hpp>
 
-#include<Glewy/Structures/mat.hpp>
+#include<substd/mat.hpp>
 
 #include<cmath>
 
@@ -22,7 +22,7 @@ void Camera::SetSize(const gly_float& s){
     SetLocalScale({s,s,1.0f});
 }
 
-void Camera::SetLocalPosition(const vec3<gly_float>& pos) {
+void Camera::SetLocalPosition(const ss::vec3<gly_float>& pos) {
     Transform::SetLocalPosition(pos * -1.0f);
 }
 
@@ -36,7 +36,7 @@ void Camera::SetLocalPositionZ(const gly_float& z){
     Transform::SetLocalPositionZ(z*-1.0f);
 }
 
-void Camera::SetLocalScale(const vec3<gly_float>& scal) {
+void Camera::SetLocalScale(const ss::vec3<gly_float>& scal) {
     Transform::SetLocalScale({2.0f/(scal.x*aspect_ratio),2.0f/scal.y,2.0f/scal.z});
 }
 
@@ -50,34 +50,34 @@ void Camera::SetLocalScaleZ(const gly_float& z){
     Transform::SetLocalScaleZ(2.0f/z);
 }
 
-void Camera::SetLocalRotation(const vec3<modulo_tau<gly_float>>& rot) {
+void Camera::SetLocalRotation(const ss::vec3<ss::modulo_tau<gly_float>>& rot) {
     Transform::SetLocalRotation(rot * -1.0f);
 }
 
-void Camera::SetLocalRotationX(const modulo_tau<gly_float>& x){
+void Camera::SetLocalRotationX(const ss::modulo_tau<gly_float>& x){
     Transform::SetLocalRotationX(x*-1.0f);
 }
-void Camera::SetLocalRotationY(const modulo_tau<gly_float>& y){
+void Camera::SetLocalRotationY(const ss::modulo_tau<gly_float>& y){
     Transform::SetLocalRotationY(y*-1.0f);
 }
-void Camera::SetLocalRotationZ(const modulo_tau<gly_float>& z){
+void Camera::SetLocalRotationZ(const ss::modulo_tau<gly_float>& z){
     Transform::SetLocalRotationZ(z*-1.0f);
 }
 
-vec3<gly_float> Camera::GetLocalPosition() const {
+ss::vec3<gly_float> Camera::GetLocalPosition() const {
     return local_position * -1.0f;
 }    
-vec3<gly_float> Camera::GetLocalScale() const {
+ss::vec3<gly_float> Camera::GetLocalScale() const {
     return {2.0f/(Transform::local_scale.x*aspect_ratio),2.0f/Transform::local_scale.y,1.0f};
 }
-vec3<modulo_tau<gly_float>> Camera::GetLocalRotation() const {
+ss::vec3<ss::modulo_tau<gly_float>> Camera::GetLocalRotation() const {
     return local_rotation * -1.0f;
 }
 
 void Camera::CalculateLocalAABBMatrix() const {
     localAABBMatrix.Identity();
 
-    localAABBMatrix.t = vec4<gly_float>(local_position.x*local_scale.x,local_position.y*local_scale.y,local_position.z*local_scale.z, 1.0f);
+    localAABBMatrix.t = ss::vec4<gly_float>(local_position.x*local_scale.x,local_position.y*local_scale.y,local_position.z*local_scale.z, 1.0f);
 
     localAABBMatrix.i.x = local_scale.x;
     localAABBMatrix.j.y = local_scale.y;

@@ -1,7 +1,9 @@
 #ifndef GLEWY_UVTABLE_HPP
 #define GLEWY_UVTABLE_HPP
 
-#include<Glewy/Structures/vec.hpp>
+#include<substd/vec.hpp>
+#include<substd/corner.hpp>
+#include<Glewy/Core/typedef.hpp>
 #include<Glewy/Content/asset.hpp>
 #include<Glewy/Content/serializable.hpp>
 
@@ -9,16 +11,16 @@ namespace gly{
 
 struct UVCoord{
 public:
-    vec2<gly_float> size;
-    vec2<gly_float> offset;
+    ss::vec2<gly_float> size;
+    ss::vec2<gly_float> offset;
 
     UVCoord();
-    UVCoord(const vec2<gly_float>& size, const vec2<gly_float>& offset);
+    UVCoord(const ss::vec2<gly_float>& size, const ss::vec2<gly_float>& offset);
 
     static UVCoord* Grid(
         const int& size, 
-        const vec2<gly_int>& cells, 
-        const CORNER& = BOTTOM_LEFT, 
+        const ss::vec2<gly_int>& cells, 
+        const ss::CORNER& = ss::CORNER_BOTTOM_LEFT, 
         const bool& rows = true);
 };
 

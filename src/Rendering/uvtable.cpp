@@ -1,4 +1,4 @@
-#include<Glewy/Structures/uvtable.hpp>
+#include<Glewy/Rendering/uvtable.hpp>
 
 #include<Glewy/Content/stringserial.hpp>
 
@@ -12,20 +12,20 @@
 namespace gly{
 
 UVCoord::UVCoord():size({1.0f,1.0f}),offset({0.0f,0.0f}){}
-UVCoord::UVCoord(const vec2<gly_float>& size, const vec2<gly_float>& offset):size(size),offset(offset){}
+UVCoord::UVCoord(const ss::vec2<gly_float>& size, const ss::vec2<gly_float>& offset):size(size),offset(offset){}
 
 UVCoord* UVCoord::Grid(
     const int& size, 
-    const vec2<gly_int>& dim,
-    const CORNER& corner, 
+    const ss::vec2<gly_int>& dim,
+    const ss::CORNER& corner, 
     const bool& rows)
 {
 //
     UVCoord* coords = new UVCoord[size];
 
-    vec2<gly_float> cell_size(1.0f/(float)dim.x,1.0f/(float)dim.y);
-    vec2<gly_float> start;
-    vec2<gly_float> mov;
+    ss::vec2<gly_float> cell_size(1.0f/(float)dim.x,1.0f/(float)dim.y);
+    ss::vec2<gly_float> start;
+    ss::vec2<gly_float> mov;
 
     if(corner < 2){start.y = 0.0f; mov.y = cell_size.y;}//BOTTOM
     else{start.y = 1.0f-cell_size.y; mov.y = -cell_size.y;}//TOP
@@ -75,7 +75,7 @@ void UVTable::LoadFromData(const Data& data){
             int x;
             int* vals = StringToArray<int>(s_data.substr(s_pos+1,end_of_section-(s_pos+1)), x);
             if(x!=5){std::cerr<<"ERROR LOADING UVTABLE!"<<std::endl;}
-            UVCoord* coord_arr = UVCoord::Grid(vals[0], {vals[1],vals[2]}, static_cast<CORNER>(vals[3]), (bool)vals[4]);
+            UVCoord* coord_arr = UVCoord::Grid(vals[0], {vals[1],vals[2]}, static_cast<ss::CORNER>(vals[3]), (bool)vals[4]);
             for(int i = 0; i < vals[0]; i++){
                 read_coords.push_back(coord_arr[i]);
             }

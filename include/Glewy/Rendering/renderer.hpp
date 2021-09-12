@@ -1,7 +1,7 @@
 #ifndef GLEWY_RENDERER_HPP
 #define GLEWY_RENDERER_HPP
 
-#include<Glewy/Structures/vec.hpp>
+#include<substd/vec.hpp>
 #include<Glewy/Core/typedef.hpp>
 
 typedef unsigned int GLuint;
@@ -14,7 +14,7 @@ class Renderer{
 private:
     static GLuint full_viewport_vbo;
 
-    vec2<gly_int> size;
+    ss::vec2<gly_int> size;
 
     GLuint FBO;
     GLuint texture;
@@ -22,22 +22,22 @@ private:
 
     Material* final_pass;
 
-    vec4<gly_float> clear_color;
+    ss::vec4<gly_float> clear_color;
 
 public:
-    Renderer(const vec2<gly_int>&);
+    Renderer(const ss::vec2<gly_int>&);
     ~Renderer();
 
-    void RegenFBO(const vec2<gly_int>&);
+    void RegenFBO(const ss::vec2<gly_int>&);
     
     void SetActive();
-    void Clear(const vec4<gly_float>& color);
+    void Clear(const ss::vec4<gly_float>& color);
     
-    void Blit(const vec4<gly_float>& clear);
+    void Blit(const ss::vec4<gly_float>& clear);
     void RenderFullscreenTexture(GLuint texture);
 
-    void SetClearColor(const vec4<gly_float>&);
-    vec4<gly_float> GetClearColor();
+    void SetClearColor(const ss::vec4<gly_float>&);
+    ss::vec4<gly_float> GetClearColor();
 
     void SetFrag(const char*);
     void SetFrag_Data(const char*);

@@ -20,22 +20,12 @@ add_library(GLEWY STATIC
     ${CMAKE_CURRENT_SOURCE_DIR}/Rendering/shaders.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/Rendering/texture.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/Rendering/uniform.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/Rendering/uvtable.cpp
     
     ${CMAKE_CURRENT_SOURCE_DIR}/Scene/attachment.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/Scene/camera.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/Scene/component.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/Scene/entity.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/Scene/transformable.cpp
-    
-    ${CMAKE_CURRENT_SOURCE_DIR}/Structures/dool.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/Structures/transform.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/Structures/tree.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/Structures/grid.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/Structures/cellmap.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/Structures/uvtable.cpp
-    
-    ${CMAKE_CURRENT_SOURCE_DIR}/Utilities/readfile.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/Utilities/util.cpp
     
     ${CMAKE_CURRENT_SOURCE_DIR}/Audio/sound.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/Audio/soundinstance.cpp
@@ -57,13 +47,15 @@ add_library(GLEWY STATIC
     ${CMAKE_CURRENT_SOURCE_DIR}/Standard/Tilemap/tilemap.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/Standard/Tilemap/tile.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/Standard/Tilemap/tilemaprenderer.cpp
-
+    ${CMAKE_CURRENT_SOURCE_DIR}/Standard/Tilemap/grid.cpp
+    
     ${CMAKE_CURRENT_SOURCE_DIR}/Standard/UtilAttachments/transformcontroller.cpp
     )
 
-target_include_directories(GLEWY PUBLIC "${CMAKE_SOURCE_DIR}/include")
+target_include_directories(${CMAKE_PROJECT_NAME} PUBLIC "${CMAKE_SOURCE_DIR}/include")
 
-target_include_directories(GLEWY PUBLIC "C:/Program Files (x86)/GLEW/include")
-target_include_directories(GLEWY PUBLIC "C:/Program Files (x86)/GLFW/include")
-target_include_directories(GLEWY PUBLIC "C:/Program Files (x86)/SOIL/include")
-target_include_directories(GLEWY PUBLIC "C:/Program Files (x86)/SoLoud_MA/include")
+target_include_directories(${CMAKE_PROJECT_NAME} PUBLIC "C:/Program Files (x86)/GLEW/include")
+target_include_directories(${CMAKE_PROJECT_NAME} PUBLIC "C:/Program Files (x86)/GLFW/include")
+target_include_directories(${CMAKE_PROJECT_NAME} PUBLIC "C:/Program Files (x86)/SOIL/include")
+target_include_directories(${CMAKE_PROJECT_NAME} PUBLIC "C:/Program Files (x86)/SoLoud_MA/include")
+target_include_directories(${CMAKE_PROJECT_NAME} PUBLIC "C:/Program Files (x86)/substd/include")

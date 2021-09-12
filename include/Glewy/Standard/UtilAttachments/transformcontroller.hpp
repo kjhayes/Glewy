@@ -1,29 +1,32 @@
 #ifndef GLEWY_CAMERACONTROLLER_HPP
 #define GLEWY_CAMERACONTROLLER_HPP
 
-#include<Glewy/Structures/vec.hpp>
+#include<substd/vec.hpp>
 #include<Glewy/Core/typedef.hpp>
 #include<Glewy/Scene/component.hpp>
+
+namespace ss{
+    class Transform;
+}
 
 namespace gly{
 
 class Entity;
 class Button;
-class Transform;
 
 class TransformController : public Component{
 friend class gly::Entity;
 
 public:
-    vec2<gly_float> speed = {1.0f,1.0f};
+    ss::vec2<gly_float> speed = {1.0f,1.0f};
     gly_float zoom_speed = 1.1f;
 
-    void SetTransform(Transform*);
+    void SetTransform(ss::Transform*);
 
 protected:
     TransformController(Entity* e);
     
-    Transform* transform;
+    ss::Transform* transform;
 
     Button* W;
     Button* A;

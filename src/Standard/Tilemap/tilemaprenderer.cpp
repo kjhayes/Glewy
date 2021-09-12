@@ -10,11 +10,11 @@
 
 #include<Glewy/Rendering/uniform.hpp>
 #include<Glewy/Rendering/texture.hpp>
-#include<Glewy/Structures/uvtable.hpp>
+#include<Glewy/Rendering/uvtable.hpp>
 
 #include<Glewy/Rendering/rendercalls.hpp>
 
-#include<Glewy/Structures/transform.hpp>
+#include<substd/transform.hpp>
 
 namespace gly{
 

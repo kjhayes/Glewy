@@ -1,6 +1,6 @@
 #include<Glewy/Standard/Sprite/sprite.hpp>
 
-#include<Glewy/Structures/mat.hpp>
+#include<substd/mat.hpp>
 
 #include<Glewy/Core/logging.hpp>
 

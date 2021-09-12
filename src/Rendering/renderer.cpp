@@ -7,13 +7,13 @@
 #include<GLFW/glfw3.h>
 
 #include<Glewy/Core/logging.hpp>
-#include<Glewy/Structures/vec.hpp>
+#include<substd/vec.hpp>
 #include<Glewy/Rendering/material.hpp>
 #include<Glewy/Rendering/shaders.hpp>
 
 namespace gly{
 
-vec3<gly_float> fullscreen_vertices[4]
+ss::vec3<gly_float> fullscreen_vertices[4]
 {
     {-1.0f,-1.0f,0.0f},
 	{1.0f,-1.0f,0.0f},
@@ -23,7 +23,7 @@ vec3<gly_float> fullscreen_vertices[4]
 
 GLuint Renderer::full_viewport_vbo = 0;
 
-Renderer::Renderer(const vec2<gly_int>& size) : clear_color(1.0f,1.0f,1.0f,1.0f)
+Renderer::Renderer(const ss::vec2<gly_int>& size) : clear_color(1.0f,1.0f,1.0f,1.0f)
 {
     if(full_viewport_vbo == 0){
         glGenBuffers(1, &full_viewport_vbo);
@@ -48,7 +48,7 @@ Renderer::~Renderer()
     delete final_pass;
 }
 
-void Renderer::RegenFBO(const vec2<gly_int>& n_size){
+void Renderer::RegenFBO(const ss::vec2<gly_int>& n_size){
     //Bind Framebuffer
     this->size = n_size;
 
@@ -90,12 +90,12 @@ void Renderer::SetActive(){
 	glDepthFunc(GL_LEQUAL);
 }
 
-void Renderer::Clear(const vec4<gly_float>& color){
+void Renderer::Clear(const ss::vec4<gly_float>& color){
     glClearColor(color.x,color.y,color.z,color.w);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 }
 
-void Renderer::Blit(const vec4<gly_float>& cc){
+void Renderer::Blit(const ss::vec4<gly_float>& cc){
     glBindFramebuffer(GL_FRAMEBUFFER, 0);
     Clear(cc);
     glDisable(GL_DEPTH_TEST);
@@ -122,10 +122,10 @@ void Renderer::RenderFullscreenTexture(GLuint texture){
 	glDisableVertexAttribArray(0);
 }
 
-void Renderer::SetClearColor(const vec4<gly_float>& cc){
+void Renderer::SetClearColor(const ss::vec4<gly_float>& cc){
     this->clear_color = cc;
 }
-vec4<gly_float> Renderer::GetClearColor(){return this->clear_color;}
+ss::vec4<gly_float> Renderer::GetClearColor(){return this->clear_color;}
 
 void Renderer::SetFrag(const char* path){
     this->final_pass->SetFrag(path);

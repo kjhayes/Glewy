@@ -13,25 +13,25 @@ namespace gly{
 Material* DebugLine::debug_line_material = nullptr;
 
 DebugLine::DebugLine(
-    const vec2<gly_float>& a, 
-    const vec2<gly_float>& b
+    const ss::vec2<gly_float>& a, 
+    const ss::vec2<gly_float>& b
     ): a(a), b(b), a_color(1.0f,1.0f,1.0f,1.0f), b_color(1.0f,1.0f,1.0f,1.0f) 
 {
     InitMaterial();
 }
 DebugLine::DebugLine(
-        const vec2<gly_float>& a, 
-        const vec2<gly_float>& b, 
-        const vec4<gly_float>& color
+        const ss::vec2<gly_float>& a, 
+        const ss::vec2<gly_float>& b, 
+        const ss::vec4<gly_float>& color
         ): a(a), b(b), a_color(color), b_color(color)
 {
     InitMaterial();
 }
 DebugLine::DebugLine(
-        const vec2<gly_float>& a, 
-        const vec2<gly_float>& b, 
-        const vec4<gly_float>& a_color, 
-        const vec4<gly_float>& b_color
+        const ss::vec2<gly_float>& a, 
+        const ss::vec2<gly_float>& b, 
+        const ss::vec4<gly_float>& a_color, 
+        const ss::vec4<gly_float>& b_color
         ): a(a), b(b), a_color(a_color), b_color(b_color)
 {
     InitMaterial();
@@ -45,7 +45,7 @@ void DebugLine::InitMaterial(){
 void DebugLine::Render() const {
     debug_line_material->SetActive();
     Uniform gly_view(debug_line_material, "gly_view");
-    Uniform::SetUniform(&gly_view, mat4<gly_float>());
+    Uniform::SetUniform(&gly_view, ss::mat4<gly_float>());
 
     Draw();
 }

@@ -3,20 +3,18 @@
 
 #include<set>
 
+#include<Glewy/Core/typedef.hpp>
 #include<Glewy/Standard/Tilemap/tile.hpp>
-
-#include<Glewy/Structures/vec.hpp>
-#include<Glewy/Structures/cache.hpp>
-
-#include<Glewy/Utilities/util.hpp>
-
 #include<Glewy/Content/asset.hpp>
 
-#include<Glewy/Structures/cellmap.hpp>
+#include<substd/vec.hpp>
+#include<substd/cache.hpp>
+#include<substd/util.hpp>
+#include<substd/cellmap.hpp>
 
 namespace gly{
 
-typedef VectorCache<Tile*, vec2<gly_int>> TileCache;
+typedef ss::VectorCache<Tile*, ss::vec2<gly_int>> TileCache;
 
 class Grid;
 
@@ -31,8 +29,8 @@ public:
 
     TileCache* GetCache(Tile* tile);
 
-    void SetTile(Tile* tile, const vec2<gly_int>& pos);
-    void RemoveTile(Tile* tile, const vec2<gly_int>& pos);
+    void SetTile(Tile* tile, const ss::vec2<gly_int>& pos);
+    void RemoveTile(Tile* tile, const ss::vec2<gly_int>& pos);
 
     void SetGrid(Tile* tile, Grid* grid);
     void LayerGrid(Tile* tile, Grid* grid);

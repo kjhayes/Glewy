@@ -3,7 +3,7 @@
 
 #include<set>
 
-#include<Glewy/Structures/vec.hpp>
+#include<substd/vec.hpp>
 #include<Glewy/Content/asset.hpp>
 
 namespace gly{
@@ -16,11 +16,11 @@ public:
 
     void LoadFromData(const Data&) override;
 
-    std::set<vec2<gly_int>> coords;
+    std::set<ss::vec2<gly_int>> coords;
 
-    void AddCoord(const vec2<gly_int>&);
-    void RemoveCoord(const vec2<gly_int>&);
-    bool GetCoord(const vec2<gly_int>&);
+    void AddCoord(const ss::vec2<gly_int>&);
+    void RemoveCoord(const ss::vec2<gly_int>&);
+    bool GetCoord(const ss::vec2<gly_int>&);
 };
 
 }

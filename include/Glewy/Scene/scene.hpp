@@ -5,6 +5,5 @@
 #include<Glewy/Scene/attachment.hpp>
 #include<Glewy/Scene/component.hpp>
 #include<Glewy/Scene/camera.hpp>
-#include<Glewy/Scene/transformable.hpp>
 
 #endif //GLEWY_SCENE_HPP

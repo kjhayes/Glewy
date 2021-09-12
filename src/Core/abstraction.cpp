@@ -1,6 +1,6 @@
 #include<Glewy/Core/abstraction.hpp>
 
-#include<Glewy/Structures/mat.hpp>
+//#include<substd/mat.hpp>
 
 #include<iostream>
 
@@ -22,7 +22,7 @@ namespace gly
 		return window;
 	}
 	
-	vec2<gly_float> PixelCoordToViewPort(GLFWwindow* window, vec2<gly_float> pix)
+	ss::vec2<gly_float> PixelCoordToViewPort(GLFWwindow* window, ss::vec2<gly_float> pix)
 	{
 		int x, y;
 		glfwGetFramebufferSize(window, &x, &y);
@@ -34,7 +34,7 @@ namespace gly
 		return pix;
 	}
 	
-	vec2<gly_float> ViewPortToPixelCoord(GLFWwindow* window, vec2<gly_float> vp)
+	ss::vec2<gly_float> ViewPortToPixelCoord(GLFWwindow* window, ss::vec2<gly_float> vp)
 	{
 		int x,y;
 		glfwGetFramebufferSize(window, &x, &y);

@@ -1,13 +1,13 @@
 #ifndef GLEWY_INPUTABLE_HPP
 #define GLEWY_INPUTABLE_HPP
 
-#include<Glewy/Core/iregisterable.hpp>
+#include<substd/iregisterable.hpp>
 
 namespace gly{
 
 class Instance;
 
-class Inputable : IRegisterable<Inputable> {
+class Inputable : ss::IRegisterable<Inputable> {
 friend class Instance;
 protected:
     virtual void Update() = 0;

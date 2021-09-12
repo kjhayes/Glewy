@@ -3,7 +3,7 @@
 
 #include<Glewy/Rendering/renderable.hpp>
 #include<Glewy/Scene/attachment.hpp>
-#include<Glewy/Structures/vec.hpp>
+#include<substd/vec.hpp>
 
 namespace gly{
 

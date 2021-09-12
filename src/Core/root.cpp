@@ -10,7 +10,7 @@
 #include<Glewy/Rendering/renderer.hpp>
 #include<Glewy/Rendering/renderable.hpp>
 #include<Glewy/Rendering/renderablecache.hpp>
-#include<Glewy/Utilities/util.hpp>
+#include<substd/util.hpp>
 #include<Glewy/Audio/sound.hpp>
 #include<Glewy/Audio/soundinstance.hpp>
 
@@ -42,7 +42,7 @@ Entity* Root::CreateEntity()
     entity->root = this;
     return entity;
 }
-Entity* Root::CreateEntity(Transform* parent)
+Entity* Root::CreateEntity(ss::Transform* parent)
 {
     Entity* entity = new Entity(parent);
     entity_registry.push_back(entity);

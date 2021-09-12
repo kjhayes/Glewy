@@ -1,7 +1,7 @@
 #ifndef GLEWY_LINE_HPP
 #define GLEWY_LINE_HPP
 
-#include<Glewy/Structures/vec.hpp>
+#include<substd/vec.hpp>
 #include<Glewy/Core/typedef.hpp>
 
 #include<Glewy/Scene/attachment.hpp>
@@ -16,8 +16,8 @@ namespace gly{
 class Line : public Renderable, public Attachment {
 friend class Entity;
 public:
-    vec2<vec3<gly_float>> end_points;
-    vec2<vec4<gly_float>> colors;
+    ss::vec2<ss::vec3<gly_float>> end_points;
+    ss::vec2<ss::vec4<gly_float>> colors;
 
 protected:
     static Material* default_line_material;
@@ -28,12 +28,12 @@ public:
 
     void Render();
 
-    void SetEndpointX(const vec3<gly_float>& x);
-    void SetEndpointY(const vec3<gly_float>& y);
+    void SetEndpointX(const ss::vec3<gly_float>& x);
+    void SetEndpointY(const ss::vec3<gly_float>& y);
 
-    void SetColorX(const vec4<gly_float>& c_x);
-    void SetColorY(const vec4<gly_float>& c_y);
-    void SetBothColor(const vec4<gly_float>& color);
+    void SetColorX(const ss::vec4<gly_float>& c_x);
+    void SetColorY(const ss::vec4<gly_float>& c_y);
+    void SetBothColor(const ss::vec4<gly_float>& color);
 };
 
 }

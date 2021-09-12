@@ -4,7 +4,8 @@
 typedef unsigned int GLuint;
 typedef unsigned int GLenum;
 
-#include<Glewy/Structures/vec.hpp>
+#include<substd/vec.hpp>
+#include<Glewy/Core/typedef.hpp>
 #include<Glewy/Content/asset.hpp>
 
 namespace gly
@@ -21,7 +22,7 @@ protected:
 	Texture(const Data& d);
 	Texture(const File& f);
 
-	void SingleColor(const vec4<gly_float>& color);
+	void SingleColor(const ss::vec4<gly_float>& color);
 
 	void LoadFromFile(const File& f) override;
 	void LoadFromData(const Data& d) override;

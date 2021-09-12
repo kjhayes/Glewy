@@ -1,7 +1,7 @@
 #ifndef GLEWY_RAYCOLLIDABLE_HPP
 #define GLEWY_RAYCOLLIDABLE_HPP
 
-#include<Glewy/Structures/ray.hpp>
+#include<substd/ray.hpp>
 #include<Glewy/Core/typedef.hpp>    
 
 namespace gly{
@@ -9,7 +9,7 @@ namespace gly{
 class RayCollidable{
 protected:
     typedef gly_float RCType;
-    typedef Ray<RCType> RCRay;
+    typedef ss::Ray<RCType> RCRay;
     typedef gly_float RCReturnType;
 public:
     virtual RCReturnType Collide(const RCRay& ray) const;

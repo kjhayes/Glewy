@@ -9,10 +9,10 @@ namespace gly{
 
 Mouse::Mouse(Instance* i):Inputable(i){}
 
-vec2<double> Mouse::GetPosition(){return position;}
-vec2<int> Mouse::GetPixelPosition(){return {floor(position.x), floor(position.y)};}
-vec2<double> Mouse::GetNormalizedPosition(){
-    vec2<int> v; 
+ss::vec2<double> Mouse::GetPosition(){return position;}
+ss::vec2<int> Mouse::GetPixelPosition(){return {floor(position.x), floor(position.y)};}
+ss::vec2<double> Mouse::GetNormalizedPosition(){
+    ss::vec2<int> v; 
     instance->Get_Window_Size(&v.x,&v.y);
     return {position.x/(double)v.x, position.y/(double)v.y};
 }

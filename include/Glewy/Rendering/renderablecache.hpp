@@ -1,14 +1,14 @@
 #ifndef GLEWY_RENDERABLECACHE_HPP
 #define GLEWY_RENDERABLECACHE_HPP
 
-#include<Glewy/Structures/cache.hpp>
+#include<substd/cache.hpp>
 
 namespace gly{
 
 class Material;
 class Renderable;
 
-typedef VectorCache<Material*, Renderable*> RenderableCache;
+typedef ss::VectorCache<Material*, Renderable*> RenderableCache;
 
 }
 

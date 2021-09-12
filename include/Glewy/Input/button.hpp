@@ -3,14 +3,14 @@
 
 #include<Glewy/Input/inputable.hpp>
 
-#include<Glewy/Structures/dool.hpp>
+#include<substd/dool.hpp>
 
 namespace gly{
 
 class Button : Inputable {
 
 public:
-    dool active;
+    ss::dool active;
     int keycode;
 
     Button(Instance*);

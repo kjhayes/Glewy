@@ -2,8 +2,8 @@
 #define GLEWY_INSTANCE_HPP
 
 #include<Glewy/Input/mouse.hpp>
-#include<Glewy/Structures/vec.hpp>
-#include<Glewy/Core/iregisterable.hpp>
+#include<substd/vec.hpp>
+#include<substd/iregisterable.hpp>
 #include<Glewy/Core/typedef.hpp>
 #include<string>
 
@@ -18,10 +18,10 @@ class Renderer;
 struct StartUp
 {
     const char* title;
-    vec2<gly_int> size;
+    ss::vec2<gly_int> size;
 };
 
-class Instance : public IRegisterable<Instance>
+class Instance : public ss::IRegisterable<Instance>
 {
 private:
     bool running = false;
@@ -34,16 +34,16 @@ private:
     Root* current_root;
     Renderer* current_renderer;
 
-    vec2<gly_int> win_size;
+    ss::vec2<gly_int> win_size;
     std::string title;
 
     float custom_aspect_ratio;
     ASPECT_RATIO_OPTION ar_option;
 
-    vec4<gly_float> clear_color;
+    ss::vec4<gly_float> clear_color;
 
-    vec2<gly_int> vp_offset;
-    vec2<gly_int> vp_size;
+    ss::vec2<gly_int> vp_offset;
+    ss::vec2<gly_int> vp_size;
 
 //Audio
     void* audio_engine;
@@ -64,8 +64,8 @@ public:
     Renderer* GetCurrentRenderer();
     void SetCurrentRenderer(Renderer*);
 
-    vec4<gly_float> GetClearColor();
-    void SetClearColor(const vec4<gly_float>&);
+    ss::vec4<gly_float> GetClearColor();
+    void SetClearColor(const ss::vec4<gly_float>&);
 
     void Get_Window_Size(int* x_out, int* y_out);
     void Get_Buffer_Size(int* x_out, int* y_out);
@@ -87,9 +87,9 @@ public:
 
 private:
     void UpdateViewport();
-    void UpdateViewport(const vec2<gly_int>&);
+    void UpdateViewport(const ss::vec2<gly_int>&);
 
-    void OnOwnWindowResize(const vec2<gly_int>&);
+    void OnOwnWindowResize(const ss::vec2<gly_int>&);
     static void OnWindowResize(GLFWwindow*, int, int);
 
     static Instance* GetInstanceFromWindow(GLFWwindow*);

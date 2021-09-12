@@ -15,6 +15,7 @@
 #include<Glewy/Standard/Tilemap/tilemap.hpp>
 #include<Glewy/Standard/Tilemap/tile.hpp>
 #include<Glewy/Standard/Tilemap/tilemaprenderer.hpp>
+#include<Glewy/Standard/Tilemap/grid.hpp>
 
 #include<Glewy/Standard/UtilAttachments/transformcontroller.hpp>
 
