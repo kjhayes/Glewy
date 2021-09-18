@@ -52,7 +52,7 @@ namespace gly
 			SOIL_FLAG_TEXTURE_REPEATS | SOIL_FLAG_INVERT_Y | SOIL_FLAG_MULTIPLY_ALPHA
 		);
 		
-		if(handle == 0){std::cout<<"Error Loading Image From Memory: "<<(int)d.data<<" |Size: "<<d.size<<" bytes|"<<std::endl;}
+		if(handle == 0){std::cout<<"Error Loading Image From Memory: "<<d.data<<" |Size: "<<d.size<<" bytes|"<<std::endl;}
 		
 		glBindTexture(GL_TEXTURE_2D, handle);
 		glGetTexLevelParameteriv(GL_TEXTURE_2D, 0, GL_TEXTURE_WIDTH, &x_size);
