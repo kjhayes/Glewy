@@ -53,9 +53,13 @@ add_library(GLEWY STATIC
     )
 
 target_include_directories(${CMAKE_PROJECT_NAME} PUBLIC "${CMAKE_SOURCE_DIR}/include")
+target_include_directories(${CMAKE_PROJECT_NAME} PUBLIC ${GLEWY_DEP_INC_DIRS})
 
-target_include_directories(${CMAKE_PROJECT_NAME} PUBLIC "C:/Program Files (x86)/GLEW/include")
-target_include_directories(${CMAKE_PROJECT_NAME} PUBLIC "C:/Program Files (x86)/GLFW/include")
-target_include_directories(${CMAKE_PROJECT_NAME} PUBLIC "C:/Program Files (x86)/SOIL/include")
-target_include_directories(${CMAKE_PROJECT_NAME} PUBLIC "C:/Program Files (x86)/SoLoud_MA/include")
-target_include_directories(${CMAKE_PROJECT_NAME} PUBLIC "C:/Program Files (x86)/substd/include")
+#Test Executable
+add_executable(GLEWY_TEST ${CMAKE_CURRENT_SOURCE_DIR}/Tests/TestSuite.cpp)
+
+target_include_directories(GLEWY_TEST PUBLIC "${CMAKE_SOURCE_DIR}/include")
+target_include_directories(GLEWY_TEST PUBLIC ${GLEWY_DEP_INC_DIRS})
+
+target_link_libraries(GLEWY_TEST PUBLIC ${CMAKE_PROJECT_NAME})
+target_link_libraries(GLEWY_TEST PUBLIC ${GLEWY_DEP_LIBS})
