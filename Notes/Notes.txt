@@ -2,3 +2,10 @@ Glewy Notes:
 
 
     -When rendering tilemaps on very large or small scales (it seems to be when a tile is smaller than one pixel on the screen but I can't be sure), it gets wierd...
+
+Some Dependencies' Githubs:
+    https://github.com/edoren/glew.git
+    https://github.com/glfw/glfw.git
+    https://github.com/paralin/soil.git
+    https://github.com/kjhayes/SoLoud_MA.git
+    https://github.com/kjhayes/substd.git
