@@ -15,12 +15,14 @@ namespace gly
 class Root;
 class Renderer;
 
+///@brief Struct Containing Start Up Settings For The Instance Class Constructor
 struct StartUp
 {
     const char* title;
     ss::vec2<gly_int> size;
 };
 
+///@brief The Main Class Running Any Glewy Application
 class Instance : public ss::IRegisterable<Instance>
 {
 private:
@@ -55,7 +57,13 @@ public:
     Instance(const StartUp&);
     ~Instance();
 
+private:
     void TickTime();
+public:
+    ///@brief Enters The Main Loop Of The Application
+    ///
+    ///Make Sure To Have Set Up All Of The Needed Scenes To Continue Running
+    ///
     void Run();
 
     Root* GetCurrentRoot();
@@ -78,11 +86,17 @@ public:
     bool IsRunning();
 
 //Audio
+    ///@brief Returns A Pointer To The Current Audio Engine
+    ///
+    ///void* is used to avoid having to include audio engine .hpp files in classes which include instance.hpp
+    ///
+    ///@return void* to the current audio engine 
     void* GetAudioEngine();
 
 //Input
+private:
     void UpdateAllInputs();
-
+public:
     Mouse* GetMouse();
 
 private:

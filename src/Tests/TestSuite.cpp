@@ -38,7 +38,9 @@ int main(){
     root->DestroyEntity(entity);
     entity = nullptr;
     LogTest("Entity Destroyed", root->entity_registry.size() == 0);
-    
+
+    renderer->SetClearColor(ss::vec4<gly_float>(1.0f,1.0f,0.0f,1.0f));
+
     instance->Run();
 
     delete instance;   
